@@ -26,13 +26,13 @@ const Navbar = () => {
 	};
 
 	const navItems = (
-		<div className="lg:inline-flex font-semibold text-lg font-serif text-cyan-500 hover:bg-slate-300 duration-300">
+		<div className="z-10 px-5 py-1 lg:inline-flex font-semibold text-lg font-serif rounded-full shadow-xl border-b border-t border-slate-300">
 			<li>
 				<Link
 					className={
 						location.pathname === "/"
-							? "border-b-4 border-cyan-500 bg-slate-200 text-black"
-							: " "
+							? "text-white text-xl hover:text-white"
+							: "text-xl hover:text-white"
 					}
 					to="/"
 				>
@@ -43,32 +43,20 @@ const Navbar = () => {
 				<Link
 					className={
 						location.pathname === "/about"
-							? "border-b-4 border-cyan-500 bg-slate-200 text-black"
-							: " "
+							? "text-white text-xl hover:text-white"
+							: "text-xl hover:text-white"
 					}
 					to="/about"
 				>
 					About
 				</Link>
 			</li>
-			{/* <li>
-				<Link
-					className={
-						location.pathname === "/alldoctors"
-							? "border-b-4 border-cyan-500 bg-slate-200 text-black"
-							: " "
-					}
-					to="/alldoctors"
-				>
-					Doctors
-				</Link>
-			</li> */}
 			<li>
 				<Link
 					className={
 						location.pathname === "/appointment"
-							? "border-b-4 border-cyan-500 bg-slate-200 text-black"
-							: " "
+							? "text-white text-xl hover:text-white"
+							: "text-xl hover:text-white"
 					}
 					to="/appointment"
 				>
@@ -79,7 +67,7 @@ const Navbar = () => {
 	);
 
 	return (
-		<div className="navbar md:px-12 bg-slate-800">
+		<div className="bg-gradient-to-r from-gray-900 via-gray-400 to-gray-100 navbar md:px-12">
 			<div className="navbar-start">
 				<div className="dropdown">
 					<label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -97,7 +85,7 @@ const Navbar = () => {
 					className="flex items-center gap-2 font-serif font-semibold md:text-2xl text-cyan-500"
 				>
 					<img src={logo} className="w-10 h-10" alt="" />
-					<span className="mt-2 text-4xl">DocTreat</span>
+					<span className="mt-2 md:text-3xl text-white">Epic Care</span>
 				</Link>
 			</div>
 			<div className="navbar-center hidden lg:flex z-10">
@@ -107,14 +95,25 @@ const Navbar = () => {
 				<div className="dropdown dropdown-end">
 					<button
 						type="button"
-						className="flex items-center gap-3 text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br font-medium rounded-full text-sm px-2 py-2 md:px-5 md:py-3.5 text-center mr-2 mb-2"
+						className="flex items-center gap-3 text-white bg-gradient-to-r from-gray-600 via-gray-800 to-gray-900 hover:bg-gradient-to-br font-medium rounded-full text-sm px-2 py-2 md:px-5 md:py-3.5 text-center mr-2 mb-2"
 					>
 						<HiOutlineBars3 size={22} />
-						<FaUserCircle size={22} />
+						{user ? (
+							<p>
+								<img
+									src={user.photoURL}
+									className="w-10 h-10 rounded-full p-0"
+									alt=""
+									title={user?.displayName}
+								/>
+							</p>
+						) : (
+							<FaUserCircle size={22} />
+						)}
 					</button>
 					<ul
 						tabIndex={0}
-						className="z-50 p-2 shadow menu dropdown-content bg-cyan-500 text-white rounded font-serif w-48"
+						className="z-50 p-2 shadow menu dropdown-content bg-gray-500 text-white rounded font-serif w-48"
 					>
 						{user?.email ? (
 							<li>

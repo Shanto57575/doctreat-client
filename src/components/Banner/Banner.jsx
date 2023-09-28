@@ -1,8 +1,6 @@
-import Stat from "../Stat/Stat";
-
 const Banner = () => {
 	return (
-		<div className="relative mb-32">
+		<>
 			<div className="carousel w-full">
 				<div id="slide1" className="carousel-item relative w-full">
 					<img
@@ -145,10 +143,7 @@ const Banner = () => {
 					</div>
 				</div>
 			</div>
-			<div className="flex items-center justify-center md:absolute md:-bottom-[630px] left-0 right-0 top-0">
-				<Stat></Stat>
-			</div>
-		</div>
+		</>
 	);
 };
 

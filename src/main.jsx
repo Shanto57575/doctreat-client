@@ -12,6 +12,7 @@ import ShowService from "./components/ShowService/ShowService";
 import AuthProvider from "./AuthProvider/AuthProvider";
 import AllDoctors from "./components/AllDoctors/AllDoctors";
 import AppointmentForm from "./components/AppointmentForm/AppointmentForm";
+import BlogPage from "./components/Blogs/BlogPage";
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -19,33 +20,39 @@ const router = createBrowserRouter([
 		children: [
 			{
 				path: "/",
-				element: <Home></Home>,
+				element: <Home />,
+			},
+			{
+				path: "/:id",
+				element: <BlogPage />,
+				loader: ({ params }) =>
+					fetch(`http://localhost:5000/blogs/${params.id}`),
 			},
 			{
 				path: "/about",
-				element: <About></About>,
+				element: <About />,
 			},
 			{
 				path: "/alldoctors",
-				element: <AllDoctors></AllDoctors>,
+				element: <AllDoctors />,
 			},
 			{
 				path: "/alldoctors/:id",
-				element: <ShowService></ShowService>,
+				element: <ShowService />,
 				loader: ({ params }) =>
 					fetch(`http://localhost:5000/doctors/${params.id}`),
 			},
 			{
 				path: "/login",
-				element: <Login></Login>,
+				element: <Login />,
 			},
 			{
 				path: "/register",
-				element: <Register></Register>,
+				element: <Register />,
 			},
 			{
 				path: "/appointment",
-				element: <Appointment></Appointment>,
+				element: <Appointment />,
 			},
 			{
 				path: "/appointmentForm/:id",

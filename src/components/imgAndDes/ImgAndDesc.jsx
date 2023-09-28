@@ -1,6 +1,6 @@
 const ImgAndDesc = () => {
 	return (
-		<div className="md:flex items-center justify-between mx-10 md:mt-32 mb-24">
+		<div className="md:flex items-center justify-between mx-10 my-16">
 			<div className="w-full md:w-1/2">
 				<div className="-m-1 flex flex-wrap md:-m-2">
 					<div className="flex w-1/2 flex-wrap">

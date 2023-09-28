@@ -16,6 +16,8 @@ const Doctor = () => {
 			.then((data) => setDoctors(data));
 	}, []);
 
+	console.log(doctors);
+
 	const loginFirst = () => {
 		Swal.fire({
 			position: "center",
@@ -37,9 +39,9 @@ const Doctor = () => {
 				{doctors.map((doctor) => (
 					<div
 						key={doctor._id}
-						className="mb-10 w-full md:w-72 glass rounded shadow-2xl hover:shadow-2xl shadow-black bg-gray-700 text-white"
+						className="mb-10 w-full md:w-72 glass rounded-xl shadow-2xl hover:shadow-xl shadow-slate-700 bg-gray-700 text-white"
 					>
-						<figure className="border-b-4 border-cyan-600">
+						<figure className="relative border-b-4 border-cyan-600">
 							<Zoom>
 								<img
 									className="w-40 h-40 rounded-full mx-auto border-4 border-cyan-600 my-5"
@@ -47,17 +49,16 @@ const Doctor = () => {
 									alt="doctor"
 								/>
 							</Zoom>
+							<h2 className="absolute top-40 right-2 text-cyan-500 font-extrabold bg-slate-950 rounded-full px-3 py-1.5">
+								{doctor.experience}
+							</h2>
 						</figure>
 						<div className="px-5 space-y-2 my-5">
-							<h2 className="card-title uppercase">{doctor.services}</h2>
+							<p className="card-title">{doctor.name}</p>
 							<h2 className="card-title">{doctor.speciality}</h2>
-							<h2 className="card-title">
-								Experience :
-								<span className="text-cyan-400">{doctor.experience}</span>
-							</h2>
 							<div className="flex items-center justify-between">
 								<h2 className="card-title">
-									price: <span className="text-cyan-400">{doctor.fees}</span>
+									Fees: <span className="text-cyan-400">${doctor.fees}</span>
 								</h2>
 								{user?.email ? (
 									<Link to={`/alldoctors/${doctor._id}`}>
