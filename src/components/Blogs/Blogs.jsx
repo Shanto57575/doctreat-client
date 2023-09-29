@@ -24,18 +24,17 @@ const Blogs = () => {
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
 				{blogs.map((blog) => (
 					<Zoom key={blog._id}>
-						{" "}
-						<div className="card w-72 glass md:w-[350px] font-serif mx-auto bg-gray-100 hover:shadow hover:shadow-slate-500 rounded-xl border-x-2 border-gray-300">
+						<div className="rounded-tr-2xl rounded-es-2xl w-72 glass md:w-[350px] font-serif mx-auto bg-gray-100 hover:shadow hover:shadow-slate-500 border-x-2 border-gray-300">
 							<figure>
 								<img
 									src={blog.aboutImg}
 									alt="Shoes"
-									className="w-96 h-52 group"
+									className="w-96 h-52 group rounded-tr-2xl rounded-es-2xl"
 								/>
 							</figure>
 							<div className="flex items-center gap-2 p-2">
 								<img
-									className="w-12 h-12 rounded-full border-2 border-blue-500"
+									className="w-12 h-12 rounded-tr-2xl rounded-es-2xl border-2 border-blue-500"
 									src={blog.personImg}
 								/>
 								<div className="text-left">

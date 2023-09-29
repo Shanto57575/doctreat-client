@@ -115,7 +115,7 @@ const Navbar = () => {
 						tabIndex={0}
 						className="z-50 p-2 shadow menu dropdown-content bg-gray-500 text-white rounded font-serif w-48"
 					>
-						{user?.email ? (
+						{user ? (
 							<li>
 								<span onClick={handleLogOut}>Logout</span>
 							</li>

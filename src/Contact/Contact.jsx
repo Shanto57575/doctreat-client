@@ -37,12 +37,10 @@ const Contact = () => {
 
 	return (
 		<>
-			<h1 className="text-cyan-500 text-5xl font-bold mt-10 text-center">
+			<h1 className="text-cyan-500 text-5xl font-bold mt-10 text-center font-serif">
 				Contact us
 			</h1>
-			<p className="font-semibold mt-2 text-center text-xl">
-				Get in touch with us
-			</p>
+			<p className="mt-2 text-center font-serif">Get in touch with us</p>
 			<div className="md:flex items-center">
 				<form
 					ref={form}
@@ -61,6 +59,7 @@ const Contact = () => {
 										name="user_name"
 										placeholder="Name"
 										className="input input-bordered"
+										required
 									/>
 								</div>
 								<div className="form-control">
@@ -72,6 +71,7 @@ const Contact = () => {
 										placeholder="email"
 										name="user_email"
 										className="input input-bordered"
+										required
 									/>
 								</div>
 								<div className="form-control">
@@ -82,6 +82,7 @@ const Contact = () => {
 										placeholder="Message"
 										name="message"
 										className="textarea textarea-bordered textarea-lg w-full"
+										required
 									></textarea>
 								</div>
 								<input

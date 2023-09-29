@@ -1,9 +1,10 @@
 import {
-	FacebookAuthProvider,
+	GithubAuthProvider,
 	GoogleAuthProvider,
 	createUserWithEmailAndPassword,
 	getAuth,
 	onAuthStateChanged,
+	sendPasswordResetEmail,
 	signInWithEmailAndPassword,
 	signInWithPopup,
 	signOut,
@@ -14,7 +15,7 @@ import { createContext, useEffect, useState } from "react";
 export const AuthContext = createContext();
 
 const auth = getAuth(app);
-const fbProvider = new FacebookAuthProvider();
+const GitProvider = new GithubAuthProvider();
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
@@ -31,13 +32,18 @@ const AuthProvider = ({ children }) => {
 		return signInWithEmailAndPassword(auth, email, password);
 	};
 
-	const facebookSignIn = () => {
+	const GithubSignIn = () => {
 		setLoader(true);
-		return signInWithPopup(auth, fbProvider);
+		return signInWithPopup(auth, GitProvider);
 	};
 	const googleSignIn = () => {
 		setLoader(true);
 		return signInWithPopup(auth, googleProvider);
+	};
+
+	const resetPassword = (email) => {
+		setLoader(true);
+		return sendPasswordResetEmail(auth, email);
 	};
 
 	const logOut = () => {
@@ -80,9 +86,10 @@ const AuthProvider = ({ children }) => {
 		createUser,
 		SignIn,
 		googleSignIn,
-		facebookSignIn,
+		GithubSignIn,
 		loader,
 		logOut,
+		resetPassword,
 	};
 	return (
 		<AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

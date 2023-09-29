@@ -20,10 +20,12 @@ const AllDoctors = () => {
 	const specialityRef = useRef(null);
 	const feesRef = useRef(null);
 
-	console.log(allDoctors.length);
+	console.log("ref=>", searchRef);
+
+	// console.log(allDoctors.length);
 
 	const totalItems = allDoctors.length;
-	console.log(totalItems);
+	// console.log(totalItems);
 
 	//pagination
 	const itemsPerPage = 5;
@@ -47,10 +49,10 @@ const AllDoctors = () => {
 	}, [currentPage, search, gender, speciality, fees]);
 
 	const clearAll = () => {
-		setSearch(searchRef);
-		setGender(" ");
-		setSpeciality(" ");
-		setFees(" ");
+		setSearch(searchRef.current.value);
+		setGender(genderRef.current.value);
+		setSpeciality(specialityRef.current.value);
+		setFees(feesRef.current.value);
 	};
 
 	return (
@@ -76,7 +78,7 @@ const AllDoctors = () => {
 			</div>
 			<div className="flex mt-10 mx-12 gap-x-5">
 				<div className="w-full md:w-[20%] flex items-center justify-center flex-wrap font-serif rounded-lg shadow-xl border">
-					<div className="form-control">
+					<div className="form-control h-52">
 						<div className="input-group">
 							<select
 								className="select select-bordered"
@@ -100,7 +102,7 @@ const AllDoctors = () => {
 							</select>
 						</div>
 					</div>
-					<div className="form-control">
+					<div className="form-control h-52">
 						<div className="input-group">
 							<select
 								className="select select-bordered"
@@ -121,7 +123,7 @@ const AllDoctors = () => {
 							</select>
 						</div>
 					</div>
-					<div className="form-control">
+					<div className="form-control h-52">
 						<div className="input-group">
 							<select
 								className="select select-bordered"
@@ -144,7 +146,7 @@ const AllDoctors = () => {
 							</select>
 						</div>
 					</div>
-					<div className="form-control">
+					<div className="form-control h-52">
 						<div className="input-group">
 							<select
 								className="select select-bordered"
