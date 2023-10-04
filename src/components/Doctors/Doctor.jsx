@@ -1,33 +1,15 @@
-import { useContext, useEffect, useState } from "react";
-import { BsFillArrowRightCircleFill } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../AuthProvider/AuthProvider";
-import Swal from "sweetalert2";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Zoom } from "react-awesome-reveal";
 
 const Doctor = () => {
 	const [doctors, setDoctors] = useState([]);
-	const { user } = useContext(AuthContext);
-	const navigate = useNavigate();
 
 	useEffect(() => {
 		fetch("http://localhost:5000/doctors")
 			.then((res) => res.json())
 			.then((data) => setDoctors(data));
 	}, []);
-
-	console.log(doctors);
-
-	const loginFirst = () => {
-		Swal.fire({
-			position: "center",
-			icon: "error",
-			title: "Please Login first ot book your service!",
-			showConfirmButton: false,
-			timer: 1500,
-		});
-		navigate("/login");
-	};
 
 	return (
 		<div className="text-center space-y-3">
@@ -60,21 +42,6 @@ const Doctor = () => {
 								<h2 className="card-title">
 									Fees: <span className="text-cyan-400">${doctor.fees}</span>
 								</h2>
-								{user?.email ? (
-									<Link to={`/alldoctors/${doctor._id}`}>
-										<BsFillArrowRightCircleFill
-											className="text-cyan-500 cursor-pointer"
-											size={25}
-										/>
-									</Link>
-								) : (
-									<Link onClick={loginFirst}>
-										<BsFillArrowRightCircleFill
-											className="text-cyan-500 cursor-pointer"
-											size={25}
-										/>
-									</Link>
-								)}
 							</div>
 						</div>
 					</div>

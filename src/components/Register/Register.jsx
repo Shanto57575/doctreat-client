@@ -1,15 +1,18 @@
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Lottie from "lottie-react";
 import register from "../../assets/register.json";
-import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
+import { AiFillGithub } from "react-icons/ai";
 
 const Register = () => {
-	const { createUser, googleSignIn, facebookSignIn } = useContext(AuthContext);
+	const { createUser, googleSignIn, GithubSignIn } = useContext(AuthContext);
 	const navigate = useNavigate();
+	const location = useLocation();
+
+	const from = location.state?.from?.pathname || "/";
 
 	// Email Password authentication
 	const handleSubmit = (event) => {
@@ -33,20 +36,20 @@ const Register = () => {
 		createUser(email, password)
 			.then((user) => {
 				console.log(user);
+				navigate(from, { replace: true });
 			})
 			.catch((error) => console.log(error.message));
 		form.reset();
-		navigate("/");
 	};
 
-	// Facebook authentication
-
-	const facebookAuth = () => {
-		facebookSignIn()
-			.then((result) => console.log(result))
+	const githubAuth = () => {
+		GithubSignIn()
+			.then((result) => {
+				console.log(result);
+				navigate(from, { replace: true });
+			})
 			.catch((error) => console.log(error.message));
 	};
-
 	// Google authentication
 
 	const googleAuth = () => {
@@ -56,7 +59,7 @@ const Register = () => {
 	};
 
 	return (
-		<div className="md:flex items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+		<div className="md:flex items-center justify-around px-6 py-40 mx-auto">
 			<div className="w-full md:w-1/2">
 				<Lottie className="h-96" animationData={register} loop={true} />
 			</div>
@@ -111,16 +114,16 @@ const Register = () => {
 						<input
 							className="cursor-pointer w-full text-white bg-cyan-600 hover:bg-primary-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
 							type="submit"
-							value="Create an account"
+							value="Sign Up"
 						/>{" "}
 					</form>
 					<div className="flex items-center justify-center">
 						<button
 							type="button"
-							className="cursor-pointer inline-flex items-center gap-2 text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 "
-							onClick={facebookAuth}
+							className="cursor-pointer text-white gap-2 bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 mr-2 mb-2"
+							onClick={githubAuth}
 						>
-							Sign In with <BsFacebook />
+							Sign In with <AiFillGithub size={24} />
 						</button>
 						<button
 							type="button"

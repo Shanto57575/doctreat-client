@@ -8,11 +8,16 @@ import Home from "./components/Home/Home";
 import About from "./components/About/About";
 import Appointment from "./components/Appointment/Appointment";
 import Register from "./components/Register/Register";
-import ShowService from "./components/ShowService/ShowService";
 import AuthProvider from "./AuthProvider/AuthProvider";
 import AllDoctors from "./components/AllDoctors/AllDoctors";
 import AppointmentForm from "./components/AppointmentForm/AppointmentForm";
 import BlogPage from "./components/Blogs/BlogPage";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import Shop from "./components/Shop/Shop";
+
+// TanStack Query
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 const router = createBrowserRouter([
 	{
 		path: "/",
@@ -37,10 +42,8 @@ const router = createBrowserRouter([
 				element: <AllDoctors />,
 			},
 			{
-				path: "/alldoctors/:id",
-				element: <ShowService />,
-				loader: ({ params }) =>
-					fetch(`http://localhost:5000/doctors/${params.id}`),
+				path: "/shop",
+				element: <Shop />,
 			},
 			{
 				path: "/login",
@@ -52,7 +55,11 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "/appointment",
-				element: <Appointment />,
+				element: (
+					<PrivateRoute>
+						<Appointment />
+					</PrivateRoute>
+				),
 			},
 			{
 				path: "/appointmentForm/:id",
@@ -62,10 +69,14 @@ const router = createBrowserRouter([
 	},
 ]);
 
+const queryClient = new QueryClient();
+
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
-		<AuthProvider>
-			<RouterProvider router={router} />
-		</AuthProvider>
+		<QueryClientProvider client={queryClient}>
+			<AuthProvider>
+				<RouterProvider router={router} />
+			</AuthProvider>
+		</QueryClientProvider>
 	</React.StrictMode>
 );

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Lottie from "lottie-react";
 import login from "../../assets/login.json";
@@ -13,6 +13,10 @@ const Login = () => {
 		useContext(AuthContext);
 
 	const navigate = useNavigate();
+	const location = useLocation();
+
+	const from = location.state?.from?.pathname || "/";
+
 	const emailRef = useRef();
 
 	const handleSubmit = (event) => {
@@ -35,7 +39,7 @@ const Login = () => {
 						showConfirmButton: false,
 						timer: 1500,
 					});
-					navigate("/");
+					navigate(from, { replace: true });
 					console.log(user);
 				}
 			})
@@ -50,12 +54,13 @@ const Login = () => {
 		form.reset();
 	};
 
-	// Facebook authentication
+	// Github authentication
 
 	const githubAuth = () => {
 		GithubSignIn()
 			.then((result) => {
 				console.log(result);
+				navigate(from, { replace: true });
 			})
 			.catch((error) => console.log(error.message));
 	};
@@ -64,7 +69,10 @@ const Login = () => {
 
 	const googleAuth = () => {
 		googleSignIn()
-			.then((result) => console.log(result))
+			.then((result) => {
+				navigate(from, { replace: true });
+				console.log(result);
+			})
 			.catch((error) => console.log(error.message));
 	};
 
@@ -77,7 +85,7 @@ const Login = () => {
 	};
 
 	return (
-		<div className="md:flex items-center justify-around px-6 py-8 mx-auto md:h-screen lg:py-0">
+		<div className="md:flex items-center justify-around px-6 py-20 mx-auto">
 			<div className="w-full md:w-1/2">
 				<Lottie animationData={login} loop={true} />
 			</div>
@@ -131,7 +139,7 @@ const Login = () => {
 						<input
 							className="cursor-pointer w-full text-white bg-cyan-600 hover:bg-primary-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
 							type="submit"
-							value="Login here"
+							value="Login"
 						/>
 						<div className="flex items-center justify-center">
 							<button

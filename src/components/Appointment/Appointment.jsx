@@ -88,7 +88,7 @@ const Appointment = () => {
 
 	if (loader) {
 		return (
-			<div className="text-7xl text-center text-cyan-500 h-screen">
+			<div className="text-7xl text-center text-cyan-500">
 				L
 				<span className="inline-block bg-cyan-500 w-12 h-12 border-8 border-dashed text-5xl rounded-full animate-spin"></span>
 				ading...

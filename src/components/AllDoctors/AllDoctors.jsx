@@ -56,18 +56,24 @@ const AllDoctors = () => {
 	};
 
 	return (
-		<div className="text-center my-10">
-			<h4 className="font-semibold text-3xl mb-4">Our Medical Experts</h4>
-			<h1 className="text-5xl font-bold mb-4">
-				Meet Our
-				<span className="text-cyan-600"> Skilled Doctors</span>
-			</h1>
-			<p className="w-full md:w-1/2 mx-auto">
-				Meet our team of dedicated healthcare professionals. Our doctors are
-				highly trained and experienced in various specialties, ready to provide
-				you with the best possible care.
-			</p>
-			<div className="text-left ml-14 flex items-center gap-x-14">
+		<div className="text-center">
+			<div
+				className="hero h-96"
+				style={{
+					backgroundImage:
+						"url(https://t3.ftcdn.net/jpg/02/19/91/48/240_F_219914874_fcqxEeJ6clfwf43OcCNAMGNBySKzF5hl.jpg)",
+				}}
+			>
+				<div className="hero-overlay bg-opacity-60"></div>
+				<div className="hero-content text-center text-neutral-content">
+					<div className="max-w-lg">
+						<h1 className="mb-5 text-5xl font-bold font-serif">
+							Epic | <span className="text-blue-400">Docs</span>
+						</h1>
+					</div>
+				</div>
+			</div>
+			<div className="text-left ml-14 flex items-center gap-x-14 mt-10">
 				<h1 className="font-bold text-xl font-serif">Filters By</h1>
 				<button
 					onClick={clearAll}
