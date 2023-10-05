@@ -56,24 +56,6 @@ const AuthProvider = ({ children }) => {
 			console.log(currentUser);
 			setUser(currentUser);
 			setLoader(false);
-			const loggedUser = {
-				email: currentUser?.email,
-			};
-			if (currentUser && currentUser?.email) {
-				fetch("http://localhost:5000/jwt", {
-					method: "POST",
-					headers: {
-						"content-type": "application/json",
-					},
-					body: JSON.stringify(loggedUser),
-				})
-					.then((res) => res.json())
-					.then((data) => {
-						localStorage.setItem("doctorsSecret", data.token);
-					});
-			} else {
-				localStorage.removeItem("doctorsSecret");
-			}
 		});
 
 		return () => {

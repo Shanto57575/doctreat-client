@@ -11,9 +11,10 @@ const ProductTab = ({ item }) => {
 	const [, refetch] = useCart();
 
 	const handleAddToCart = (product) => {
+		product.email = user?.email;
 		console.log(product);
 		if (user) {
-			fetch(`http://localhost:5000/carts`, {
+			fetch("http://localhost:5000/carts", {
 				method: "POST",
 				headers: {
 					"content-type": "application/json",
@@ -52,128 +53,33 @@ const ProductTab = ({ item }) => {
 	};
 
 	return (
-		<div className="w-full mt-5">
-			<div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+		<div className="w-full my-10">
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-5">
 				{item?.map((product) => (
 					<div
 						key={product._id}
-						className="flex p-6 font-serif shadow-md hover:shadow-2xl rounded-lg"
+						className="card lg:card-side bg-base-100 shadow-xl rounded"
 					>
-						<div className="flex-none w-48 mb-10 relative z-10 before:absolute before:w-full before:h-full">
+						<figure>
 							<img
 								src={product.img}
-								alt=""
-								className="absolute z-10 inset-0 w-full h-full object-cover rounded-tr-3xl rounded-es-3xl"
-								loading="lazy"
+								className="h-56 w-full lg:w-72 object-fill"
+								alt="Album"
 							/>
-						</div>
-						<form className="flex-auto pl-6">
-							<div className="relative flex flex-wrap items-baseline pb-6 before:bg-gradient-to-r from-gray-500 via-gray-700 to-gray-950 before:absolute before:-top-6 before:bottom-0 before:-left-60 before:-right-6">
-								<h1 className="relative w-full flex-none mb-2 text-2xl font-semibold text-white">
-									{product.name}
-								</h1>
-								<div className="relative text-lg text-white">
-									${product.price}
-								</div>
-								<div className="relative uppercase text-blue-300 font-extrabold ml-3">
-									In stock
-								</div>
-							</div>
-							<div className="flex items-baseline my-6">
-								<h1>Quantity -</h1>
-								<div className="space-x-3 flex text-sm font-medium">
-									<label>
-										<input
-											className="sr-only peer"
-											name="size"
-											type="radio"
-											defaultValue="xs"
-											defaultChecked=""
-										/>
-										<div className="relative w-10 h-10 flex items-center justify-center text-black peer-checked:bg-black peer-checked:text-white before:absolute before:z-[-1] before:top-0.5 before:left-0.5 before:w-full before:h-full peer-checked:before:bg-teal-400">
-											1
-										</div>
-									</label>
-									<label>
-										<input
-											className="sr-only peer"
-											name="size"
-											type="radio"
-											defaultValue="s"
-										/>
-										<div className="relative w-10 h-10 flex items-center justify-center text-black peer-checked:bg-black peer-checked:text-white before:absolute before:z-[-1] before:top-0.5 before:left-0.5 before:w-full before:h-full peer-checked:before:bg-teal-400">
-											2
-										</div>
-									</label>
-									<label>
-										<input
-											className="sr-only peer"
-											name="size"
-											type="radio"
-											defaultValue="m"
-										/>
-										<div className="relative w-10 h-10 flex items-center justify-center text-black peer-checked:bg-black peer-checked:text-white before:absolute before:z-[-1] before:top-0.5 before:left-0.5 before:w-full before:h-full peer-checked:before:bg-teal-400">
-											3
-										</div>
-									</label>
-									<label>
-										<input
-											className="sr-only peer"
-											name="size"
-											type="radio"
-											defaultValue="l"
-										/>
-										<div className="relative w-10 h-10 flex items-center justify-center text-black peer-checked:bg-black peer-checked:text-white before:absolute before:z-[-1] before:top-0.5 before:left-0.5 before:w-full before:h-full peer-checked:before:bg-teal-400">
-											4
-										</div>
-									</label>
-									<label>
-										<input
-											className="sr-only peer"
-											name="size"
-											type="radio"
-											defaultValue="xl"
-										/>
-										<div className="relative w-10 h-10 flex items-center justify-center text-black peer-checked:bg-black peer-checked:text-white before:absolute before:z-[-1] before:top-0.5 before:left-0.5 before:w-full before:h-full peer-checked:before:bg-teal-400">
-											5
-										</div>
-									</label>
-								</div>
-							</div>
-							<div className="flex space-x-2 mb-4 text-sm font-medium">
-								<div className="flex space-x-4">
-									<button
-										onClick={() => handleAddToCart(product)}
-										disabled={false}
-										className="px-6 h-12 uppercase font-semibold tracking-wider border border-slate-200 bg-blue-400 text-white rounded"
-										type="button"
-									>
-										Add to Cart
-									</button>
-								</div>
+						</figure>
+						<div className="card-body">
+							<h2 className="font-semibold">{product.name}</h2>
+							<p>Price: ${product.price}</p>
+							<div className="card-actions">
 								<button
-									className="flex-none flex items-center justify-center w-12 h-12 text-black"
+									onClick={() => handleAddToCart(product)}
 									type="button"
-									aria-label="Like"
+									className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
 								>
-									<svg
-										width={20}
-										height={20}
-										fill="currentColor"
-										aria-hidden="true"
-									>
-										<path
-											fillRule="evenodd"
-											clipRule="evenodd"
-											d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-										/>
-									</svg>
+									Add to Cart
 								</button>
 							</div>
-							<p className="text-xs leading-6 text-slate-500">
-								Free shipping all over the country!
-							</p>
-						</form>
+						</div>
 					</div>
 				))}
 			</div>

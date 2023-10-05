@@ -7,7 +7,7 @@ const Footer = () => {
 	return (
 		<>
 			<div className=" bg-gradient-to-r from-[#151515] to-slate-400 lg:p-10 w-full">
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 					<div className="font-serif text-white space-y-2 m-5 lg:m-0">
 						<div className="flex items-center gap-4">
 							<img src={logo} className="w-10" alt="" />
@@ -41,7 +41,7 @@ const Footer = () => {
 						<a className="link link-hover block">Privacy policy</a>
 						<a className="link link-hover block">Cookie policy</a>
 					</nav>
-					<form className="text-white font-serif space-y-2 m-5 lg:m-0 mt-2">
+					{/* <form className="text-white font-serif space-y-2 m-5 lg:m-0 mt-2">
 						<header className="text-3xl">Newsletter</header>
 						<fieldset className="form-control w-80">
 							<label className="label">
@@ -51,14 +51,14 @@ const Footer = () => {
 								<input
 									type="text"
 									placeholder="username@site.com"
-									className="input input-bordered w-full pr-16"
+									className="input"
 								/>
 								<button className="btn btn-primary absolute top-0 right-0 rounded-l-none">
 									Subscribe
 								</button>
 							</div>
 						</fieldset>
-					</form>
+					</form> */}
 				</div>
 			</div>
 			<p className="text-center p-3 font-serif font-bold bg-slate-800 text-white">

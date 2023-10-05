@@ -12,10 +12,11 @@ const Navbar = () => {
 	const navigate = useNavigate();
 	const { user, logOut } = useContext(AuthContext);
 	const [cart] = useCart();
+	console.log(cart);
 
 	const handleLogOut = () => {
 		logOut()
-			.then()
+			.then(() => {})
 			.catch((error) => console.log(error.message));
 		navigate("/");
 		Swal.fire({
@@ -81,7 +82,7 @@ const Navbar = () => {
 	);
 
 	return (
-		<div className="bg-gradient-to-r from-gray-950 via-gray-700 to-gray-300 navbar md:px-12">
+		<div className="fixed z-10 bg-gradient-to-r from-gray-950 via-gray-700 to-gray-300 navbar md:px-12">
 			<div className="navbar-start">
 				<div className="dropdown">
 					<label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -114,7 +115,7 @@ const Navbar = () => {
 						{/* Cart */}
 						<div className="indicator">
 							<span className="indicator-item badge badge-secondary">
-								{cart?.length}
+								{cart?.length || 0}
 							</span>
 							<FaShoppingCart size={32} />
 						</div>

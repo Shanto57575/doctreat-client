@@ -40,14 +40,14 @@ const Shop = () => {
 					<div className="hero-content text-center text-neutral-content">
 						<div className="max-w-lg">
 							<h1 className="mb-5 text-5xl font-bold font-serif">
-								Epic |<span className="text-blue-400"> Store</span>
+								EPIC | <span className="text-blue-400">STORE</span>
 							</h1>
 						</div>
 					</div>
 				</div>
-				<div className="p-4 bg-gray-100 font-serif">
+				<div className=" bg-gray-100 font-serif">
 					<Tabs>
-						<TabList className="flex items-center p-2 gap-4 bg-gray-500 text-white border-2 rounded">
+						<TabList className="flex flex-wrap items-center p-2 gap-x-4 bg-gray-600 text-white border-2 rounded">
 							<Tab className="px-4 py-2 cursor-pointer hover:bg-slate-800 transition duration-300">
 								Monitoring Devices
 							</Tab>
