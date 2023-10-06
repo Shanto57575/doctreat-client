@@ -78,11 +78,23 @@ const Navbar = () => {
 					Shop
 				</Link>
 			</li>
+			<li>
+				<Link
+					className={
+						location.pathname === "/dashboard"
+							? "text-white lg:text-xl border-b-4 hover:text-white"
+							: "lg:text-xl text-white"
+					}
+					to="/dashboard"
+				>
+					My Cart
+				</Link>
+			</li>
 		</div>
 	);
 
 	return (
-		<div className="fixed z-10 bg-gradient-to-r from-gray-950 via-gray-700 to-gray-300 navbar md:px-12">
+		<div className="fixed z-10 bg-black bg-opacity-10 navbar md:px-12">
 			<div className="navbar-start">
 				<div className="dropdown">
 					<label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -117,7 +129,7 @@ const Navbar = () => {
 							<span className="indicator-item badge badge-secondary">
 								{cart?.length || 0}
 							</span>
-							<FaShoppingCart size={32} />
+							<FaShoppingCart size={30} />
 						</div>
 
 						<HiOutlineBars3 size={22} />

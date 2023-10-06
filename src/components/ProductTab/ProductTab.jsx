@@ -3,6 +3,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import useCart from "../../hooks/useCart";
 import { useLocation, useNavigate } from "react-router-dom";
+import { FaCartPlus } from "react-icons/fa";
 
 const ProductTab = ({ item }) => {
 	const { user } = useContext(AuthContext);
@@ -13,6 +14,7 @@ const ProductTab = ({ item }) => {
 	const handleAddToCart = (product) => {
 		product.email = user?.email;
 		console.log(product);
+
 		if (user) {
 			fetch("http://localhost:5000/carts", {
 				method: "POST",
@@ -23,8 +25,14 @@ const ProductTab = ({ item }) => {
 			})
 				.then((res) => res.json())
 				.then((data) => {
-					console.log(data);
-					if (data.insertedId) {
+					if (data.error) {
+						Swal.fire({
+							icon: "warning",
+							title: "Product already added to cart",
+							showConfirmButton: false,
+							timer: 1500,
+						});
+					} else {
 						refetch();
 						Swal.fire({
 							position: "center",
@@ -33,8 +41,10 @@ const ProductTab = ({ item }) => {
 							showConfirmButton: false,
 							timer: 1500,
 						});
-						refetch();
 					}
+				})
+				.catch((error) => {
+					console.error("Error adding product to cart:", error);
 				});
 		} else {
 			Swal.fire({
@@ -53,33 +63,42 @@ const ProductTab = ({ item }) => {
 	};
 
 	return (
-		<div className="w-full my-10">
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-5">
+		<div className="w-full mx-auto my-10">
+			<div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 mx-2 md:gap-10 md:mx-5">
 				{item?.map((product) => (
 					<div
 						key={product._id}
-						className="card lg:card-side bg-base-100 shadow-xl rounded"
+						className="card w-full md:w-72 h-80 shadow-2xl shadow-black rounded-none rounded-tr-3xl rounded-es-3xl"
 					>
 						<figure>
 							<img
 								src={product.img}
-								className="h-56 w-full lg:w-72 object-fill"
-								alt="Album"
+								className="w-full h-80"
+								alt={product.name}
+								loading="lazy"
 							/>
 						</figure>
-						<div className="card-body">
-							<h2 className="font-semibold">{product.name}</h2>
-							<p>Price: ${product.price}</p>
-							<div className="card-actions">
-								<button
-									onClick={() => handleAddToCart(product)}
-									type="button"
-									className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
-								>
-									Add to Cart
-								</button>
+						<p className="absolute right-3 top-3 bg-black text-white px-2 py-1.5">
+							$ {product.price}
+						</p>
+						<div
+							className="px-3 pt-3 space-y-5 h-full text-white"
+							style={{
+								backgroundImage:
+									"url(https://t3.ftcdn.net/jpg/01/33/62/12/240_F_133621255_DTSQSjnXdHqa10ArqZsSoXNQWKCR6Hm9.jpg)",
+							}}
+						>
+							<h2 className="text-base md:text-xl">{product.name}</h2>
+							<div>
+								<div className="badge badge-outline">{product.category}</div>
 							</div>
 						</div>
+						<button
+							onClick={() => handleAddToCart(product)}
+							className="flex items-center justify-center gap-x-2 py-2 bg-sky-900 hover:bg-sky-700 duration-300 text-white rounded-es-3xl"
+						>
+							Add to Cart <FaCartPlus size={20} />
+						</button>
 					</div>
 				))}
 			</div>

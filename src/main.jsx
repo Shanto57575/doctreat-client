@@ -14,9 +14,11 @@ import AppointmentForm from "./components/AppointmentForm/AppointmentForm";
 import BlogPage from "./components/Blogs/BlogPage";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Shop from "./components/Shop/Shop";
+import { HelmetProvider } from "react-helmet-async";
 
 // TanStack Query
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import DashBoard from "./components/DashBoard/DashBoard";
 
 const router = createBrowserRouter([
 	{
@@ -44,6 +46,10 @@ const router = createBrowserRouter([
 			{
 				path: "/shop",
 				element: <Shop />,
+			},
+			{
+				path: "/dashboard",
+				element: <DashBoard />,
 			},
 			{
 				path: "/login",
@@ -74,9 +80,11 @@ const queryClient = new QueryClient();
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
 		<QueryClientProvider client={queryClient}>
-			<AuthProvider>
-				<RouterProvider router={router} />
-			</AuthProvider>
+			<HelmetProvider>
+				<AuthProvider>
+					<RouterProvider router={router} />
+				</AuthProvider>
+			</HelmetProvider>
 		</QueryClientProvider>
 	</React.StrictMode>
 );

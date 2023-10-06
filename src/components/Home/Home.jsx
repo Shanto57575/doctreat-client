@@ -9,7 +9,7 @@ import Stat from "./../Stat/Stat";
 
 const Home = () => {
 	return (
-		<div className="">
+		<div>
 			<Banner />
 			<ImgAndDesc />
 			<Stat />

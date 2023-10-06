@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import ProductTab from "../ProductTab/ProductTab";
+import { Helmet } from "react-helmet-async";
 
 const Shop = () => {
 	const [shops, setShops] = useState();
@@ -28,9 +29,13 @@ const Shop = () => {
 
 	return (
 		<>
+			<Helmet>
+				<title>Doctreat | Shop</title>
+			</Helmet>
+
 			<div className="w-full mx-auto">
 				<div
-					className="hero h-96"
+					className="hero h-[500px]"
 					style={{
 						backgroundImage:
 							"url(https://t3.ftcdn.net/jpg/02/44/60/98/240_F_244609855_yUA8MEZL0iOxqcNg7t4GbPfgOLxYp3Ie.jpg)",

@@ -41,13 +41,13 @@ const Contact = () => {
 				Contact us
 			</h1>
 			<p className="mt-2 text-center font-serif">Get in touch with us</p>
-			<div className="md:flex items-center">
+			<div className="flex flex-col-reverse lg:flex-row items-center">
 				<form
 					ref={form}
 					onSubmit={sendEmail}
-					className="w-full md:w-1/2 md:mx-8 lg:mx-12 max-w-lg"
+					className="w-full md:w-2/3 md:mx-8 lg:mx-12 max-w-5xl"
 				>
-					<div className="flex-col lg:flex-row-reverse">
+					<div className="">
 						<div className="card w-full max-w-3xl shadow-2xl bg-base-100">
 							<div className="card-body">
 								<div className="form-control">
