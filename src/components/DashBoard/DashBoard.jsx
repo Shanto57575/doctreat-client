@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import useCart from "../../hooks/useCart";
 import { Link, Outlet } from "react-router-dom";
 import { FaHome, FaShoppingCart } from "react-icons/fa";
+import { FaMoneyCheckDollar } from "react-icons/fa6";
 
 const DashBoard = () => {
 	const [cart] = useCart();
@@ -17,7 +18,7 @@ const DashBoard = () => {
 					<Outlet />
 					<label
 						htmlFor="my-drawer-2"
-						className="btn rounded-none bg-slate-500 hover:bg-slate-700 text-white w-full drawer-button lg:hidden"
+						className="btn bg-sky-600 hover:bg-sky-500 w-full text-white drawer-button lg:hidden rounded-none"
 					>
 						Open drawer
 					</label>
@@ -28,8 +29,7 @@ const DashBoard = () => {
 						aria-label="close sidebar"
 						className="drawer-overlay"
 					></label>
-					<ul className="menu p-4 w-60 min-h-full bg-base-200 text-base-content">
-						{/* Sidebar content here */}
+					<ul className="menu p-4 w-56 min-h-full bg-base-200 text-base-content">
 						<li>
 							<Link
 								className="flex items-center gap-x-2 text-lg font-serif"
@@ -40,7 +40,10 @@ const DashBoard = () => {
 							</Link>
 						</li>
 						<li>
-							<Link className="flex items-center gap-x-4 text-lg font-serif">
+							<Link
+								className="flex items-center gap-x-4 text-lg font-serif"
+								to="/dashboard/mycart"
+							>
 								<div className="indicator">
 									<span className="indicator-item badge badge-secondary">
 										{cart?.length || 0}
@@ -48,6 +51,15 @@ const DashBoard = () => {
 									<FaShoppingCart size={30} />
 								</div>
 								My cart
+							</Link>
+							<Link
+								className="flex items-center gap-x-4 text-lg font-serif"
+								to="/dashboard/Payment"
+							>
+								<div>
+									<FaMoneyCheckDollar size={30} />
+								</div>
+								Payment
 							</Link>
 						</li>
 					</ul>

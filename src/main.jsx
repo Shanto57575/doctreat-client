@@ -20,6 +20,7 @@ import { HelmetProvider } from "react-helmet-async";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import DashBoard from "./components/DashBoard/DashBoard";
 import MyCart from "./components/DashBoard/MyCart";
+import Payment from "./components/DashBoard/Payment";
 
 const router = createBrowserRouter([
 	{
@@ -49,16 +50,6 @@ const router = createBrowserRouter([
 				element: <Shop />,
 			},
 			{
-				path: "/dashboard",
-				element: <DashBoard />,
-				children: [
-					{
-						path: "/dashboard",
-						element: <MyCart />,
-					},
-				],
-			},
-			{
 				path: "/login",
 				element: <Login />,
 			},
@@ -77,6 +68,24 @@ const router = createBrowserRouter([
 			{
 				path: "/appointmentForm/:id",
 				element: <AppointmentForm />,
+			},
+		],
+	},
+	{
+		path: "/dashboard",
+		element: <DashBoard />,
+		children: [
+			{
+				path: "/dashboard/mycart",
+				element: (
+					<PrivateRoute>
+						<MyCart />
+					</PrivateRoute>
+				),
+			},
+			{
+				path: "/dashboard/payment",
+				element: <Payment />,
 			},
 		],
 	},

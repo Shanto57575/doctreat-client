@@ -41,7 +41,7 @@ const Navbar = () => {
 					Home
 				</Link>
 			</li>
-			<li>
+			{/* <li>
 				<Link
 					className={
 						location.pathname === "/about"
@@ -52,8 +52,8 @@ const Navbar = () => {
 				>
 					About
 				</Link>
-			</li>
-			<li>
+			</li> */}
+			{/* <li>
 				<Link
 					className={
 						location.pathname === "/appointment"
@@ -64,7 +64,7 @@ const Navbar = () => {
 				>
 					Appointment
 				</Link>
-			</li>
+			</li> */}
 			<li>
 				<Link
 					className={
@@ -80,11 +80,11 @@ const Navbar = () => {
 			<li>
 				<Link
 					className={
-						location.pathname === "/dashboard"
+						location.pathname === "/mycart"
 							? "text-white lg:text-xl border-b-4 hover:text-white"
 							: "lg:text-xl text-white"
 					}
-					to="/dashboard"
+					to="/dashboard/mycart"
 				>
 					My Cart
 				</Link>
