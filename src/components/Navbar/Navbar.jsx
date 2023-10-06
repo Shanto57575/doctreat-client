@@ -12,7 +12,6 @@ const Navbar = () => {
 	const navigate = useNavigate();
 	const { user, logOut } = useContext(AuthContext);
 	const [cart] = useCart();
-	console.log(cart);
 
 	const handleLogOut = () => {
 		logOut()
@@ -94,7 +93,7 @@ const Navbar = () => {
 	);
 
 	return (
-		<div className="fixed z-10 bg-black bg-opacity-10 navbar md:px-12">
+		<div className="bg-gradient-to-r from-gray-500 via-gray-700 to-gray-950 navbar md:px-12">
 			<div className="navbar-start">
 				<div className="dropdown">
 					<label tabIndex={0} className="btn btn-ghost lg:hidden">

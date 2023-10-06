@@ -19,6 +19,7 @@ import { HelmetProvider } from "react-helmet-async";
 // TanStack Query
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import DashBoard from "./components/DashBoard/DashBoard";
+import MyCart from "./components/DashBoard/MyCart";
 
 const router = createBrowserRouter([
 	{
@@ -50,6 +51,12 @@ const router = createBrowserRouter([
 			{
 				path: "/dashboard",
 				element: <DashBoard />,
+				children: [
+					{
+						path: "/dashboard",
+						element: <MyCart />,
+					},
+				],
 			},
 			{
 				path: "/login",

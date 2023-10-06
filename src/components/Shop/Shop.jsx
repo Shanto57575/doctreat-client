@@ -45,7 +45,7 @@ const Shop = () => {
 					<div className="hero-content text-center text-neutral-content">
 						<div className="max-w-lg">
 							<h1 className="mb-5 text-5xl font-bold font-serif">
-								EPIC | <span className="text-blue-400">STORE</span>
+								EPIC | <span className="text-blue-400">MED</span>
 							</h1>
 						</div>
 					</div>
