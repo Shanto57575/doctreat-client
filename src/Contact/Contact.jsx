@@ -45,10 +45,10 @@ const Contact = () => {
 				<form
 					ref={form}
 					onSubmit={sendEmail}
-					className="w-full md:w-2/3 md:mx-8 lg:mx-12 max-w-5xl"
+					className="w-full md:w-1/2 md:mx-8 lg:mx-12 max-w-5xl"
 				>
 					<div className="">
-						<div className="card w-full max-w-3xl shadow-2xl bg-base-100">
+						<div className="card w-full max-w-3xl shadow-2xl bg-gradient-to-r from-blue-200 via-blue-300 to-blue-400">
 							<div className="card-body">
 								<div className="form-control">
 									<label className="label">
@@ -57,8 +57,8 @@ const Contact = () => {
 									<input
 										type="text"
 										name="user_name"
-										placeholder="Name"
-										className="input input-bordered"
+										placeholder="john doe"
+										className="input input-bordered border-none"
 										required
 									/>
 								</div>
@@ -68,7 +68,7 @@ const Contact = () => {
 									</label>
 									<input
 										type="text"
-										placeholder="email"
+										placeholder="johndoe@gmail.com"
 										name="user_email"
 										className="input input-bordered"
 										required
@@ -88,7 +88,7 @@ const Contact = () => {
 								<input
 									className="btn bg-blue-400 hover:bg-blue-500 text-white"
 									type="submit"
-									value="Send"
+									value="Submit"
 								/>
 							</div>
 						</div>

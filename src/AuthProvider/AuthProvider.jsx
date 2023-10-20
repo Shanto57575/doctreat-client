@@ -11,11 +11,12 @@ import {
 } from "firebase/auth";
 import { app } from "../Firebase/firebase.config";
 import { createContext, useEffect, useState } from "react";
+import axios from "axios";
 
 export const AuthContext = createContext();
 
 const auth = getAuth(app);
-const GitProvider = new GithubAuthProvider();
+const gitProvider = new GithubAuthProvider();
 const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
@@ -34,8 +35,9 @@ const AuthProvider = ({ children }) => {
 
 	const GithubSignIn = () => {
 		setLoader(true);
-		return signInWithPopup(auth, GitProvider);
+		return signInWithPopup(auth, gitProvider);
 	};
+
 	const googleSignIn = () => {
 		setLoader(true);
 		return signInWithPopup(auth, googleProvider);
@@ -53,26 +55,35 @@ const AuthProvider = ({ children }) => {
 
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-			console.log(currentUser);
 			setUser(currentUser);
-			setLoader(false);
+			if (currentUser) {
+				axios
+					.post("http://localhost:5000/jwt", { email: currentUser?.email })
+					.then((response) => {
+						localStorage.setItem("access-token", response.data.token);
+						setLoader(false);
+					});
+			} else {
+				localStorage.removeItem("access-token");
+			}
 		});
 
 		return () => {
-			unsubscribe();
+			return unsubscribe();
 		};
 	}, []);
 
 	const authInfo = {
 		user,
+		loader,
 		createUser,
 		SignIn,
 		googleSignIn,
 		GithubSignIn,
-		loader,
 		logOut,
 		resetPassword,
 	};
+
 	return (
 		<AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
 	);

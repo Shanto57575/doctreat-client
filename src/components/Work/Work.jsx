@@ -1,57 +1,34 @@
-import onlineBooking from "../../assets/online.gif";
-import appointment from "../../assets/appointment.gif";
-import expert from "../../assets/expert.png";
-import feedback from "../../assets/feedback.gif";
-import { JackInTheBox } from "react-awesome-reveal";
-
 const Work = () => {
 	return (
-		<div className="bg-gray-600 text-center flex flex-col items-center justify-center space-y-3 mb-10 py-10">
-			<p className="font-bold text-xl text-white font-serif underline">
+		<div
+			className="text-center flex flex-col items-center justify-center space-y-3 px-20 mb-20 lg:mx-12"
+			style={{
+				backgroundImage:
+					"url(https://t4.ftcdn.net/jpg/01/59/24/31/240_F_159243177_Gs9zSYQkeuniFZKAboLB3yBw0hlWSHKZ.jpg)",
+				backgroundSize: "cover",
+				height: "450px",
+			}}
+		>
+			<p className="font-bold text-xl text-black font-serif underline">
 				We Made It Simple
 			</p>
-			<h1 className="text-6xl font-bold font-serif text-cyan-400">
-				How It <span className="text-white">Works?</span>
+			<h1 className="text-6xl font-bold font-serif text-gray-700 mb-20">
+				How It <span className="text-black">Works?</span>
 			</h1>
-			<div className="grid grid-cols-2 lg:grid-cols-4 gap-20 p-10">
-				<JackInTheBox>
-					<div>
-						<img
-							className="w-24 h-24 mx-auto mt-5"
-							src={onlineBooking}
-							alt=""
-						/>
-						<p className="mt-5 font-serif font-medium text-white">
-							Choose Specialists
-						</p>
-					</div>
-				</JackInTheBox>
-				<JackInTheBox>
-					<div>
-						<img className="w-24 h-24 mx-auto mt-5" src={appointment} alt="" />
-						<p className="mt-5 font-serif font-medium text-white">
-							Book Appointment
-						</p>
-					</div>
-				</JackInTheBox>
-				<JackInTheBox>
-					<div>
-						<img className="w-24 h-24 mx-auto mt-5" src={expert} alt="" />
-						<p className="mt-5 font-serif font-medium text-white">
-							Take Advice
-						</p>
-					</div>
-				</JackInTheBox>
-
-				<JackInTheBox>
-					<div>
-						<img className="w-24 h-24 mx-auto mt-5" src={feedback} alt="" />
-						<p className="mt-5 font-serif font-medium text-white">
-							Give Feedback
-						</p>
-					</div>
-				</JackInTheBox>
-			</div>
+			<ul className="steps  steps-vertical lg:steps-horizontal">
+				<li className="step w-60 step-info mr-3 text-black font-serif font-extrabold">
+					Choose Specialists
+				</li>
+				<li className="step step-info mr-3 text-black font-serif font-extrabold">
+					Book Appointment
+				</li>
+				<li className="step step-info mr-3 text-black font-serif font-extrabold">
+					Take Advice
+				</li>
+				<li className="step step-[#000000] mr-3 text-black font-serif font-extrabold">
+					Give Feedback
+				</li>
+			</ul>
 		</div>
 	);
 };

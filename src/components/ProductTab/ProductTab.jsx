@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
-import useCart from "../../hooks/useCart";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaCartPlus } from "react-icons/fa";
+import useCart from "../../hooks/useCart";
 
 const ProductTab = ({ item }) => {
 	const { user } = useContext(AuthContext);
@@ -31,6 +31,11 @@ const ProductTab = ({ item }) => {
 							title: "Product already added to cart",
 							showConfirmButton: false,
 							timer: 1500,
+							customClass: {
+								popup: "bg-white rounded-lg shadow-lg",
+								title: "text-blue-400 font-bold font-serif text-xl",
+								icon: "text-blue-400",
+							},
 						});
 					} else {
 						refetch();
@@ -48,12 +53,12 @@ const ProductTab = ({ item }) => {
 				});
 		} else {
 			Swal.fire({
-				title: "Please Login To Add to cart",
+				title: "Please Sign in First",
 				icon: "warning",
 				showCancelButton: true,
 				confirmButtonColor: "#3085d6",
 				cancelButtonColor: "#d33",
-				confirmButtonText: "Login Now",
+				confirmButtonText: "Sign in",
 			}).then((result) => {
 				if (result.isConfirmed) {
 					navigate("/login", { state: { from: location } });

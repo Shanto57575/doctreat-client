@@ -6,26 +6,32 @@ import App from "./App";
 import Login from "./components/Login/Login";
 import Home from "./components/Home/Home";
 import About from "./components/About/About";
-import Appointment from "./components/Appointment/Appointment";
 import Register from "./components/Register/Register";
 import AuthProvider from "./AuthProvider/AuthProvider";
 import AllDoctors from "./components/AllDoctors/AllDoctors";
 import AppointmentForm from "./components/AppointmentForm/AppointmentForm";
 import BlogPage from "./components/Blogs/BlogPage";
-import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Shop from "./components/Shop/Shop";
+import MyCart from "./components/DashBoard/UserDashboard/MyCart";
+import Payment from "./components/DashBoard/UserDashboard/Payment";
+import AllUsers from "./components/DashBoard/AdminDashboard/AllUsers";
+import ErrorPage from "./components/ErrorPage/ErrorPage";
+import AdminHome from "./components/DashBoard/AdminDashboard/AdminHome";
+import UserHome from "./components/DashBoard/UserDashboard/UserHome";
+import AddProduct from "./components/DashBoard/AdminDashboard/AddProduct";
+import AddDoctor from "./components/DashBoard/AdminDashboard/AddDoctor";
+import DashBoard from "./components/DashBoard/DashBoard";
 import { HelmetProvider } from "react-helmet-async";
+import AdminRoute from "./components/AdminRoute/AdminRoute";
 
 // TanStack Query
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import DashBoard from "./components/DashBoard/DashBoard";
-import MyCart from "./components/DashBoard/MyCart";
-import Payment from "./components/DashBoard/Payment";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <App></App>,
+		errorElement: <ErrorPage />,
 		children: [
 			{
 				path: "/",
@@ -58,34 +64,59 @@ const router = createBrowserRouter([
 				element: <Register />,
 			},
 			{
-				path: "/appointment",
-				element: (
-					<PrivateRoute>
-						<Appointment />
-					</PrivateRoute>
-				),
-			},
-			{
 				path: "/appointmentForm/:id",
 				element: <AppointmentForm />,
 			},
 		],
 	},
 	{
-		path: "/dashboard",
+		path: "dashboard",
 		element: <DashBoard />,
+		errorElement: <ErrorPage />,
 		children: [
 			{
-				path: "/dashboard/mycart",
+				path: "userhome",
+				element: <UserHome />,
+			},
+			{
+				path: "mycart",
+				element: <MyCart />,
+			},
+			{
+				path: "payment",
+				element: <Payment />,
+			},
+			{
+				path: "adminhome",
 				element: (
-					<PrivateRoute>
-						<MyCart />
-					</PrivateRoute>
+					<AdminRoute>
+						<AdminHome />
+					</AdminRoute>
 				),
 			},
 			{
-				path: "/dashboard/payment",
-				element: <Payment />,
+				path: "addproduct",
+				element: (
+					<AdminRoute>
+						<AddProduct />
+					</AdminRoute>
+				),
+			},
+			{
+				path: "adddoctor",
+				element: (
+					<AdminRoute>
+						<AddDoctor />
+					</AdminRoute>
+				),
+			},
+			{
+				path: "users",
+				element: (
+					<AdminRoute>
+						<AllUsers />
+					</AdminRoute>
+				),
 			},
 		],
 	},
@@ -95,12 +126,12 @@ const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>
-		<QueryClientProvider client={queryClient}>
-			<HelmetProvider>
-				<AuthProvider>
+		<AuthProvider>
+			<QueryClientProvider client={queryClient}>
+				<HelmetProvider>
 					<RouterProvider router={router} />
-				</AuthProvider>
-			</HelmetProvider>
-		</QueryClientProvider>
+				</HelmetProvider>
+			</QueryClientProvider>
+		</AuthProvider>
 	</React.StrictMode>
 );

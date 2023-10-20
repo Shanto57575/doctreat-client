@@ -1,7 +1,7 @@
 const AppointmentForm = () => {
 	return (
-		<>
-			<h1 className="text-center text-3xl text-cyan-600 font-bold font-serif mt-5 mb-10 underline">
+		<div className=" pt-28">
+			<h1 className="text-center text-3xl text-cyan-600 font-bold font-serif underline mb-5">
 				Book Your Appointment
 			</h1>
 			<div className="flex items-center justify-center px-12 pb-12">
@@ -159,7 +159,7 @@ const AppointmentForm = () => {
 					</form>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 

@@ -1,24 +1,21 @@
 import { useContext } from "react";
-import { AuthContext } from "./../../AuthProvider/AuthProvider";
-import Loader from "../Loader/Loader";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { Navigate, useLocation } from "react-router-dom";
-import Swal from "sweetalert2";
+import Loader from "../Loader/Loader";
 
 const PrivateRoute = ({ children }) => {
 	const { user, loader } = useContext(AuthContext);
 	const location = useLocation();
 
-	if (!user) {
-		Swal.fire("Please Login to get the Access");
+	if (loader) {
+		return <Loader />;
 	}
 
 	if (user) {
 		return children;
 	}
-	if (loader) {
-		return <Loader />;
-	}
-	return <Navigate to="/login" state={{ from: location }}></Navigate>;
+
+	return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
 };
 
 export default PrivateRoute;

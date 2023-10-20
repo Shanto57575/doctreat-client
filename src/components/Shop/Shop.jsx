@@ -3,15 +3,15 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import ProductTab from "../ProductTab/ProductTab";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Shop = () => {
 	const [shops, setShops] = useState();
+	const [axiosSecure] = useAxiosSecure();
 
 	useEffect(() => {
-		fetch("http://localhost:5000/shop")
-			.then((res) => res.json())
-			.then((data) => setShops(data));
-	}, []);
+		axiosSecure("/shop").then((data) => setShops(data.data));
+	}, [axiosSecure]);
 
 	console.log(shops);
 
@@ -21,6 +21,7 @@ const Shop = () => {
 	const Equipment = shops?.filter(
 		(item) => item.category === "Respiratory Equipment"
 	);
+
 	const Tools = shops?.filter((item) => item.category === "Diagnostic Tools");
 	const Aids = shops?.filter((item) => item.category === "Mobility Aids");
 	const Supports = shops?.filter(

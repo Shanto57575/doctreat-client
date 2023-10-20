@@ -7,15 +7,16 @@ import register from "../../assets/register.json";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillGithub } from "react-icons/ai";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Register = () => {
 	const { createUser, googleSignIn, GithubSignIn } = useContext(AuthContext);
 	const navigate = useNavigate();
 	const location = useLocation();
+	const [axiosSecure] = useAxiosSecure();
 
 	const from = location.state?.from?.pathname || "/";
 
-	// Email Password authentication
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		Swal.fire({
@@ -29,33 +30,55 @@ const Register = () => {
 		const form = event.target;
 		const name = form.name.value;
 		const email = form.email.value;
+		const photo = form.photo.value;
 		const password = form.password.value;
-		const user = { name, email, password };
+		const user = { name, email, password, photo };
 
 		console.log(user);
 
 		createUser(email, password)
-			.then((user) => {
-				console.log(user);
+			.then((result) => {
+				console.log("user=>", result);
+				const savedUser = {
+					name: user?.name,
+					email: user?.email,
+					photo: user?.photo,
+				};
+				console.log(savedUser);
+				axiosSecure.post("/users", savedUser);
 				navigate(from, { replace: true });
 			})
 			.catch((error) => console.log(error.message));
 		form.reset();
 	};
 
+	// Github authentication
 	const githubAuth = () => {
 		GithubSignIn()
 			.then((result) => {
-				console.log(result);
+				const savedUser = {
+					name: result.user?.displayName,
+					email: result.user?.email,
+					photo: result.user?.photoURL,
+				};
+				axiosSecure.post("/users", savedUser);
 				navigate(from, { replace: true });
 			})
 			.catch((error) => console.log(error.message));
 	};
-	// Google authentication
 
+	// Google authentication
 	const googleAuth = () => {
 		googleSignIn()
-			.then((result) => console.log(result))
+			.then((result) => {
+				const savedUser = {
+					name: result.user?.displayName,
+					email: result.user?.email,
+					photo: result.user?.photoURL,
+				};
+				axiosSecure.post("/users", savedUser);
+				navigate(from, { replace: true });
+			})
 			.catch((error) => console.log(error.message));
 	};
 
@@ -65,7 +88,6 @@ const Register = () => {
 				<Helmet>
 					<title>Doctreat | Sign Up</title>
 				</Helmet>
-
 				<div className="w-full md:w-1/2">
 					<Lottie className="h-96" animationData={register} loop={true} />
 				</div>
@@ -88,12 +110,12 @@ const Register = () => {
 									name="name"
 									className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 									placeholder="Name"
-									required=""
+									required
 								/>
 							</div>
 							<div>
 								<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-									Your email
+									Your Email
 								</label>
 								<input
 									type="email"
@@ -101,7 +123,20 @@ const Register = () => {
 									id="email"
 									className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 									placeholder="Email"
-									required=""
+									required
+								/>
+							</div>
+							<div>
+								<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+									Photo URL
+								</label>
+								<input
+									type="url"
+									name="photo"
+									id="photo"
+									className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+									placeholder="Photo URL"
+									required
 								/>
 							</div>
 							<div>
@@ -114,14 +149,14 @@ const Register = () => {
 									id="password"
 									placeholder="••••••••"
 									className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-									required=""
+									required
 								/>
 							</div>
 							<input
 								className="cursor-pointer w-full text-white bg-cyan-600 hover:bg-primary-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
 								type="submit"
 								value="Sign Up"
-							/>{" "}
+							/>
 						</form>
 						<div className="flex items-center justify-center">
 							<button
@@ -137,16 +172,16 @@ const Register = () => {
 								onClick={googleAuth}
 							>
 								Sign In with
-								<FcGoogle />
+								<FcGoogle size={24} />
 							</button>
 						</div>
-						<p className="text-sm font-light text-gray-500 dark:text-gray-400">
-							Already have an account?
+						<p className="text-sm font-light text-gray-300">
+							Already have an account ?
 							<Link
 								to="/login"
 								className="font-medium text-primary-600 hover:underline dark:text-primary-500"
 							>
-								<span className="text-blue-400">Login here</span>
+								<span className="text-blue-400"> please login</span>
 							</Link>
 						</p>
 					</div>

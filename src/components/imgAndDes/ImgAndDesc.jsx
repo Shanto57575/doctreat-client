@@ -52,17 +52,17 @@ const ImgAndDesc = () => {
 				</div>
 			</div>
 			<div className="w-full md:w-1/2 space-y-5 bg-gradient-to-r from-cyan-700 to-[rgba(21, 21, 21, 0)] rounded-md md:ml-10 px-10 py-8 mt-5 md:mt-0">
-				<h1 className="text-3xl font-bold font-serif text-gray-900">
+				<h1 className="text-3xl font-bold font-serif text-gray-700">
 					Your Path to Health and Healing
 				</h1>
-				<p className="font-medium text-justify">
+				<p className="font-medium text-justify text-gray-700">
 					Welcome to Doctreat, where we bring together the art and science of
 					healing. Our gallery below offers a glimpse into the world of medical
 					care we provide. From the precision of surgical theaters to the
 					compassionate expertise of our doctors, every image represents our
 					unwavering commitment to your well-being and a healthier future
 				</p>
-				<blockquote className="italic text-2xl font-extrabold text-gray-900 font-serif text-justify">
+				<blockquote className="italic text-2xl font-extrabold text-gray-700 font-serif text-justify">
 					Your health is your wealth. Let us help You invest in a brighter,
 					healthier future
 				</blockquote>

@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 import { useEffect, useState } from "react";
 import { BsBookmark } from "react-icons/bs";
 import { AiOutlineLike, AiOutlineEye } from "react-icons/ai";
@@ -7,13 +8,17 @@ import { Zoom } from "react-awesome-reveal";
 
 const Blogs = () => {
 	const [blogs, setBlogs] = useState([]);
-	console.log(blogs);
+	const [visibleBlogs, setVisibleBlog] = useState(3);
 
 	useEffect(() => {
 		fetch("http://localhost:5000/blogs")
 			.then((res) => res.json())
 			.then((data) => setBlogs(data));
 	}, []);
+
+	const handleShowAll = () => {
+		setVisibleBlog(blogs.length);
+	};
 
 	return (
 		<div className="text-center space-y-3 my-10 md:mx-8 lg:mx-12">
@@ -22,9 +27,9 @@ const Blogs = () => {
 			</h4>
 			<p>Stay Informed, Stay Healthy</p>
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-				{blogs.map((blog) => (
+				{blogs.slice(0, visibleBlogs).map((blog) => (
 					<Zoom key={blog._id}>
-						<div className="rounded-tr-2xl rounded-es-2xl w-72 glass md:w-[350px] font-serif mx-auto bg-gray-100 hover:shadow hover:shadow-slate-500 border-x-2 border-gray-300">
+						<div className="rounded-tr-2xl h-[500px] rounded-es-2xl w-72 glass md:w-[350px] font-serif mx-auto bg-gray-100 hover:shadow hover:shadow-slate-500 border-x-2 border-gray-300">
 							<figure>
 								<img
 									src={blog.aboutImg}
@@ -76,6 +81,15 @@ const Blogs = () => {
 					</Zoom>
 				))}
 			</div>
+			{visibleBlogs < blogs.length && (
+				<button
+					onClick={handleShowAll}
+					type="button"
+					className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
+				>
+					See More
+				</button>
+			)}
 		</div>
 	);
 };

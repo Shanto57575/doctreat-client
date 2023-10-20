@@ -1,15 +1,46 @@
 import { Helmet } from "react-helmet-async";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import {
+	FaHome,
+	FaNotesMedical,
+	FaShoppingCart,
+	FaUsers,
+} from "react-icons/fa";
+import { RiAdminFill } from "react-icons/ri";
+import { AiFillShopping } from "react-icons/ai";
+import { FiLogOut } from "react-icons/fi";
+import { FaMoneyCheckDollar, FaUserDoctor } from "react-icons/fa6";
+import { useContext } from "react";
+import Swal from "sweetalert2";
 import useCart from "../../hooks/useCart";
-import { Link, Outlet } from "react-router-dom";
-import { FaHome, FaShoppingCart } from "react-icons/fa";
-import { FaMoneyCheckDollar } from "react-icons/fa6";
+import useAdmin from "../../hooks/useAdmin";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const DashBoard = () => {
+	const location = useLocation();
 	const [cart] = useCart();
+	const [isAdmin] = useAdmin();
+	const navigate = useNavigate();
+	const { logOut } = useContext(AuthContext);
+
+	const handleLogOut = () => {
+		logOut()
+			.then(() => {})
+			.catch((error) => console.log(error.message));
+		navigate("/");
+		Swal.fire({
+			position: "center",
+			icon: "success",
+			title: "Logged Out successfully!",
+			showConfirmButton: false,
+			timer: 1500,
+		});
+	};
+
 	return (
 		<>
 			<Helmet>
-				<title>Doctreat | MyCart</title>
+				<title>Doctreat | Dashboard</title>
 			</Helmet>
 
 			<div className="drawer lg:drawer-open">
@@ -18,7 +49,7 @@ const DashBoard = () => {
 					<Outlet />
 					<label
 						htmlFor="my-drawer-2"
-						className="btn bg-sky-600 hover:bg-sky-500 w-full text-white drawer-button lg:hidden rounded-none"
+						className="btn bg-blue-200 hover:bg-sky-300 w-full text-black drawer-button lg:hidden rounded-none"
 					>
 						Open drawer
 					</label>
@@ -29,7 +60,116 @@ const DashBoard = () => {
 						aria-label="close sidebar"
 						className="drawer-overlay"
 					></label>
-					<ul className="menu p-4 w-56 min-h-full bg-base-200 text-base-content">
+					<ul className="menu p-4 w-56 min-h-full bg-blue-200 text-black">
+						{isAdmin ? (
+							<>
+								<li>
+									<Link
+										to="/dashboard/adminhome"
+										className={
+											location.pathname === "/dashboard/adminhome"
+												? "bg-black text-white lg:text-xl hover:text-white flex items-center gap-x-2 text-lg font-serif"
+												: "flex items-center gap-x-4 text-lg font-serif"
+										}
+									>
+										<RiAdminFill size={30} />
+										Admin Home
+									</Link>
+								</li>
+								<li>
+									<Link
+										to="/dashboard/adddoctor"
+										className={
+											location.pathname === "/dashboard/adddoctor"
+												? "bg-black text-white lg:text-xl hover:text-white flex items-center gap-x-4 text-lg font-serif"
+												: "flex items-center gap-x-4 text-lg font-serif"
+										}
+									>
+										<FaUserDoctor size={30} />
+										Add Doctor
+									</Link>
+								</li>
+								<li>
+									<Link
+										to="/dashboard/addproduct"
+										className={
+											location.pathname === "/dashboard/addproduct"
+												? "bg-black text-white lg:text-xl hover:text-white flex items-center gap-x-4 text-lg font-serif"
+												: "flex items-center gap-x-4 text-lg font-serif"
+										}
+									>
+										<FaNotesMedical size={30} />
+										Add product
+									</Link>
+								</li>
+								<li>
+									<Link
+										to="/dashboard/users"
+										className={
+											location.pathname === "/dashboard/users"
+												? "bg-black text-white lg:text-xl hover:text-white flex items-center gap-x-4 text-lg font-serif"
+												: "flex items-center gap-x-4 text-lg font-serif"
+										}
+									>
+										<div>
+											<FaUsers size={30} />
+										</div>
+										All user
+									</Link>
+								</li>
+							</>
+						) : (
+							<>
+								<li>
+									<Link
+										to="/dashboard/userhome"
+										className={
+											location.pathname === "/dashboard/userhome"
+												? "bg-black text-white lg:text-xl hover:text-white flex items-center gap-x-4 text-lg font-serif"
+												: "flex items-center gap-x-4 text-lg font-serif"
+										}
+									>
+										<FaHome size={30} />
+										User Home
+									</Link>
+								</li>
+								<li>
+									<Link
+										to="/dashboard/mycart"
+										className={
+											location.pathname === "/dashboard/mycart"
+												? "bg-black text-white lg:text-xl hover:text-white flex items-center gap-x-4 text-lg font-serif"
+												: "flex items-center gap-x-4 text-lg font-serif"
+										}
+									>
+										<div className="indicator">
+											<span className="indicator-item badge badge-secondary">
+												{cart?.length || 0}
+											</span>
+											<FaShoppingCart size={30} />
+										</div>
+										My cart
+									</Link>
+								</li>
+								<li>
+									<Link
+										to="/dashboard/payment"
+										className={
+											location.pathname === "/dashboard/payment"
+												? "bg-black text-white lg:text-xl hover:text-white flex items-center gap-x-4 text-lg font-serif"
+												: "flex items-center gap-x-4 text-lg font-serif"
+										}
+									>
+										<div>
+											<FaMoneyCheckDollar size={30} />
+										</div>
+										Payment
+									</Link>
+								</li>
+							</>
+						)}
+						{/* Divider */}
+						<div className="divider"></div>
 						<li>
 							<Link
 								className="flex items-center gap-x-2 text-lg font-serif"
@@ -41,26 +181,20 @@ const DashBoard = () => {
 						</li>
 						<li>
 							<Link
-								className="flex items-center gap-x-4 text-lg font-serif"
-								to="/dashboard/mycart"
+								className="flex items-center gap-x-2 text-lg font-serif"
+								to="/shop"
 							>
-								<div className="indicator">
-									<span className="indicator-item badge badge-secondary">
-										{cart?.length || 0}
-									</span>
-									<FaShoppingCart size={30} />
-								</div>
-								My cart
+								<AiFillShopping size={30} />
+								Shop
 							</Link>
-							<Link
-								className="flex items-center gap-x-4 text-lg font-serif"
-								to="/dashboard/Payment"
+						</li>
+						<li>
+							<span
+								onClick={handleLogOut}
+								className="flex items-center gap-x-2 ml-1 text-lg font-serif"
 							>
-								<div>
-									<FaMoneyCheckDollar size={30} />
-								</div>
-								Payment
-							</Link>
+								<FiLogOut size={25} /> Logout
+							</span>
 						</li>
 					</ul>
 				</div>

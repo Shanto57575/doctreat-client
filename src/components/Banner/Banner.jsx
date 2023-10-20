@@ -16,7 +16,7 @@ const Banner = () => {
 						<div className="hero-content text-center text-neutral-content mt-20">
 							<div className="max-w-md md:max-w-xl">
 								<h1 className="mb-5 text-3xl md:text-5xl font-bold">
-									Welcome to <span className="text-cyan-400">Doctreat</span>,
+									Welcome to <span className="text-cyan-400">Epic Care</span>,
 									Your Path to Wellness
 								</h1>
 								<p className="mb-5 text-justify">
@@ -30,7 +30,7 @@ const Banner = () => {
 									<Link to="alldoctors">
 										<button
 											type="button"
-											className="text-white bg-gradient-to-r from-slate-900 via-gray-500 to-slate-400 hover:bg-gradient-to-br font-medium rounded-lg text-lg px-10 py-3 text-center mr-2 mb-2"
+											className="text-white bg-gradient-to-r from-slate-900 via-gray-500 to-slate-400 hover:bg-gradient-to-br font-medium rounded-lg text-lg px-5 py-2 text-center mr-2 mb-2"
 										>
 											View Doctors
 										</button>
@@ -38,7 +38,7 @@ const Banner = () => {
 									<Link to="shop">
 										<button
 											type="button"
-											className="text-white bg-gradient-to-r from-slate-900 via-gray-500 to-slate-400 hover:bg-gradient-to-br font-medium rounded-lg text-lg px-10 py-3 text-center mr-2 mb-2"
+											className="text-white bg-gradient-to-r from-slate-900 via-gray-500 to-slate-400 hover:bg-gradient-to-br font-medium rounded-lg text-lg px-5 py-2 text-center mr-2 mb-2"
 										>
 											Buy Products
 										</button>
@@ -67,9 +67,9 @@ const Banner = () => {
 						<div className="hero-overlay bg-opacity-60"></div>
 						<div className="hero-content text-center text-neutral-content mt-20">
 							<div className="max-w-md  md:max-w-xl">
-								<h1 className="mb-5 text-5xl font-bold">
+								<h1 className="mb-5 text-3xl md:text-5xl font-bold">
 									Empower Your Health with
-									<span className="text-cyan-400 ml-3">Doctreat</span>
+									<span className="text-cyan-400 ml-3">Epic Care</span>
 								</h1>
 								<p className="mb-5 text-justify">
 									Unlock the Power of Health with Doctreat: Empower yourself
@@ -83,7 +83,7 @@ const Banner = () => {
 									<Link to="alldoctors">
 										<button
 											type="button"
-											className="text-white bg-gradient-to-r from-slate-900 via-gray-500 to-slate-400 hover:bg-gradient-to-br font-medium rounded-lg text-lg px-10 py-3 text-center mr-2 mb-2"
+											className="text-white bg-gradient-to-r from-slate-900 via-gray-500 to-slate-400 hover:bg-gradient-to-br font-medium rounded-lg text-lg px-5 py-2 text-center mr-2 mb-2"
 										>
 											View Doctors
 										</button>
@@ -91,12 +91,12 @@ const Banner = () => {
 									<Link to="shop">
 										<button
 											type="button"
-											className="text-white bg-gradient-to-r from-slate-900 via-gray-500 to-slate-400 hover:bg-gradient-to-br font-medium rounded-lg text-lg px-10 py-3 text-center mr-2 mb-2"
+											className="text-white bg-gradient-to-r from-slate-900 via-gray-500 to-slate-400 hover:bg-gradient-to-br font-medium rounded-lg text-lg px-5 py-2 text-center mr-2 mb-2"
 										>
 											Buy Products
 										</button>
 									</Link>
-								</div>{" "}
+								</div>
 							</div>
 						</div>
 					</div>
@@ -120,9 +120,9 @@ const Banner = () => {
 						<div className="hero-overlay bg-opacity-60"></div>
 						<div className="hero-content text-center text-neutral-content mt-20">
 							<div className="max-w-md  md:max-w-xl">
-								<h1 className="mb-5 text-5xl font-bold">
-									Connecting You to{" "}
-									<span className="text-cyan-300">Quality</span> Healthcare
+								<h1 className="mb-5 text-3xl md:text-5xl font-bold">
+									Connecting You to
+									<span className="text-cyan-300 ml-3">Quality</span> Healthcare
 								</h1>
 								<p className="mb-5 text-justify">
 									Connecting You to Quality Healthcare: Our mission at Doctreat
@@ -134,7 +134,7 @@ const Banner = () => {
 									<Link to="alldoctors">
 										<button
 											type="button"
-											className="text-white bg-gradient-to-r from-slate-900 via-gray-500 to-slate-400 hover:bg-gradient-to-br font-medium rounded-lg text-lg px-10 py-3 text-center mr-2 mb-2"
+											className="text-white bg-gradient-to-r from-slate-900 via-gray-500 to-slate-400 hover:bg-gradient-to-br font-medium rounded-lg text-lg px-5 py-2 text-center mr-2 mb-2"
 										>
 											View Doctors
 										</button>
@@ -142,7 +142,7 @@ const Banner = () => {
 									<Link to="shop">
 										<button
 											type="button"
-											className="text-white bg-gradient-to-r from-slate-900 via-gray-500 to-slate-400 hover:bg-gradient-to-br font-medium rounded-lg text-lg px-10 py-3 text-center mr-2 mb-2"
+											className="text-white bg-gradient-to-r from-slate-900 via-gray-500 to-slate-400 hover:bg-gradient-to-br font-medium rounded-lg text-lg px-5 py-2 text-center mr-2 mb-2"
 										>
 											Buy Products
 										</button>
@@ -171,7 +171,7 @@ const Banner = () => {
 						<div className="hero-overlay bg-opacity-60"></div>
 						<div className="hero-content text-center text-neutral-content mt-20">
 							<div className="max-w-md  md:max-w-xl">
-								<h1 className="mb-5 text-5xl font-bold">
+								<h1 className="mb-5 text-3xl md:text-5xl font-bold">
 									Your <span className="text-cyan-400 mr-3">Health</span>
 									Journey Starts Here
 								</h1>
@@ -186,7 +186,7 @@ const Banner = () => {
 									<Link to="alldoctors">
 										<button
 											type="button"
-											className="text-white bg-gradient-to-r from-slate-900 via-gray-500 to-slate-400 hover:bg-gradient-to-br font-medium rounded-lg text-lg px-10 py-3 text-center mr-2 mb-2"
+											className="text-white bg-gradient-to-r from-slate-900 via-gray-500 to-slate-400 hover:bg-gradient-to-br font-medium rounded-lg text-lg px-5 py-2 text-center mr-2 mb-2"
 										>
 											View Doctors
 										</button>
@@ -194,7 +194,7 @@ const Banner = () => {
 									<Link to="shop">
 										<button
 											type="button"
-											className="text-white bg-gradient-to-r from-slate-900 via-gray-500 to-slate-400 hover:bg-gradient-to-br font-medium rounded-lg text-lg px-10 py-3 text-center mr-2 mb-2"
+											className="text-white bg-gradient-to-r from-slate-900 via-gray-500 to-slate-400 hover:bg-gradient-to-br font-medium rounded-lg text-lg px-5 py-2 text-center mr-2 mb-2"
 										>
 											Buy Products
 										</button>

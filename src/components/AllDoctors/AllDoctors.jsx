@@ -6,6 +6,7 @@ import { BsFlag } from "react-icons/bs";
 import { HiMailOpen, HiOutlineCurrencyDollar } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import useAxiosSecure from "../../hooks/useAxiosSecure.jsx";
 
 const AllDoctors = () => {
 	const [allDoctors, setAllDoctors] = useState([]);
@@ -15,6 +16,7 @@ const AllDoctors = () => {
 	const [gender, setGender] = useState("");
 	const [speciality, setSpeciality] = useState("");
 	const [fees, setFees] = useState("");
+	const [axiosSecure] = useAxiosSecure();
 
 	const searchRef = useRef(null);
 	const genderRef = useRef(null);
@@ -34,15 +36,13 @@ const AllDoctors = () => {
 	}
 
 	useEffect(() => {
-		fetch(
-			`http://localhost:5000/alldoctors?page=${currentPage}&itemsPerPage=${itemsPerPage}&search=${search}&gender=${gender}&speciality=${speciality}&fees=${fees}`
-		)
-			.then((res) => res.json())
-			.then((data) => {
-				setAllDoctors(data);
-				setLoading(false);
-			});
-	}, [currentPage, search, gender, speciality, fees]);
+		axiosSecure(
+			`/alldoctors?page=${currentPage}&itemsPerPage=${itemsPerPage}&search=${search}&gender=${gender}&speciality=${speciality}&fees=${fees}`
+		).then((data) => {
+			setAllDoctors(data.data);
+			setLoading(false);
+		});
+	}, [currentPage, search, gender, speciality, fees, axiosSecure]);
 
 	const clearAll = () => {
 		setSearch(searchRef.current.value);
@@ -58,7 +58,7 @@ const AllDoctors = () => {
 			</Helmet>
 			<div className="text-center">
 				<div
-					className="hero h-96"
+					className="hero h-[550px]"
 					style={{
 						backgroundImage:
 							"url(https://t3.ftcdn.net/jpg/02/19/91/48/240_F_219914874_fcqxEeJ6clfwf43OcCNAMGNBySKzF5hl.jpg)",
@@ -87,13 +87,12 @@ const AllDoctors = () => {
 						<div className="form-control h-52">
 							<div className="input-group">
 								<select
-									className="select select-bordered"
+									defaultValue="Filter By speciality"
+									className="select select-bordered text-black"
 									ref={specialityRef}
 									onChange={() => setSpeciality(specialityRef.current.value)}
 								>
-									<option disabled selected>
-										Filter By speciality
-									</option>
+									<option disabled>Filter By speciality</option>
 									<option>Cardiology</option>
 									<option>Dermatology</option>
 									<option>Neurology</option>
@@ -111,13 +110,12 @@ const AllDoctors = () => {
 						<div className="form-control h-52">
 							<div className="input-group">
 								<select
-									className="select select-bordered"
+									defaultValue="Filter By Country"
+									className="select select-bordered text-black"
 									ref={searchRef}
 									onChange={() => setSearch(searchRef.current.value)}
 								>
-									<option disabled selected>
-										Filter By Country
-									</option>
+									<option disabled>Filter By Country</option>
 									<option>Bangladesh</option>
 									<option>USA</option>
 									<option>Canada</option>
@@ -132,13 +130,12 @@ const AllDoctors = () => {
 						<div className="form-control h-52">
 							<div className="input-group">
 								<select
-									className="select select-bordered"
+									defaultValue="Filter By Fees"
+									className="select select-bordered text-black"
 									ref={feesRef}
 									onChange={() => setFees(feesRef.current.value)}
 								>
-									<option disabled selected>
-										Filter By Fees
-									</option>
+									<option disabled>Filter By Fees</option>
 									<option value="0-100">Less than $100</option>
 									<option value="100-200">$100 - $200</option>
 									<option value="200-300">$200 - $300</option>
@@ -155,13 +152,12 @@ const AllDoctors = () => {
 						<div className="form-control h-52">
 							<div className="input-group">
 								<select
-									className="select select-bordered"
+									defaultValue="Filter By Gender"
+									className="select select-bordered text-black"
 									ref={genderRef}
 									onChange={() => setGender(genderRef.current.value)}
 								>
-									<option disabled selected>
-										Filter By Gender
-									</option>
+									<option disabled>Filter By Gender</option>
 									<option>Male</option>
 									<option>Female</option>
 								</select>
@@ -172,9 +168,9 @@ const AllDoctors = () => {
 						{loading ? (
 							<Loader />
 						) : totalItems === 0 ? (
-							<p className="text-5xl text-cyan-500">
-								<span className="text-red-600 block">X</span>
-								No doctors found.
+							<p className="text-5xl text-cyan-500 h-screen">
+								<span className="text-red-500">X</span>
+								<p>No doctors available!</p>
 							</p>
 						) : (
 							allDoctors.map((doc) => (
@@ -183,7 +179,7 @@ const AllDoctors = () => {
 										<div className="w-full lg:w-[37%] space-x-2 space-y-3">
 											<div className="flex flex-wrap items-center">
 												<img
-													className="md:w-28 md:h-28 border md:m-3 shadow-md shadow-slate-400 rounded-xl"
+													className="md:w-28 md:h-28 md:m-3 shadow-md shadow-gray-600 rounded-tr-3xl rounded-es-3xl"
 													src={doc.picture}
 													alt="Album"
 												/>
