@@ -13,7 +13,6 @@ import AppointmentForm from "./components/AppointmentForm/AppointmentForm";
 import BlogPage from "./components/Blogs/BlogPage";
 import Shop from "./components/Shop/Shop";
 import MyCart from "./components/DashBoard/UserDashboard/MyCart";
-import Payment from "./components/DashBoard/UserDashboard/Payment";
 import AllUsers from "./components/DashBoard/AdminDashboard/AllUsers";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 import AdminHome from "./components/DashBoard/AdminDashboard/AdminHome";
@@ -26,6 +25,7 @@ import AdminRoute from "./components/AdminRoute/AdminRoute";
 
 // TanStack Query
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Payment from "./components/DashBoard/UserDashboard/Payment/Payment";
 
 const router = createBrowserRouter([
 	{

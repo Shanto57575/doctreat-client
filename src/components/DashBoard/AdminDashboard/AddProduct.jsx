@@ -1,11 +1,14 @@
 const AddProduct = () => {
 	return (
 		<>
-			<h1 className="text-center text-3xl text-cyan-600 font-bold font-serif mt-5 mb-10 underline">
-				Add New Product!
-			</h1>
-			<div className="flex items-center justify-center pb-12">
-				<div className="mx-auto w-full">
+			<button
+				className="btn bg-blue-500 text-white hover:bg-blue-600"
+				onClick={() => document.getElementById("my_modal_5").showModal()}
+			>
+				Add Product
+			</button>
+			<dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+				<div className="modal-box">
 					<form>
 						<div className="-mx-3 flex">
 							<div className="w-full px-3 sm:w-1/2">
@@ -86,16 +89,18 @@ const AddProduct = () => {
 								</div>
 							</div>
 						</div>
-						<div>
+					</form>
+					<div className="modal-action">
+						<form method="dialog">
 							<button className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
 								<span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
 									Submit
 								</span>
 							</button>
-						</div>
-					</form>
+						</form>
+					</div>
 				</div>
-			</div>
+			</dialog>
 		</>
 	);
 };

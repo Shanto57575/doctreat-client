@@ -4,18 +4,22 @@ import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaCartPlus } from "react-icons/fa";
 import useCart from "../../hooks/useCart";
+import useAdmin from "../../hooks/useAdmin";
 
 const ProductTab = ({ item }) => {
 	const { user } = useContext(AuthContext);
 	const location = useLocation();
 	const navigate = useNavigate();
+	const [isAdmin] = useAdmin();
 	const [, refetch] = useCart();
 
 	const handleAddToCart = (product) => {
 		product.email = user?.email;
 		console.log(product);
 
-		if (user) {
+		if (isAdmin) {
+			return;
+		} else if (user) {
 			fetch("http://localhost:5000/carts", {
 				method: "POST",
 				headers: {
@@ -44,7 +48,7 @@ const ProductTab = ({ item }) => {
 							icon: "success",
 							title: "Product added to cart",
 							showConfirmButton: false,
-							timer: 1500,
+							timer: 2500,
 						});
 					}
 				})

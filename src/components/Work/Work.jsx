@@ -12,10 +12,10 @@ const Work = () => {
 			<p className="font-bold text-xl text-black font-serif underline">
 				We Made It Simple
 			</p>
-			<h1 className="text-6xl font-bold font-serif text-gray-700 mb-20">
-				How It <span className="text-black">Works?</span>
+			<h1 className="text-6xl font-bold font-serif text-gray-700">
+				How We <span className="text-black">Works?</span>
 			</h1>
-			<ul className="steps  steps-vertical lg:steps-horizontal">
+			<ul className="steps steps-vertical lg:steps-horizontal">
 				<li className="step w-60 step-info mr-3 text-black font-serif font-extrabold">
 					Choose Specialists
 				</li>

@@ -20,8 +20,8 @@ const DashBoard = () => {
 	const location = useLocation();
 	const [cart] = useCart();
 	const [isAdmin] = useAdmin();
-	const navigate = useNavigate();
 	const { logOut } = useContext(AuthContext);
+	const navigate = useNavigate();
 
 	const handleLogOut = () => {
 		logOut()

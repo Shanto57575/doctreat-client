@@ -1,7 +1,7 @@
 const AddDoctor = () => {
 	return (
 		<>
-			<h1 className="text-center text-3xl text-cyan-600 font-bold font-serif mt-5 mb-10 underline">
+			<h1 className="text-cyan-500 text-3xl font-bold underline font-serif my-8">
 				Add New Specialist
 			</h1>
 			<div className="flex items-center justify-center pb-12">

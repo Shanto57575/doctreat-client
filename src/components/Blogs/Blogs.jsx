@@ -1,8 +1,6 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 import { useEffect, useState } from "react";
 import { BsBookmark } from "react-icons/bs";
-import { AiOutlineLike, AiOutlineEye } from "react-icons/ai";
-import { BiComment } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { Zoom } from "react-awesome-reveal";
 
@@ -29,53 +27,45 @@ const Blogs = () => {
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
 				{blogs.slice(0, visibleBlogs).map((blog) => (
 					<Zoom key={blog._id}>
-						<div className="rounded-tr-2xl h-[500px] rounded-es-2xl w-72 glass md:w-[350px] font-serif mx-auto bg-gray-100 hover:shadow hover:shadow-slate-500 border-x-2 border-gray-300">
-							<figure>
-								<img
-									src={blog.aboutImg}
-									alt="Shoes"
-									className="w-96 h-52 group rounded-tr-2xl rounded-es-2xl"
-								/>
-							</figure>
-							<div className="flex items-center gap-2 p-2">
-								<img
-									className="w-12 h-12 rounded-tr-2xl rounded-es-2xl border-2 border-blue-500"
-									src={blog.personImg}
-								/>
-								<div className="text-left">
-									<h1 className="font-extrabold text-sm">{blog.Name}</h1>
-									<div className="flex items-center justify-between gap-5">
+						<div className="relative h-80 md:w-96 rounded-xl bg-white">
+							<div
+								className="rounded-tr-3xl rounded-es-3xl absolute inset-0 m-0 h-full w-full overflow-hidden rounded-none bg-transparent bg-cover bg-clip-border bg-center text-gray-700 shadow-2xl shadow-black"
+								style={{ backgroundImage: `url(${blog.aboutImg})` }}
+							>
+								<div className="absolute inset-0 w-full h-full to-bg-black-10 bg-gradient-to-t from-black/80 via-black/50" />
+							</div>
+							<div className="relative p-6 px-6 py-14 md:px-12">
+								<div className="p-3 text-white">
+									<h2 className="underline text-xl text-center font-serif font-extrabold text-cyan-300 mb-3">
+										{blog.title}
+									</h2>
+									<p className="text-justify text-sm md:text-base">
+										{blog.article.slice(0, 50)}......
+										<Link
+											to={`/${blog._id}`}
+											className="text-cyan-400 cursor-pointer text-right hover:underline"
+										>
+											read more
+										</Link>
+									</p>
+								</div>
+
+								<h5 className="text-white block mb-4 font-sans text-xl antialiased font-semibold leading-snug tracking-normal">
+									{blog.Name}
+								</h5>
+								<div className="flex items-center justify-center gap-x-5">
+									<img
+										alt="tania andrew"
+										src={blog.personImg}
+										className="relative inline-block h-16 w-16 border-2 border-cyan-600 object-cover object-center rounded-tr-2xl rounded-es-2xl"
+									/>
+									<div className="text-left text-white">
 										<p>{blog.time}</p>
 										<p className="flex items-center gap-2">
 											<BsBookmark /> {blog.reading_time}
 										</p>
 									</div>
 								</div>
-							</div>
-							<div className="p-3">
-								<h2 className="card-title font-serif text-gray-700 mb-3">
-									{blog.title}
-								</h2>
-								<p className="text-justify text-sm md:text-base">
-									{blog.article.slice(0, 120)}......
-									<Link
-										to={`/${blog._id}`}
-										className="text-cyan-500 cursor-pointer text-right"
-									>
-										read more
-									</Link>
-								</p>
-							</div>
-							<div className="flex items-center justify-between border-t-2 border-white p-5 font-semibold">
-								<p className="flex items-center gap-x-1">
-									<AiOutlineLike size={20} className="text-cyan-400" /> 66
-								</p>
-								<p className="flex items-center gap-x-1">
-									<AiOutlineEye size={18} className="text-cyan-400" /> 3675
-								</p>
-								<p className="flex items-center gap-x-1">
-									<BiComment size={18} className="text-cyan-400" /> 9
-								</p>
 							</div>
 						</div>
 					</Zoom>

@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@emailjs/browser": "^3.11.0",
+    "@stripe/react-stripe-js": "^2.3.1",
+    "@stripe/stripe-js": "^2.1.9",
     "@tanstack/react-query": "^4.35.7",
     "axios": "^1.5.1",
     "chart.js": "^4.4.0",
@@ -28,6 +30,7 @@
     "react-icons": "^4.11.0",
     "react-router-dom": "^6.15.0",
     "react-tabs": "^6.0.2",
+    "recharts": "^2.9.0",
     "sort-by": "^1.2.0",
     "sweetalert2": "^11.7.27",
     "swiper": "^10.3.0"
