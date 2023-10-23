@@ -1,32 +1,39 @@
+import { BsBookmarkPlusFill } from "react-icons/bs";
+import { FaUserDoctor } from "react-icons/fa6";
+import { VscFeedback } from "react-icons/vsc";
+import { MdComment } from "react-icons/md";
+
 const Work = () => {
 	return (
 		<div
-			className="text-center flex flex-col items-center justify-center space-y-3 px-20 mb-20 lg:mx-12"
-			style={{
-				backgroundImage:
-					"url(https://t4.ftcdn.net/jpg/01/59/24/31/240_F_159243177_Gs9zSYQkeuniFZKAboLB3yBw0hlWSHKZ.jpg)",
-				backgroundSize: "cover",
-				height: "450px",
-			}}
+			className="h-96 text-center flex flex-col items-center justify-center lg:mx-12"
+			// style={{
+			// 	backgroundImage:
+			// 		"url(https://t4.ftcdn.net/jpg/06/12/22/79/240_F_612227996_niwddSYlwNKExnTX6K84JFrWO0Rv7MCS.jpg)",
+			// 	backgroundSize: "cover",
+			// 	height: "100vh",
+			// }}
 		>
-			<p className="font-bold text-xl text-black font-serif underline">
-				We Made It Simple
+			<p className="font-bold text-3xl text-cyan-500 font-serif mb-1">
+				Care Unveiled
 			</p>
-			<h1 className="text-6xl font-bold font-serif text-gray-700">
-				How We <span className="text-black">Works?</span>
-			</h1>
-			<ul className="steps steps-vertical lg:steps-horizontal">
-				<li className="step w-60 step-info mr-3 text-black font-serif font-extrabold">
-					Choose Specialists
+			<h1 className="font-serif mb-5">Our Proven Healing Process</h1>
+			<ul className="steps steps-vertical lg:steps-horizontal mt-10">
+				<li className="step w-60 step-info mr-3 text-cyan-600 font-serif font-extrabold">
+					<span>Choose Specialists</span>
+					<FaUserDoctor className="hidden lg:inline" size={35} />
 				</li>
-				<li className="step step-info mr-3 text-black font-serif font-extrabold">
-					Book Appointment
+				<li className="step step-info mr-3 text-cyan-600 font-serif font-extrabold">
+					<span>Book Appointment</span>
+					<BsBookmarkPlusFill className="hidden lg:inline" size={30} />
 				</li>
-				<li className="step step-info mr-3 text-black font-serif font-extrabold">
-					Take Advice
+				<li className="step step-info mr-3 text-cyan-600 font-serif font-extrabold">
+					<span>Take Advice</span>
+					<VscFeedback className="hidden lg:inline" size={35} />
 				</li>
-				<li className="step step-[#000000] mr-3 text-black font-serif font-extrabold">
-					Give Feedback
+				<li className="step step-accent mr-3 text-cyan-600 font-serif font-extrabold">
+					<span>Give Feedback</span>
+					<MdComment className="hidden lg:inline" size={35} />
 				</li>
 			</ul>
 		</div>

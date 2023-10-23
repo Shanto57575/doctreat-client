@@ -26,6 +26,7 @@ import AdminRoute from "./components/AdminRoute/AdminRoute";
 // TanStack Query
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Payment from "./components/DashBoard/UserDashboard/Payment/Payment";
+import PaymentHistory from "./components/DashBoard/UserDashboard/Payment/PaymentHistory";
 
 const router = createBrowserRouter([
 	{
@@ -85,6 +86,10 @@ const router = createBrowserRouter([
 			{
 				path: "payment",
 				element: <Payment />,
+			},
+			{
+				path: "history",
+				element: <PaymentHistory />,
 			},
 			{
 				path: "adminhome",

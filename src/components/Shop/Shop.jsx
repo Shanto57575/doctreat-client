@@ -13,8 +13,6 @@ const Shop = () => {
 		axiosSecure("/shop").then((data) => setShops(data.data));
 	}, [axiosSecure]);
 
-	console.log(shops);
-
 	const Devices = shops?.filter(
 		(item) => item.category === "Monitoring Devices"
 	);

@@ -6,19 +6,22 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { useContext } from "react";
 import { AuthContext } from "../../../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import useCart from "../../../../hooks/useCart";
 
-const CheckoutForm = ({ cart, refetch, price }) => {
-	console.log(cart);
-	console.log("checkOutPage===>", price);
-
+const CheckoutForm = () => {
+	const [cart, refetch] = useCart();
 	const { user } = useContext(AuthContext);
 	const stripe = useStripe();
 	const elements = useElements();
 	const [clientSecret, setClientSecret] = useState(" ");
-	const [, setTransactionId] = useState("");
-	const [error, setError] = useState("");
+	const [, setTransactionId] = useState(" ");
+	const [error, setError] = useState(" ");
 	const [processing, setProcessing] = useState(false);
 	const [axiosSecure] = useAxiosSecure();
+
+	const price = JSON.parse(localStorage.getItem("TotalPrice"));
+
+	console.log("checkOutPage===>", price);
 
 	useEffect(() => {
 		if (price > 0) {
@@ -66,10 +69,8 @@ const CheckoutForm = ({ cart, refetch, price }) => {
 
 		if (confirmError) {
 			setError(confirmError);
-			console.log(confirmError);
 		}
 
-		console.log("---->", paymentIntent);
 		//payment processing ends here
 		setProcessing(false);
 		if (paymentIntent.status === "succeeded") {
@@ -78,15 +79,19 @@ const CheckoutForm = ({ cart, refetch, price }) => {
 			const payment = {
 				email: user?.email,
 				transactionId: paymentIntent.id,
-				date: new Date(),
+				date: new Date().toLocaleString(),
+				price: parseFloat(price),
 				quantity: cart.length,
 				cartItems: cart.map((item) => item._id),
 				itemsCategory: cart.map((item) => item.category),
 				itemsName: cart.map((item) => item.name),
 			};
+
 			axiosSecure.post("/payments", payment).then((res) => {
 				console.log("res--->", res);
 				refetch();
+				localStorage.removeItem("cartQuantity");
+				localStorage.removeItem("TotalPrice");
 				if (res.data.insertResult.insertedId) {
 					Swal.fire({
 						position: "center",

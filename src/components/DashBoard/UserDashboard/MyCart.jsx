@@ -5,15 +5,23 @@ import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import { Link } from "react-router-dom";
 import Loader from "../../Loader/Loader";
 import useCart from "../../../hooks/useCart";
+import { useEffect } from "react";
 
 const MyCart = () => {
 	const [cart, refetch] = useCart();
 	const [inputQuantity, setInputQuantity] = useState({});
 	const { user, loader } = useContext(AuthContext);
 
+	useEffect(() => {
+		const storeQuantity =
+			JSON.parse(localStorage.getItem("cartQuantity")) || {};
+		setInputQuantity(storeQuantity);
+	}, [setInputQuantity]);
+
 	const handleInputQuantity = (id, event) => {
 		const newInputQuantity = { ...inputQuantity, [id]: event.target.value };
 		setInputQuantity(newInputQuantity);
+		localStorage.setItem("cartQuantity", JSON.stringify(newInputQuantity));
 	};
 
 	let totalPrice = 0;
@@ -22,6 +30,8 @@ const MyCart = () => {
 		let product = cart[key];
 		totalPrice += product.price * (inputQuantity[product._id] || 1);
 	}
+
+	localStorage.setItem("TotalPrice", JSON.stringify(totalPrice.toFixed(2)));
 
 	const handleDelete = (id) => {
 		Swal.fire({

@@ -79,7 +79,6 @@ const AllUsers = () => {
 									<td>
 										{user?.role === "Admin" ? (
 											<div
-												onClick={() => handleAdmin(user)}
 												className="tooltip tooltip-info cursor-pointer ml-5"
 												data-tip="Admin"
 											>

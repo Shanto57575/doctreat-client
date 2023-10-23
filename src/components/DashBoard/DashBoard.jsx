@@ -15,6 +15,7 @@ import Swal from "sweetalert2";
 import useCart from "../../hooks/useCart";
 import useAdmin from "../../hooks/useAdmin";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { MdManageHistory } from "react-icons/md";
 
 const DashBoard = () => {
 	const location = useLocation();
@@ -164,6 +165,21 @@ const DashBoard = () => {
 											<FaMoneyCheckDollar size={30} />
 										</div>
 										Payment
+									</Link>
+								</li>
+								<li>
+									<Link
+										to="/dashboard/history"
+										className={
+											location.pathname === "/dashboard/history"
+												? "bg-black text-white lg:text-xl hover:text-white flex items-center gap-x-4 text-sm font-serif"
+												: "flex items-center gap-x-4 text-lg font-serif"
+										}
+									>
+										<div>
+											<MdManageHistory size={30} />
+										</div>
+										Payment History
 									</Link>
 								</li>
 							</>

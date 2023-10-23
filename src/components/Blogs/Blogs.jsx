@@ -20,10 +20,12 @@ const Blogs = () => {
 
 	return (
 		<div className="text-center space-y-3 my-10 md:mx-8 lg:mx-12">
-			<h4 className="font-semibold text-3xl text-cyan-600 font-serif">
-				Health & Wellness Blog
-			</h4>
-			<p>Stay Informed, Stay Healthy</p>
+			<div className="my-10">
+				<h4 className="font-semibold text-3xl text-cyan-600 font-serif">
+					Health & Wellness Blog
+				</h4>
+				<p>Stay Informed, Stay Healthy</p>
+			</div>
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
 				{blogs.slice(0, visibleBlogs).map((blog) => (
 					<Zoom key={blog._id}>
