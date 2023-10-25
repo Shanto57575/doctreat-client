@@ -21,8 +21,6 @@ const CheckoutForm = () => {
 
 	const price = JSON.parse(localStorage.getItem("TotalPrice"));
 
-	console.log("checkOutPage===>", price);
-
 	useEffect(() => {
 		if (price > 0) {
 			axiosSecure.post("/create-payment-intent", { price }).then((res) => {
@@ -88,7 +86,6 @@ const CheckoutForm = () => {
 			};
 
 			axiosSecure.post("/payments", payment).then((res) => {
-				console.log("res--->", res);
 				refetch();
 				localStorage.removeItem("cartQuantity");
 				localStorage.removeItem("TotalPrice");
@@ -129,7 +126,7 @@ const CheckoutForm = () => {
 				<button
 					className="btn btn-sm rounded bg-blue-500 hover:bg-blue-700 text-white my-3"
 					type="submit"
-					disabled={!stripe || !clientSecret || processing}
+					disabled={!stripe || !clientSecret || processing || cart.length === 0}
 				>
 					Pay
 				</button>

@@ -31,7 +31,7 @@ const Work = () => {
 					<span>Take Advice</span>
 					<VscFeedback className="hidden lg:inline" size={35} />
 				</li>
-				<li className="step step-accent mr-3 text-cyan-600 font-serif font-extrabold">
+				<li className="step mr-3 text-cyan-600 font-serif font-extrabold">
 					<span>Give Feedback</span>
 					<MdComment className="hidden lg:inline" size={35} />
 				</li>

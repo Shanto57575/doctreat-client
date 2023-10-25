@@ -3,23 +3,17 @@ import { AuthContext } from "../../../../AuthProvider/AuthProvider";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { RiDeleteBin2Fill } from "react-icons/ri";
 import Swal from "sweetalert2";
-import { useQuery } from "@tanstack/react-query";
 import Lottie from "lottie-react";
 import PayingHistory from "../../../../assets/paymentHistory.json";
+import usePayment from "../../../../hooks/usePayment";
+import Loader from "./../../../Loader/Loader";
 
 const PaymentHistory = () => {
 	const { user } = useContext(AuthContext);
 	const [axiosSecure] = useAxiosSecure();
+	const [paymentHistory, refetch, isLoading] = usePayment();
 
-	const { refetch, data: paymentHistory = [] } = useQuery({
-		queryKey: ["paymentHistory", user?.email],
-		queryFn: async () => {
-			const res = await axiosSecure(`/payments/${user?.email}`);
-			return res.data;
-		},
-	});
-
-	console.log("paymentHistory--->", paymentHistory);
+	console.log(paymentHistory);
 
 	const clearHistory = () => {
 		Swal.fire({
@@ -29,7 +23,7 @@ const PaymentHistory = () => {
 			showCancelButton: true,
 			confirmButtonColor: "#3085d6",
 			cancelButtonColor: "#d33",
-			confirmButtonText: "Yes, delete it!",
+			confirmButtonText: "Clear history",
 		}).then((result) => {
 			if (result.isConfirmed) {
 				axiosSecure.delete(`/payments/${user?.email}`).then((res) => {
@@ -42,6 +36,14 @@ const PaymentHistory = () => {
 			}
 		});
 	};
+
+	if (isLoading) {
+		return (
+			<div>
+				<Loader />
+			</div>
+		);
+	}
 
 	if (paymentHistory.length === 0) {
 		return (
@@ -67,15 +69,15 @@ const PaymentHistory = () => {
 						src={user?.photoURL}
 						alt="profile"
 					/>
-					<h1 className="font-serif text-xl font-extrabold text-blue-400">
+					<h1 className="font-serif text-sm md:text-xl font-extrabold text-blue-400">
 						{user?.displayName}
 					</h1>
-					<h1 className="font-serif text-xl font-extrabold text-blue-400">
+					<h1 className="font-serif text-sm md:text-xl font-extrabold text-blue-400">
 						{user?.email}
 					</h1>
 					<button
 						onClick={clearHistory}
-						className="flex items-center gap-x-1 bg-blue-400 text-white rounded px-4 py-2.5 font-semibold"
+						className="flex items-center gap-x-1 text-sm bg-blue-400 hover:bg-red-500 duration-300 font-serif text-white rounded px-4 py-2.5 font-semibold"
 					>
 						<RiDeleteBin2Fill size={25} /> <span>Clear history</span>
 					</button>
@@ -91,23 +93,27 @@ const PaymentHistory = () => {
 							<th>Date</th>
 						</tr>
 					</thead>
-					<tbody className="text-center font-semibold bg-gray-800 text-white">
+					<tbody className="text-center font-semibold bg-slate-700 text-white">
 						{paymentHistory.map((payment, index) => (
 							<tr key={payment._id}>
 								<td>{index + 1}</td>
 								<td>
 									{payment.itemsName.map((item, index) => (
-										<p key={index}>{item}</p>
+										<p className="border py-1 border-white" key={index}>
+											{item}
+										</p>
 									))}
 								</td>
-								<td>${payment.price}</td>
+								<td className="text-xl">${payment.price}</td>
 								<td>
 									{payment.itemsCategory.map((item, index) => (
-										<p key={index}>{item}</p>
+										<p className="border py-2 border-white" key={index}>
+											{item}
+										</p>
 									))}
 								</td>
-								<td>{payment.quantity}</td>
-								<td>{payment.date}</td>
+								<td className="text-xl">{payment.quantity}</td>
+								<td className="font-sans">{payment.date}</td>
 							</tr>
 						))}
 					</tbody>

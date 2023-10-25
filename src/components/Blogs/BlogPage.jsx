@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { FaRegComment } from "react-icons/fa";
 import Swal from "sweetalert2";
@@ -10,17 +10,37 @@ const BlogPage = () => {
 	const data = useLoaderData();
 	const { user } = useContext(AuthContext);
 	const [axiosSecure] = useAxiosSecure();
+	const location = useLocation();
+	const navigate = useNavigate();
 
 	const { refetch, data: allComments = [] } = useQuery({
 		queryKey: ["comments"],
 		queryFn: async () => {
-			const result = await axiosSecure.get("http://localhost:5000/comments");
+			const result = await axiosSecure.get(
+				"https://doctreat-server.vercel.app/comments"
+			);
 			return result.data;
 		},
 	});
 
 	const handleComments = async (e) => {
 		e.preventDefault();
+
+		if (!user) {
+			Swal.fire({
+				title: "Please Sign in First",
+				icon: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#3085d6",
+				cancelButtonColor: "#d33",
+				confirmButtonText: "Sign in",
+			}).then((result) => {
+				if (result.isConfirmed) {
+					navigate("/login", { state: { from: location } });
+				}
+			});
+		}
+
 		const form = e.target;
 		const name = form.name?.value;
 		const email = form.email?.value;
@@ -28,7 +48,10 @@ const BlogPage = () => {
 
 		const userComment = { name, email, comment, img: user.photoURL };
 
-		await axiosSecure.post("http://localhost:5000/comments", userComment);
+		await axiosSecure.post(
+			"https://doctreat-server.vercel.app/comments",
+			userComment
+		);
 		refetch();
 		Swal.fire({
 			position: "center",
@@ -42,7 +65,7 @@ const BlogPage = () => {
 
 	return (
 		<>
-			<div className="rounded-xl pt-32">
+			<div className="rounded-xl mt-5">
 				<h2 className="text-3xl text-center text-cyan-600 font-serif font-bold underline">
 					{data?.title}
 				</h2>

@@ -12,7 +12,7 @@ const Payment = () => {
 				---- Pay Here ----
 			</h1>
 			<div className="lg:flex items-center justify-around mx-auto">
-				<div className="lg:w-1/2 mx-10">
+				<div className="lg:w-1/2 mx-3 md:mx-10">
 					<Elements stripe={stripePromise}>
 						<CheckoutForm />
 					</Elements>

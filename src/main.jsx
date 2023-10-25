@@ -9,7 +9,6 @@ import About from "./components/About/About";
 import Register from "./components/Register/Register";
 import AuthProvider from "./AuthProvider/AuthProvider";
 import AllDoctors from "./components/AllDoctors/AllDoctors";
-import AppointmentForm from "./components/AppointmentForm/AppointmentForm";
 import BlogPage from "./components/Blogs/BlogPage";
 import Shop from "./components/Shop/Shop";
 import MyCart from "./components/DashBoard/UserDashboard/MyCart";
@@ -22,11 +21,11 @@ import AddDoctor from "./components/DashBoard/AdminDashboard/AddDoctor";
 import DashBoard from "./components/DashBoard/DashBoard";
 import { HelmetProvider } from "react-helmet-async";
 import AdminRoute from "./components/AdminRoute/AdminRoute";
+import Payment from "./components/DashBoard/UserDashboard/Payment/Payment";
+import PaymentHistory from "./components/DashBoard/UserDashboard/Payment/PaymentHistory";
 
 // TanStack Query
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import Payment from "./components/DashBoard/UserDashboard/Payment/Payment";
-import PaymentHistory from "./components/DashBoard/UserDashboard/Payment/PaymentHistory";
 
 const router = createBrowserRouter([
 	{
@@ -42,7 +41,7 @@ const router = createBrowserRouter([
 				path: "/:id",
 				element: <BlogPage />,
 				loader: ({ params }) =>
-					fetch(`http://localhost:5000/blogs/${params.id}`),
+					fetch(`https://doctreat-server.vercel.app/blogs/${params.id}`),
 			},
 			{
 				path: "/about",
@@ -63,10 +62,6 @@ const router = createBrowserRouter([
 			{
 				path: "/register",
 				element: <Register />,
-			},
-			{
-				path: "/appointmentForm/:id",
-				element: <AppointmentForm />,
 			},
 		],
 	},

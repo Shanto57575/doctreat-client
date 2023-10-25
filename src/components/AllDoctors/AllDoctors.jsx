@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { BsFlag } from "react-icons/bs";
 import { HiMailOpen, HiOutlineCurrencyDollar } from "react-icons/hi";
-import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import useAxiosSecure from "../../hooks/useAxiosSecure.jsx";
+import Swal from "sweetalert2";
 
 const AllDoctors = () => {
 	const [allDoctors, setAllDoctors] = useState([]);
@@ -44,11 +44,15 @@ const AllDoctors = () => {
 		});
 	}, [currentPage, search, gender, speciality, fees, axiosSecure]);
 
-	const clearAll = () => {
-		setSearch(searchRef.current.value);
-		setGender(genderRef.current.value);
-		setSpeciality(specialityRef.current.value);
-		setFees(feesRef.current.value);
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		Swal.fire({
+			position: "top-end",
+			icon: "success",
+			title: "Appointment Booked!",
+			showConfirmButton: false,
+			timer: 1500,
+		});
 	};
 
 	return (
@@ -75,10 +79,7 @@ const AllDoctors = () => {
 				</div>
 				<div className="text-left ml-14 flex items-center gap-x-14 mt-10">
 					<h1 className="font-bold text-xl font-serif">Filters By</h1>
-					<button
-						onClick={clearAll}
-						className="btn btn-xs text-blue-400 bg-white"
-					>
+					<button className="btn btn-xs text-blue-400 bg-white">
 						Clear all
 					</button>
 				</div>
@@ -168,10 +169,10 @@ const AllDoctors = () => {
 						{loading ? (
 							<Loader />
 						) : totalItems === 0 ? (
-							<p className="text-5xl text-cyan-500 h-screen">
+							<div className="text-5xl text-cyan-500 h-screen">
 								<span className="text-red-500">X</span>
 								<p>No doctors available!</p>
-							</p>
+							</div>
 						) : (
 							allDoctors.map((doc) => (
 								<Zoom key={doc._id}>
@@ -252,13 +253,117 @@ const AllDoctors = () => {
 											</div>
 										</div>
 										<div className="gap-2 w-full lg:w-[20%] space-x-2 space-y-3 border-cyan-600">
-											<Link to={`/appointmentForm/${doc._id}`}>
-												<button className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
-													<span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-														Book Your Appointment
-													</span>
-												</button>
-											</Link>
+											<button
+												onClick={() =>
+													document.getElementById("my_modal_5").showModal()
+												}
+												className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+											>
+												<span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+													Book Your Appointment
+												</span>
+											</button>
+											<dialog
+												id="my_modal_5"
+												className="modal modal-bottom sm:modal-middle"
+											>
+												<div className="modal-box">
+													<h1 className="text-blue-400 text-xl font-bold font-serif italic underline mb-8">
+														Appointment Form
+													</h1>
+													<div className="flex items-center justify-center px-12 pb-12">
+														<div className="mx-auto w-full max-w-[550px]">
+															<form onSubmit={handleSubmit}>
+																<div className="-mx-3 flex flex-wrap">
+																	<div className="w-full px-3 sm:w-1/2">
+																		<div className="mb-5">
+																			<label
+																				htmlFor="fName"
+																				className="mb-3 block text-base font-medium text-cyan-600"
+																			>
+																				First Name
+																			</label>
+																			<input
+																				required
+																				type="text"
+																				name="fName"
+																				id="fName"
+																				placeholder="First Name"
+																				className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-cyan-500 focus:shadow-md"
+																			/>
+																		</div>
+																	</div>
+																	<div className="w-full px-3 sm:w-1/2">
+																		<div className="mb-5">
+																			<label
+																				htmlFor="lName"
+																				className="mb-3 block text-base font-medium text-cyan-600"
+																			>
+																				Last Name
+																			</label>
+																			<input
+																				required
+																				type="text"
+																				name="lName"
+																				id="lName"
+																				placeholder="Last Name"
+																				className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-cyan-500 focus:shadow-md"
+																			/>
+																		</div>
+																	</div>
+																</div>
+																<div className="-mx-3 flex flex-wrap">
+																	<div className="w-full px-3 sm:w-1/2">
+																		<div className="mb-5">
+																			<label className="label">
+																				<span className="label-text">
+																					Choose Gender
+																				</span>
+																			</label>
+																			<select
+																				defaultValue="Gender"
+																				className="select select-bordered w-full"
+																			>
+																				<option disabled>Gender</option>
+																				<option>Male</option>
+																				<option>Female</option>
+																			</select>
+																		</div>
+																	</div>
+																	<div className="w-full px-3 sm:w-1/2">
+																		<div className="mb-5">
+																			<label
+																				htmlFor="time"
+																				className="mb-3 block text-base font-medium text-cyan-600"
+																			>
+																				Age
+																			</label>
+																			<input
+																				required
+																				type="text"
+																				name="age"
+																				id="age"
+																				placeholder="Age"
+																				className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-cyan-500 focus:shadow-md"
+																			/>
+																		</div>
+																	</div>
+																</div>
+																<input
+																	className="btn relative px-5 py-2.5 transition-all ease-in duration-75 bg-blue-400 hover:bg-blue-500 text-white rounded-md group-hover:bg-opacity-0"
+																	type="submit"
+																	value="Submit"
+																/>
+															</form>
+														</div>
+													</div>
+													<div className="modal-action">
+														<form method="dialog">
+															<button className="btn">close</button>
+														</form>
+													</div>
+												</div>
+											</dialog>
 										</div>
 									</div>
 								</Zoom>

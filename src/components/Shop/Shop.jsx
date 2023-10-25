@@ -7,10 +7,14 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Shop = () => {
 	const [shops, setShops] = useState();
+	const [loading, setLoading] = useState(true);
 	const [axiosSecure] = useAxiosSecure();
 
 	useEffect(() => {
-		axiosSecure("/shop").then((data) => setShops(data.data));
+		axiosSecure("/shop").then((data) => {
+			setShops(data.data);
+			setLoading(false);
+		});
 	}, [axiosSecure]);
 
 	const Devices = shops?.filter(
@@ -69,19 +73,19 @@ const Shop = () => {
 							</Tab>
 						</TabList>
 						<TabPanel>
-							<ProductTab item={Devices} />
+							<ProductTab loading={loading} item={Devices} />
 						</TabPanel>
 						<TabPanel>
-							<ProductTab item={Equipment} />
+							<ProductTab loading={loading} item={Equipment} />
 						</TabPanel>
 						<TabPanel>
-							<ProductTab item={Tools} />
+							<ProductTab loading={loading} item={Tools} />
 						</TabPanel>
 						<TabPanel>
-							<ProductTab item={Aids} />
+							<ProductTab loading={loading} item={Aids} />
 						</TabPanel>
 						<TabPanel>
-							<ProductTab item={Supports} />
+							<ProductTab loading={loading} item={Supports} />
 						</TabPanel>
 					</Tabs>
 				</div>
