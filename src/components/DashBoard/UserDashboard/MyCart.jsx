@@ -6,11 +6,20 @@ import { Link } from "react-router-dom";
 import Loader from "../../Loader/Loader";
 import useCart from "../../../hooks/useCart";
 import { useEffect } from "react";
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { BsCartXFill } from "react-icons/bs";
 
 const MyCart = () => {
 	const [cart, refetch] = useCart();
 	const [inputQuantity, setInputQuantity] = useState({});
 	const { user, loader } = useContext(AuthContext);
+
+	let cartQuantity = JSON.parse(localStorage.getItem("cartQuantity")) || {};
+	console.log(cartQuantity);
+	const totalQuantity = Object.values(cartQuantity).reduce(
+		(total, quantity) => total + parseInt(quantity),
+		0
+	);
 
 	useEffect(() => {
 		const storeQuantity =
@@ -18,18 +27,40 @@ const MyCart = () => {
 		setInputQuantity(storeQuantity);
 	}, [setInputQuantity]);
 
-	const handleInputQuantity = (id, event) => {
-		const newInputQuantity = { ...inputQuantity, [id]: event.target.value };
+	const handleInputQuantity = (id, action) => {
+		const currentQuantity = inputQuantity[id] || 1;
+		let newQuantity;
+
+		if (action === "+" && currentQuantity < 20) {
+			newQuantity = currentQuantity + 1;
+		} else if (action === "-" && currentQuantity > 1) {
+			newQuantity = currentQuantity - 1;
+		} else {
+			return;
+		}
+
+		const newInputQuantity = {
+			...inputQuantity,
+			[id]: newQuantity,
+		};
+
 		setInputQuantity(newInputQuantity);
 		localStorage.setItem("cartQuantity", JSON.stringify(newInputQuantity));
 	};
+
+	console.log("inputQuantity-->", inputQuantity);
 
 	let totalPrice = 0;
 
 	for (let key in cart) {
 		let product = cart[key];
-		totalPrice += product.price * (inputQuantity[product._id] || 1);
+		console.log("-->", product.price, inputQuantity[product._id]);
+		totalPrice +=
+			product.price *
+			(inputQuantity[product._id] ? inputQuantity[product._id] : 1);
 	}
+
+	console.log(totalPrice);
 
 	localStorage.setItem("TotalPrice", JSON.stringify(totalPrice.toFixed(2)));
 
@@ -51,6 +82,7 @@ const MyCart = () => {
 					.then((data) => {
 						console.log(data);
 						if (data.deletedCount > 0) {
+							// localStorage.removeItem(`cartQuantity.${id}`);
 							refetch();
 							Swal.fire("removed!", "Product removed from the cart", "success");
 						}
@@ -81,25 +113,8 @@ const MyCart = () => {
 
 	return (
 		<>
-			<div className="text-white font-serif w-full h-full">
-				<div className="bg-blue-400 flex items-center justify-between shadow-md shadow-gray-800 p-5 mb-3">
-					<h1 className="text-2xl shadow-md p-3 shadow-black">
-						Total Product : {cart.length || 0}
-					</h1>
-					<h1 className="text-2xl shadow-md p-3 shadow-black">
-						Total Price : ${totalPrice.toFixed(2)}
-					</h1>
-
-					<Link to="/dashboard/payment">
-						<button
-							type="button"
-							className="shadow-black text-white bg-gradient-to-r from-blue-300 via-sky-400 to-blue-500 border-b-4 border-white hover:bg-gradient-to-br font-medium rounded-lg text-sm px-7 py-2.5 text-center mr-2 mb-2"
-						>
-							Pay
-						</button>
-					</Link>
-				</div>
-				<div className="overflow-x-auto bg-blue-300 text-black bg-gradient-to-r shadow-2xl shadow-gray-800">
+			<div className="lg:flex text-white font-serif w-full h-full">
+				<div className="overflow-x-auto lg:w-[70%] bg-blue-300 text-black bg-gradient-to-r shadow-2xl shadow-gray-800">
 					<table className="table">
 						<thead>
 							<tr className="text-white text-xl">
@@ -131,18 +146,22 @@ const MyCart = () => {
 										</div>
 									</td>
 									<td className="text-lg">${product.price}</td>
-									<td>
-										<input
-											onChange={(event) =>
-												handleInputQuantity(product._id, event)
-											}
-											type="number"
-											min={1}
-											max={20}
-											placeholder="quantity"
-											defaultValue={inputQuantity[product._id] || 1}
-											className="input input-bordered input-info w-24 text-black"
-										/>
+									<td className="flex items-center text-center px-2">
+										<button
+											className="text-3xl px-2"
+											onClick={() => handleInputQuantity(product._id, "+")}
+										>
+											<AiOutlinePlus />
+										</button>
+										<span className="text-3xl px-2">
+											{inputQuantity[product._id] || 1}
+										</span>
+										<button
+											className="text-3xl px-2"
+											onClick={() => handleInputQuantity(product._id, "-")}
+										>
+											<AiOutlineMinus />
+										</button>
 									</td>
 									<td>
 										<p className="text-lg">
@@ -154,7 +173,7 @@ const MyCart = () => {
 									</td>
 									<td>
 										<button
-											className="text-3xl ml-4 text-red-500 hover:bg-red-500 hover:text-white btn btn-circle"
+											className="text-3xl ml-4 text-red-500 hover:bg-red-500 hover:text-white btn btn-circle border-none"
 											onClick={() => handleDelete(product._id)}
 										>
 											<RxCross2 size={25} />
@@ -164,6 +183,45 @@ const MyCart = () => {
 							))}
 						</tbody>
 					</table>
+				</div>
+				<div className="lg:w-[29%] border-x-8 border-blue-200 bg-blue-300 text-black bg-gradient-to-r shadow-2xl shadow-gray-800 p-10 mx-auto">
+					<h1 className="text-4xl ">Cart Total</h1>
+					<button className="flex items-center gap-x-1 text-sm bg-blue-400 hover:bg-red-500 duration-300 font-serif text-white rounded px-4 py-2.5 font-semibold">
+						<BsCartXFill size={25} /> <span>Clear Cart</span>
+					</button>
+					<p className="border-b border-blue-100 my-2"></p>
+					<h1 className="text-2xl">Total Product : {totalQuantity || 0}</h1>
+					<p className="border-b border-blue-100 my-2"></p>
+					<h1 className="text-2xl">Subtotal : ${totalPrice.toFixed(2)}</h1>
+					<p className="border-b border-blue-100 my-2"></p>
+					<h1 className="text-2xl">Shipping : ${120}</h1>
+					<p className="border-b border-blue-100 my-2"></p>
+					<h1 className="text-2xl">Vat : ${25}</h1>
+					<p className="border-b border-blue-100 my-2"></p>
+					<h1 className="text-2xl">
+						Total Price : ${(totalPrice + 120 + 25).toFixed(2)}
+					</h1>
+					<p className="border-b border-blue-100 my-2"></p>
+					<Link to="/dashboard/payment">
+						<img
+							alt="Credit Card Logos"
+							title="Credit Card Logos"
+							src="https://www.shift4shop.com/images/credit-card-logos/cc-lg-5.png"
+							width="518"
+							height="59"
+							border="0"
+						/>
+					</Link>
+					<p className="border-b border-blue-100 my-2"></p>
+
+					<Link to="/dashboard/payment">
+						<button
+							type="button"
+							className="w-full font-bold shadow-black text-white bg-gradient-to-r from-blue-300 via-sky-400 to-blue-500 border-b-4 border-white hover:bg-gradient-to-br rounded-lg text-sm px-7 py-2.5 text-center mr-2 mb-2"
+						>
+							Proceed to checkout
+						</button>
+					</Link>
 				</div>
 			</div>
 		</>

@@ -60,6 +60,7 @@ const AllUsers = () => {
 								<th>#</th>
 								<th>Image</th>
 								<th>Name</th>
+								<th>Email</th>
 								<th>Role</th>
 								<th>Remove</th>
 							</tr>
@@ -76,6 +77,9 @@ const AllUsers = () => {
 										/>
 									</td>
 									<td className="uppercase text-base">{user?.name}</td>
+									<td className="uppercase text-base font-normal">
+										{user?.email}
+									</td>
 									<td>
 										{user?.role === "Admin" ? (
 											<div

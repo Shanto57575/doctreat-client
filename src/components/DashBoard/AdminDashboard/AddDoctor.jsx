@@ -1,62 +1,138 @@
+import { useForm } from "react-hook-form";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+const img_hosting_token = import.meta.env.VITE_IMG_UPLOAD_TOKEN;
+
 const AddDoctor = () => {
+	const [axiosSecure] = useAxiosSecure();
+	const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
+
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: { errors },
+	} = useForm();
+
+	const onSubmit = (data) => {
+		console.log("-->", data);
+		const formData = new FormData();
+		formData.append("image", data.image);
+		console.log("formData--->", formData);
+
+		fetch(img_hosting_url, {
+			method: "POST",
+			body: formData,
+		})
+			.then((res) => res.json())
+			.then((imgResponse) => {
+				console.log(imgResponse);
+				if (imgResponse.success) {
+					const imgURL = imgResponse.data?.display_url;
+					const {
+						name,
+						experience,
+						availability,
+						email,
+						country,
+						education,
+						gender,
+						fees,
+						speciality,
+						service,
+					} = data;
+					const newDoctor = {
+						name,
+						experience,
+						email,
+						country,
+						education,
+						gender,
+						speciality,
+						service,
+						fees: parseFloat(fees),
+						picture: imgURL,
+						contact: email,
+						availability,
+					};
+					console.log("newDoctor--->", newDoctor);
+					axiosSecure.post("/alldoctors", newDoctor).then((res) => {
+						if (res.data.insertedId) {
+							reset();
+							Swal.fire({
+								position: "center",
+								icon: "success",
+								title: "New Specialist added",
+								showConfirmButton: false,
+								timer: 1500,
+							});
+						}
+					});
+				}
+			});
+	};
+
 	return (
-		<>
-			<h1 className="text-cyan-500 text-3xl font-bold underline font-serif my-8">
-				Add New Specialist
+		<div className="bg-blue-400 w-full h-full px-5 lg:px-20">
+			<h1 className="text-center mt-10 text-white py-2 text-2xl mb-4 md:text-4xl font-bold font-serif italic">
+				---- Add New Specialist ----
 			</h1>
-			<div className="flex items-center justify-center pb-12">
+			<div className="flex items-center justify-center pb-12 text-black">
 				<div className="mx-auto w-full">
-					<form>
-						<div className="-mx-3 flex">
+					<form onSubmit={handleSubmit(onSubmit)}>
+						<div className="-mx-3 md:flex">
 							<div className="w-full px-3 sm:w-1/2">
-								<div className="mb-5">
-									<label
-										htmlFor="name"
-										className="mb-3 block text-base font-medium text-cyan-600"
-									>
-										Name
+								<div className="form-control w-full mb-4">
+									<label className="label">
+										<span className="label-text font-semibold">
+											Doctor Name
+										</span>
 									</label>
 									<input
-										required
 										type="text"
-										name="name"
-										id="name"
-										placeholder="Name"
-										className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-cyan-500 focus:shadow-md"
+										placeholder="Doctor Name"
+										{...register("name", { required: true, maxLength: 120 })}
+										className="input input-bordered w-full rounded-none shadow shadow-slate-500"
 									/>
+									{errors.name?.type === "required" && (
+										<p className="text-red-500 font-serif font-semibold mt-2">
+											Name is required
+										</p>
+									)}
 								</div>
 							</div>
 							<div className="w-full px-3 sm:w-1/2">
-								<div className="mb-5">
-									<label
-										htmlFor="Gender"
-										className="mb-3 block text-base font-medium text-cyan-600"
-									>
-										Gender
+								<div className="form-control w-full">
+									<label className="label">
+										<span className="label-text font-semibold">Gender</span>
 									</label>
 									<select
 										defaultValue="Gender"
-										className="select select-bordered w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-cyan-500 focus:shadow-md"
+										{...register("gender", { required: true })}
+										className="select select-bordered rounded-none shadow shadow-slate-500"
 									>
 										<option disabled>Gender</option>
 										<option>Male</option>
 										<option>Female</option>
 									</select>
+									{errors.gender?.type === "required" && (
+										<p className="text-red-500 font-serif font-semibold mt-2">
+											Gender is required
+										</p>
+									)}
 								</div>
 							</div>
 							<div className="w-full px-3 sm:w-1/2">
-								<div className="mb-5">
-									<label
-										htmlFor="speciality"
-										className="mb-3 block text-base font-medium text-cyan-600"
-									>
-										speciality
+								<div className="form-control w-full">
+									<label className="label">
+										<span className="label-text font-semibold">Speciality</span>
 									</label>
 									<select
-										defaultValue="Choose speciality"
-										className="select select-bordered w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-black outline-none focus:border-cyan-500 focus:shadow-md"
+										defaultValue="Speciality"
+										{...register("speciality", { required: true })}
+										className="select select-bordered rounded-none shadow shadow-slate-500"
 									>
-										<option disabled>Choose speciality</option>
+										<option disabled>Speciality</option>
 										<option>Cardiology</option>
 										<option>Dermatology</option>
 										<option>Neurology</option>
@@ -69,95 +145,107 @@ const AddDoctor = () => {
 										<option>Rheumatology</option>
 										<option>Dentistry</option>
 									</select>
+									{errors.speciality?.type === "required" && (
+										<p className="text-red-500 font-serif font-semibold mt-2">
+											Speciality is required
+										</p>
+									)}
 								</div>
 							</div>
 						</div>
-						<div className="-mx-3 flex">
+						<div className="-mx-3 md:flex">
 							<div className="w-full px-3 sm:w-1/2">
-								<div className="mb-5">
-									<label
-										htmlFor="service"
-										className="mb-3 block text-base font-medium text-cyan-600"
-									>
-										service
+								<div className="form-control w-full mb-4">
+									<label className="label">
+										<span className="label-text font-semibold">Service</span>
 									</label>
 									<input
-										required
 										type="text"
-										name="service"
-										id="service"
 										placeholder="Service"
-										className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-cyan-500 focus:shadow-md"
+										{...register("service", { required: true, maxLength: 120 })}
+										className="input input-bordered w-full rounded-none shadow shadow-slate-500"
 									/>
+									{errors.service?.type === "required" && (
+										<p className="text-red-500 font-serif font-semibold mt-2">
+											service is required
+										</p>
+									)}
 								</div>
 							</div>
 							<div className="w-full px-3 sm:w-1/2">
-								<div className="mb-5">
-									<label
-										htmlFor="education"
-										className="mb-3 block text-base font-medium text-cyan-600"
-									>
-										Education
+								<div className="form-control w-full mb-4">
+									<label className="label">
+										<span className="label-text font-semibold">Education</span>
 									</label>
 									<input
-										required
-										type="education"
-										name="education"
-										id="education"
-										placeholder="Education"
-										className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-cyan-500 focus:shadow-md"
-									/>
-								</div>
-							</div>
-							<div className="w-full px-3 sm:w-1/2">
-								<div className="mb-5">
-									<label
-										htmlFor="Experience"
-										className="mb-3 block text-base font-medium text-cyan-600"
-									>
-										Experience
-									</label>
-									<input
-										required
 										type="text"
-										name="Experience"
-										id="Experience"
-										placeholder="Experience"
-										className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-cyan-500 focus:shadow-md"
+										placeholder="Education"
+										{...register("education", {
+											required: true,
+											maxLength: 120,
+										})}
+										className="input input-bordered w-full rounded-none shadow shadow-slate-500"
 									/>
+									{errors.education?.type === "required" && (
+										<p className="text-red-500 font-serif font-semibold mt-2">
+											Education is required
+										</p>
+									)}
+								</div>
+							</div>
+							<div className="w-full px-3 sm:w-1/2">
+								<div className="form-control w-full mb-4">
+									<label className="label">
+										<span className="label-text font-semibold">Experience</span>
+									</label>
+									<input
+										type="text"
+										placeholder="Experience"
+										{...register("experience", {
+											required: true,
+											maxLength: 120,
+										})}
+										className="input input-bordered w-full rounded-none shadow shadow-slate-500"
+									/>
+									{errors.experience?.type === "required" && (
+										<p className="text-red-500 font-serif font-semibold mt-2">
+											Experience is required
+										</p>
+									)}
 								</div>
 							</div>
 						</div>
-						<div className="-mx-3 flex">
+						<div className="-mx-3 md:flex">
 							<div className="w-full px-3 sm:w-1/2">
-								<div className="mb-5">
-									<label
-										htmlFor="fees"
-										className="mb-3 block text-base font-medium text-cyan-600"
-									>
-										Fees
+								<div className="form-control w-full mb-4">
+									<label className="label">
+										<span className="label-text font-semibold">Fees</span>
 									</label>
 									<input
-										required
 										type="text"
-										name="fees"
-										id="fees"
-										placeholder="$"
-										className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-cyan-500 focus:shadow-md"
+										placeholder="Fees"
+										{...register("fees", {
+											required: true,
+											maxLength: 120,
+										})}
+										className="input input-bordered w-full rounded-none shadow shadow-slate-500"
 									/>
+									{errors.fees?.type === "required" && (
+										<p className="text-red-500 font-serif font-semibold mt-2">
+											fees is required
+										</p>
+									)}
 								</div>
 							</div>
 							<div className="w-full px-3 sm:w-1/2">
-								<div className="mb-5">
-									<label
-										htmlFor="fees"
-										className="mb-3 block text-base font-medium text-cyan-600"
-									>
-										Country
+								<div className="form-control w-full">
+									<label className="label">
+										<span className="label-text font-semibold">Country</span>
 									</label>
 									<select
-										defaultValue="Filter By Country"
-										className="select select-bordered w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-cyan-500 focus:shadow-md"
+										defaultValue="Country"
+										{...register("country", { required: true })}
+										className="select select-bordered rounded-none shadow shadow-slate-500"
 									>
 										<option disabled>Country</option>
 										<option>Bangladesh</option>
@@ -169,76 +257,94 @@ const AddDoctor = () => {
 										<option>Russia</option>
 										<option>Spain</option>
 									</select>
+									{errors.country?.type === "required" && (
+										<p className="text-red-500 font-serif font-semibold mt-2">
+											Country is required
+										</p>
+									)}
 								</div>
 							</div>
 							<div className="w-full px-3 sm:w-1/2">
-								<div className="mb-5">
-									<label
-										htmlFor="picture"
-										className="mb-3 block text-base font-medium text-cyan-600"
-									>
-										picture
+								<div className="form-control w-full mb-4">
+									<label className="label">
+										<span className="label-text font-semibold">Photo URL</span>
 									</label>
 									<input
-										required
 										type="url"
-										name="picture"
-										id="picture"
-										placeholder="Doctor Photo"
-										className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-cyan-500 focus:shadow-md"
+										placeholder="photo url"
+										{...register("image", {
+											required: true,
+											maxLength: 120,
+										})}
+										className="input input-bordered w-full rounded-none shadow shadow-slate-500"
 									/>
+									{errors.image?.type === "required" && (
+										<p className="text-red-500 font-serif font-semibold mt-2">
+											photo url is required
+										</p>
+									)}
 								</div>
 							</div>
 						</div>
-						<div className="-mx-3 flex">
+						<div className="-mx-3 md:flex">
 							<div className="w-full px-3 sm:w-1/2">
-								<div className="mb-5">
-									<label
-										htmlFor="email"
-										className="mb-3 block text-base font-medium text-cyan-600"
-									>
-										Email
+								<div className="form-control w-full mb-4">
+									<label className="label">
+										<span className="label-text font-semibold">Email</span>
 									</label>
 									<input
-										required
 										type="email"
-										name="email"
-										id="email"
 										placeholder="Email"
-										className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-cyan-500 focus:shadow-md"
+										{...register("email", {
+											required: true,
+											maxLength: 120,
+										})}
+										className="input input-bordered w-full rounded-none shadow shadow-slate-500"
 									/>
+									{errors.email?.type === "required" && (
+										<p className="text-red-500 font-serif font-semibold mt-2">
+											Email is required
+										</p>
+									)}
 								</div>
 							</div>
 							<div className="w-full px-3 sm:w-1/2">
-								<div className="mb-5">
-									<label
-										htmlFor="availability"
-										className="mb-3 block text-base font-medium text-cyan-600"
-									>
-										Availability
+								<div className="form-control w-full mb-4">
+									<label className="label">
+										<span className="label-text font-semibold">
+											Availability
+										</span>
 									</label>
 									<input
-										required
 										type="text"
-										name="availability"
-										id="availability"
-										placeholder="availability"
-										className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-cyan-500 focus:shadow-md"
+										placeholder="Availability"
+										{...register("availability", {
+											required: true,
+											maxLength: 120,
+										})}
+										className="input input-bordered w-full rounded-none shadow shadow-slate-500"
 									/>
+									{errors.availability?.type === "required" && (
+										<p className="text-red-500 font-serif font-semibold mt-2">
+											Availability is required
+										</p>
+									)}
 								</div>
 							</div>
 						</div>
 						<div>
 							<button className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
-								<span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-									Submit
-								</span>
+								<input
+									className="cursor-pointer relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
+									type="submit"
+									value="Add Doctor"
+								/>
 							</button>
 						</div>
 					</form>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 

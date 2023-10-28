@@ -38,10 +38,10 @@ const Shop = () => {
 
 			<div className="w-full mx-auto">
 				<div
-					className="hero h-[500px]"
+					className="hero h-[650px]"
 					style={{
 						backgroundImage:
-							"url(https://t3.ftcdn.net/jpg/02/44/60/98/240_F_244609855_yUA8MEZL0iOxqcNg7t4GbPfgOLxYp3Ie.jpg)",
+							"url(https://t3.ftcdn.net/jpg/05/99/10/78/240_F_599107807_kaOhz5mux2kdVfhKZzdnFeDPgZUSlL32.jpg)",
 					}}
 				>
 					<div className="hero-overlay bg-opacity-60"></div>
@@ -55,7 +55,7 @@ const Shop = () => {
 				</div>
 				<div className=" bg-gray-100 font-serif">
 					<Tabs>
-						<TabList className="flex flex-wrap items-center p-2 gap-x-4 bg-gray-600 text-white border-2 rounded">
+						<TabList className="flex flex-wrap items-center p-2 gap-x-4 bg-blue-400 text-white border-2 rounded">
 							<Tab className="px-4 py-2 cursor-pointer hover:bg-slate-800 transition duration-300">
 								Monitoring Devices
 							</Tab>

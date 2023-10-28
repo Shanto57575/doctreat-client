@@ -36,8 +36,8 @@ const Contact = () => {
 	};
 
 	return (
-		<>
-			<h1 className="text-cyan-500 text-5xl font-bold mt-10 text-center font-serif">
+		<div className="bg-gray-200">
+			<h1 className="text-blue-400 text-5xl font-bold mt-10 text-center font-serif">
 				Contact us
 			</h1>
 			<p className="mt-2 text-center font-serif">Get in touch with us</p>
@@ -48,7 +48,7 @@ const Contact = () => {
 					className="w-full md:w-1/2 md:mx-8 lg:mx-12 max-w-5xl"
 				>
 					<div className="">
-						<div className="card w-full max-w-3xl shadow-2xl bg-gradient-to-r from-blue-200 via-blue-300 to-blue-400">
+						<div className="card w-full max-w-3xl shadow-2xl rounded-none">
 							<div className="card-body">
 								<div className="form-control">
 									<label className="label">
@@ -58,7 +58,7 @@ const Contact = () => {
 										type="text"
 										name="user_name"
 										placeholder="john doe"
-										className="input input-bordered border-none"
+										className="input input-bordered w-full rounded-none shadow shadow-slate-500"
 										required
 									/>
 								</div>
@@ -70,7 +70,7 @@ const Contact = () => {
 										type="text"
 										placeholder="johndoe@gmail.com"
 										name="user_email"
-										className="input input-bordered"
+										className="input input-bordered w-full rounded-none shadow shadow-slate-500"
 										required
 									/>
 								</div>
@@ -81,12 +81,12 @@ const Contact = () => {
 									<textarea
 										placeholder="Message"
 										name="message"
-										className="textarea textarea-bordered textarea-lg w-full"
+										className="textarea textarea-bordered textarea-lg w-full rounded-none shadow shadow-slate-500"
 										required
 									></textarea>
 								</div>
 								<input
-									className="btn bg-blue-400 hover:bg-blue-500 text-white"
+									className="btn bg-blue-500 border-none text-white hover:bg-blue-600 rounded-none shadow shadow-slate-500"
 									type="submit"
 									value="Submit"
 								/>
@@ -98,7 +98,7 @@ const Contact = () => {
 					<Lottie animationData={contact} loop={true} />
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 

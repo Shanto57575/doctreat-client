@@ -21,6 +21,15 @@ const CheckoutForm = () => {
 
 	const price = JSON.parse(localStorage.getItem("TotalPrice"));
 
+	const cartItemExists = localStorage.getItem("cartQuantity");
+	let cartQuantity = cartItemExists ? JSON.parse(cartItemExists) : {};
+
+	console.log(cartQuantity);
+	const totalQuantity = Object.values(cartQuantity).reduce(
+		(total, quantity) => total + parseInt(quantity),
+		0
+	);
+
 	useEffect(() => {
 		if (price > 0) {
 			axiosSecure.post("/create-payment-intent", { price }).then((res) => {
@@ -79,7 +88,8 @@ const CheckoutForm = () => {
 				transactionId: paymentIntent.id,
 				date: new Date().toLocaleString(),
 				price: parseFloat(price),
-				quantity: cart.length,
+				quantity: totalQuantity,
+				cartQuantity,
 				cartItems: cart.map((item) => item._id),
 				itemsCategory: cart.map((item) => item.category),
 				itemsName: cart.map((item) => item.name),

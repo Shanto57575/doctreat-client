@@ -6,13 +6,42 @@ import logo from "../../assets/healthcare.png";
 const Footer = () => {
 	return (
 		<>
-			<div className=" bg-gradient-to-r from-[#151515] to-slate-400 lg:p-10 w-full">
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-					<div className="font-serif text-white space-y-2 m-5 lg:m-0">
-						<div className="flex items-center gap-4">
-							<img src={logo} className="w-10" alt="" />
-							<h1 className="text-3xl mt-2">Epic Care</h1>
-						</div>
+			<div className="bg-gray-900 text-white lg:p-10 w-full">
+				<div className="flex items-center justify-between mb-10">
+					<div className="flex items-center gap-x-2">
+						<img src={logo} className="w-10" alt="" />
+						<h1 className="text-3xl mt-2 font-serif">Epic Care</h1>
+					</div>
+					<div className="flex items-center gap-4">
+						<BsFacebook
+							className="cursor-pointer bg-gray-300 text-gray-950 p-2 hover:bg-gray-950 hover:text-white duration-300"
+							size={40}
+						/>
+						<AiOutlineInstagram
+							className="cursor-pointer bg-gray-300 text-gray-950 p-2 hover:bg-gray-950 hover:text-white duration-300"
+							size={40}
+						/>
+						<FaXTwitter
+							className="cursor-pointer bg-gray-300 text-gray-950 p-2 hover:bg-gray-950 hover:text-white duration-300"
+							size={40}
+						/>
+						<AiFillLinkedin
+							className="cursor-pointer bg-gray-300 text-gray-950 p-2 hover:bg-gray-950 hover:text-white duration-300"
+							size={40}
+						/>
+					</div>
+				</div>
+				<div className="lg:flex items-center justify-between font-serif sm:py-10 md:py-0">
+					<div className="w-72 space-y-2 m-5 lg:m-0">
+						<h1 className="text-2xl">About Us</h1>
+						<p className="text-justify">
+							At Epi Care, we are your dedicated online healthcare solution. Our
+							team of skilled doctors is committed to providing personalized,
+							high-quality care.
+						</p>
+					</div>
+					<div className="w-72 font-serif space-y-2 m-5 lg:m-0">
+						<h1 className="text-2xl">Get in touch</h1>
 						<p>Chattogram, Bangladesh</p>
 						<p>CTG 4002, BD</p>
 						<p>
@@ -21,47 +50,40 @@ const Footer = () => {
 						<p>
 							Email: <span className="font-semibold">info@example.com</span>
 						</p>
-						<p className="flex items-center gap-4">
-							<BsFacebook size={22} />
-							<AiOutlineInstagram size={22} />
-							<FaXTwitter size={22} />
-							<AiFillLinkedin size={22} />
-						</p>
 					</div>
-					<nav className="text-white font-serif space-y-2 m-5 lg:m-0 mt-2">
-						<header className="text-3xl">Company</header>
-						<a className="link link-hover block">About us</a>
-						<a className="link link-hover block">Contact</a>
-						<a className="link link-hover block">Jobs</a>
-						<a className="link link-hover block">Press kit</a>
-					</nav>
-					<nav className="text-white font-serif space-y-2 m-5 lg:m-0 mt-2">
-						<header className="text-3xl">Legal</header>
-						<a className="link link-hover block">Terms of use</a>
-						<a className="link link-hover block">Privacy policy</a>
-						<a className="link link-hover block">Cookie policy</a>
-					</nav>
-					{/* <form className="text-white font-serif space-y-2 m-5 lg:m-0 mt-2">
-						<header className="text-3xl">Newsletter</header>
-						<fieldset className="form-control w-80">
-							<label className="label">
-								<span className="text-white">Enter your email address</span>
-							</label>
-							<div className="relative">
+					<div className="w-40 text-white font-serif space-y-2 m-5 lg:m-0 mt-2">
+						<h1 className="text-2xl">Company</h1>
+						<p className="">About us</p>
+						<p className="">Contact</p>
+						<p className="">Jobs</p>
+						<p className="">Press kit</p>
+					</div>
+					<div className="w-full md:w-72 text-white font-serif space-y-2 m-5 lg:m-0 mt-2">
+						<h1 className="text-2xl">Legal Policy</h1>
+						<p className="">Terms of use</p>
+						<p className="">Privacy policy</p>
+						<p className="">Cookie policy</p>
+						<form className="font-serif space-y-2 lg:m-0 pb-2">
+							<div className="form-control w-full">
+								<label className="label">
+									<span className="text-white font-semibold">Newsletter</span>
+								</label>
 								<input
 									type="text"
-									placeholder="username@site.com"
-									className="input"
+									placeholder="Newsletter"
+									className="input input-bordered border w-60 text-black  rounded-none shadow shadow-slate-100"
 								/>
-								<button className="btn btn-primary absolute top-0 right-0 rounded-l-none">
-									Subscribe
-								</button>
+								<input
+									className="btn bg-gray-600 border-none text-white hover:bg-gray-700 btn-sm w-16 rounded mt-2"
+									type="submit"
+									value="send"
+								/>
 							</div>
-						</fieldset>
-					</form> */}
+						</form>
+					</div>
 				</div>
 			</div>
-			<p className="text-center p-3 font-serif font-bold bg-slate-800 text-white">
+			<p className="text-center p-3 font-serif font-bold bg-slate-700 text-white">
 				Copyright © 2023 - All right reserved by Doctreat Ltd
 			</p>
 		</>

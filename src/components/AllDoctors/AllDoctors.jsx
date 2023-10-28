@@ -62,7 +62,7 @@ const AllDoctors = () => {
 			</Helmet>
 			<div className="text-center">
 				<div
-					className="hero h-[550px]"
+					className="hero h-[650px]"
 					style={{
 						backgroundImage:
 							"url(https://t3.ftcdn.net/jpg/02/19/91/48/240_F_219914874_fcqxEeJ6clfwf43OcCNAMGNBySKzF5hl.jpg)",
@@ -83,9 +83,9 @@ const AllDoctors = () => {
 						Clear all
 					</button>
 				</div>
-				<div className="flex mt-10 mx-12 gap-x-5">
-					<div className="w-full md:w-[20%] flex items-center justify-center flex-wrap font-serif rounded-lg shadow-xl border">
-						<div className="form-control h-52">
+				<div className="lg:flex mt-10 lg:mx-12 gap-x-5">
+					<div className="w-full lg:w-[20%] flex items-center justify-center flex-wrap font-serif rounded-lg shadow-xl border mb-5">
+						<div className="form-control h-16 m-3 lg:h-52">
 							<div className="input-group">
 								<select
 									defaultValue="Filter By speciality"
@@ -108,7 +108,7 @@ const AllDoctors = () => {
 								</select>
 							</div>
 						</div>
-						<div className="form-control h-52">
+						<div className="form-control h-16 m-3 lg:h-52">
 							<div className="input-group">
 								<select
 									defaultValue="Filter By Country"
@@ -128,7 +128,7 @@ const AllDoctors = () => {
 								</select>
 							</div>
 						</div>
-						<div className="form-control h-52">
+						<div className="form-control h-16 m-3 lg:h-52">
 							<div className="input-group">
 								<select
 									defaultValue="Filter By Fees"
@@ -150,7 +150,7 @@ const AllDoctors = () => {
 								</select>
 							</div>
 						</div>
-						<div className="form-control h-52">
+						<div className="form-control h-16 m-3 lg:h-52">
 							<div className="input-group">
 								<select
 									defaultValue="Filter By Gender"
@@ -165,7 +165,7 @@ const AllDoctors = () => {
 							</div>
 						</div>
 					</div>
-					<div className="w-full md:w-[85%] font-serif">
+					<div className="w-full lg:md:w-[85%] font-serif">
 						{loading ? (
 							<Loader />
 						) : totalItems === 0 ? (
@@ -180,7 +180,7 @@ const AllDoctors = () => {
 										<div className="w-full lg:w-[37%] space-x-2 space-y-3">
 											<div className="flex flex-wrap items-center">
 												<img
-													className="md:w-28 md:h-28 md:m-3 shadow-md shadow-gray-600 rounded-tr-3xl rounded-es-3xl"
+													className="md:w-28 w-full md:h-28 md:m-3 shadow-md shadow-gray-600 rounded-tr-3xl rounded-es-3xl"
 													src={doc.picture}
 													alt="Album"
 												/>
@@ -369,8 +369,7 @@ const AllDoctors = () => {
 								</Zoom>
 							))
 						)}
-						<div>
-							{/* <p className="h-screen"></p> */}
+						<div className="mb-5">
 							<p className="text-cyan-500 mb-2 font-extrabold text-2xl">
 								Page : {currentPage}
 							</p>

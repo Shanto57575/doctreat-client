@@ -16,6 +16,7 @@ import useCart from "../../hooks/useCart";
 import useAdmin from "../../hooks/useAdmin";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { MdManageHistory } from "react-icons/md";
+import UserFeedback from "./UserDashboard/UserFeedback";
 
 const DashBoard = () => {
 	const location = useLocation();
@@ -43,7 +44,6 @@ const DashBoard = () => {
 			<Helmet>
 				<title>Doctreat | Dashboard</title>
 			</Helmet>
-
 			<div className="drawer lg:drawer-open">
 				<input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
 				<div className="drawer-content flex flex-col items-center justify-center">
@@ -172,8 +172,8 @@ const DashBoard = () => {
 										to="/dashboard/history"
 										className={
 											location.pathname === "/dashboard/history"
-												? "bg-black text-white lg:text-xl hover:text-white flex items-center gap-x-4 text-sm font-serif"
-												: "flex items-center gap-x-4 text-lg font-serif"
+												? "bg-black text-white lg:text-md hover:text-white flex items-center gap-x-4 text-sm font-serif"
+												: "flex items-center gap-x-2 text-md font-serif"
 										}
 									>
 										<div>
@@ -181,6 +181,9 @@ const DashBoard = () => {
 										</div>
 										Payment History
 									</Link>
+								</li>
+								<li>
+									<UserFeedback />
 								</li>
 							</>
 						)}

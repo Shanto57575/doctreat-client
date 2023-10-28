@@ -6,12 +6,12 @@ import { MdComment } from "react-icons/md";
 const Work = () => {
 	return (
 		<div
-			className="h-96 text-center flex flex-col items-center justify-center lg:mx-12"
+			className="h-96 text-center flex flex-col items-center justify-center bg-gray-100"
 			// style={{
 			// 	backgroundImage:
-			// 		"url(https://t4.ftcdn.net/jpg/06/12/22/79/240_F_612227996_niwddSYlwNKExnTX6K84JFrWO0Rv7MCS.jpg)",
+			// 		"url(https://t4.ftcdn.net/jpg/06/37/36/09/240_F_637360931_Tx6E5x8HM7TEL58No5iMdBpZT5JdzYRo.jpg)",
 			// 	backgroundSize: "cover",
-			// 	height: "100vh",
+			// 	// height: "100vh",
 			// }}
 		>
 			<p className="font-bold text-3xl text-cyan-500 font-serif mb-1">

@@ -3,213 +3,95 @@ import { Link } from "react-router-dom";
 const Banner = () => {
 	return (
 		<>
-			<div className="carousel w-full font-serif">
-				<div id="slide1" className="carousel-item relative w-full">
-					<div
-						className="hero min-h-screen"
-						style={{
-							backgroundImage:
-								"url(https://i.postimg.cc/x1gNY6yH/young-handsome-physician-medical-robe-with-stethoscope-1303-17818.jpg)",
-						}}
-					>
-						<div className="hero-overlay bg-opacity-50"></div>
-						<div className="hero-content text-center text-neutral-content mt-20">
-							<div className="max-w-md md:max-w-xl">
-								<h1 className="mb-5 text-3xl md:text-5xl font-bold">
-									Welcome to <span className="text-cyan-400">Epic Care</span>,
-									Your Path to Wellness
-								</h1>
-								<p className="mb-5 text-justify">
-									Discover a world of health and healing in just a click,
-									guiding you towards a healthier and happier life.Our platform
-									provides a wide range of healthcare resources, from connecting
-									you with experienced doctors to offering wellness tips and
-									guidance.
-								</p>
-								<div className="mt-5">
-									<Link to="alldoctors">
-										<button
-											type="button"
-											className="text-white bg-gradient-to-r from-slate-900 via-gray-500 to-slate-400 hover:bg-gradient-to-br font-medium rounded-lg text-lg px-5 py-2 text-center mr-2 mb-2"
-										>
-											View Doctors
-										</button>
-									</Link>
-									<Link to="shop">
-										<button
-											type="button"
-											className="text-white bg-gradient-to-r from-slate-900 via-gray-500 to-slate-400 hover:bg-gradient-to-br font-medium rounded-lg text-lg px-5 py-2 text-center mr-2 mb-2"
-										>
-											Buy Products
-										</button>
-									</Link>
-								</div>
+			<div>
+				<div
+					className="hero min-h-screen"
+					style={{
+						backgroundImage:
+							"url(https://t4.ftcdn.net/jpg/02/34/85/79/240_F_234857954_ArqBek22YkQ9i2jSwqQTBXN3px4Ou57v.jpg)",
+					}}
+				>
+					<div className="hero-overlay bg-opacity-60"></div>
+					<div className="text-white md:text-start mx-2">
+						<div className="md:w-1/2 md:ml-10 font-serif">
+							<h1 className="mb-5 text-2xl md:text-6xl font-serif font-bold uppercase italic">
+								<p>Care</p>
+								<span className="text-blue-400 mr-2 md:mr-5">Unlocks</span>
+								Wellness
+							</h1>
+							<p className="mb-5 text-justify md:text-lg italic">
+								Begin Your Health Journey with Epic Care: Your Gateway to
+								Excellence in Healthcare. Explore a Range of Services and
+								Resources Tailored to Support Your Transformation Towards Better
+								Well being
+							</p>
+							<div className="mt-5">
+								<Link to="alldoctors">
+									<button
+										type="button"
+										className="border px-2 md:px-5 py-2 hover:bg-white hover:text-black rounded md:font-semibold font-serif"
+									>
+										View Doctors
+									</button>
+								</Link>
+								<Link to="shop">
+									<button
+										type="button"
+										className="border border-blue-500 ml-3 p-2 md:px-5  hover:bg-blue-500 text-blue-500 hover:text-white rounded md:font-semibold font-serif"
+									>
+										Buy Products
+									</button>
+								</Link>
 							</div>
 						</div>
-					</div>
-					<div className="absolute flex justify-between transform -translate-y-1/2 right-5 gap-3 bottom-0">
-						<a href="#slide4" className="btn btn-circle">
-							❮
-						</a>
-						<a href="#slide2" className="btn btn-circle">
-							❯
-						</a>
 					</div>
 				</div>
-				<div id="slide2" className="carousel-item relative w-full">
-					<div
-						className="hero min-h-screen"
-						style={{
-							backgroundImage:
-								"url(https://i.postimg.cc/fbn7Q55h/young-asian-woman-nurse-caregiver-carer-of-nursing-home-talking-with-senior-asian-woman.webp)",
-						}}
-					>
-						<div className="hero-overlay bg-opacity-60"></div>
-						<div className="hero-content text-center text-neutral-content mt-20">
-							<div className="max-w-md  md:max-w-xl">
-								<h1 className="mb-5 text-3xl md:text-5xl font-bold">
-									Empower Your Health with
-									<span className="text-cyan-400 ml-3">Epic Care</span>
-								</h1>
-								<p className="mb-5 text-justify">
-									Unlock the Power of Health with Doctreat: Empower yourself
-									with our comprehensive healthcare solutions, taking charge of
-									your well-being journey.Our platform offers a wealth of
-									resources, from connecting you with experienced healthcare
-									professionals to providing valuable wellness insights, all
-									designed to help you live your healthiest life
-								</p>
-								<div className="mt-5">
-									<Link to="alldoctors">
-										<button
-											type="button"
-											className="text-white bg-gradient-to-r from-slate-900 via-gray-500 to-slate-400 hover:bg-gradient-to-br font-medium rounded-lg text-lg px-5 py-2 text-center mr-2 mb-2"
-										>
-											View Doctors
-										</button>
-									</Link>
-									<Link to="shop">
-										<button
-											type="button"
-											className="text-white bg-gradient-to-r from-slate-900 via-gray-500 to-slate-400 hover:bg-gradient-to-br font-medium rounded-lg text-lg px-5 py-2 text-center mr-2 mb-2"
-										>
-											Buy Products
-										</button>
-									</Link>
-								</div>
-							</div>
-						</div>
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:px-16 md:py-10 bg-blue-400">
+					<div className="bg-white text-black px-10 py-8 space-y-5">
+						<h1 className="text-2xl font-serif font-bold">
+							Professional staff
+						</h1>
+						<p>
+							Our dedicated team of professionals is committed to delivering
+							top-notch healthcare services
+						</p>
+						<button className="border px-5 py-2 hover:bg-blue-400 hover:text-black rounded font-semibold font-serif">
+							Read more
+						</button>
 					</div>
-					<div className="absolute flex justify-between transform -translate-y-1/2 right-5 gap-3 bottom-0">
-						<a href="#slide1" className="btn btn-circle">
-							❮
-						</a>
-						<a href="#slide3" className="btn btn-circle">
-							❯
-						</a>
+					<div className="bg-blue-300 text-black px-10 py-8 space-y-5">
+						<h1 className="text-2xl font-serif font-bold">Affordable prices</h1>
+						<p>
+							We believe that quality healthcare should be accessible to all.
+							Thats why we offer affordable pricing
+						</p>
+						<button className="border px-5 py-2 hover:bg-white hover:text-black rounded font-semibold font-serif">
+							Read more
+						</button>
 					</div>
-				</div>
-				<div id="slide3" className="carousel-item relative w-full">
-					<div
-						className="hero min-h-screen"
-						style={{
-							backgroundImage:
-								"url(https://i.postimg.cc/9MwDdC3t/medicine-capsules-global-health-with-geometric-pattern-digital-remix-53876-126742.jpg)",
-						}}
-					>
-						<div className="hero-overlay bg-opacity-60"></div>
-						<div className="hero-content text-center text-neutral-content mt-20">
-							<div className="max-w-md  md:max-w-xl">
-								<h1 className="mb-5 text-3xl md:text-5xl font-bold">
-									Connecting You to
-									<span className="text-cyan-300 ml-3">Quality</span> Healthcare
-								</h1>
-								<p className="mb-5 text-justify">
-									Connecting You to Quality Healthcare: Our mission at Doctreat
-									is to bridge the gap between you and top-notch healthcare
-									providers, ensuring you receive the best care possible for
-									your well-being
-								</p>
-								<div className="mt-5">
-									<Link to="alldoctors">
-										<button
-											type="button"
-											className="text-white bg-gradient-to-r from-slate-900 via-gray-500 to-slate-400 hover:bg-gradient-to-br font-medium rounded-lg text-lg px-5 py-2 text-center mr-2 mb-2"
-										>
-											View Doctors
-										</button>
-									</Link>
-									<Link to="shop">
-										<button
-											type="button"
-											className="text-white bg-gradient-to-r from-slate-900 via-gray-500 to-slate-400 hover:bg-gradient-to-br font-medium rounded-lg text-lg px-5 py-2 text-center mr-2 mb-2"
-										>
-											Buy Products
-										</button>
-									</Link>
-								</div>{" "}
-							</div>
-						</div>
+					<div className="bg-white text-black px-10 py-8 space-y-5">
+						<h1 className="text-2xl font-serif font-bold">
+							Insurance partners
+						</h1>
+						<p>
+							We understand the importance of financial peace of mind when it
+							comes to healthcare
+						</p>
+						<button className="border px-5 py-2 hover:bg-blue-400 hover:text-black rounded font-semibold font-serif">
+							Read more
+						</button>
 					</div>
-					<div className="absolute flex justify-between transform -translate-y-1/2 right-5 gap-3 bottom-0">
-						<a href="#slide2" className="btn btn-circle">
-							❮
-						</a>
-						<a href="#slide4" className="btn btn-circle">
-							❯
-						</a>
-					</div>
-				</div>
-				<div id="slide4" className="carousel-item relative w-full">
-					<div
-						className="hero min-h-screen"
-						style={{
-							backgroundImage:
-								"url(https://i.postimg.cc/htsLz5Hb/cool-composition-with-stethoscope-realistic-heart-23-2147652348.jpg)",
-						}}
-					>
-						<div className="hero-overlay bg-opacity-60"></div>
-						<div className="hero-content text-center text-neutral-content mt-20">
-							<div className="max-w-md  md:max-w-xl">
-								<h1 className="mb-5 text-3xl md:text-5xl font-bold">
-									Your <span className="text-cyan-400 mr-3">Health</span>
-									Journey Starts Here
-								</h1>
-								<p className="mb-5 text-justify">
-									Your Health Journey Starts Here: At Doctreat, we are dedicated
-									to guiding you on a transformative path to better health and
-									well-being. Our platform is your gateway to a world of
-									healthcare excellence, offering a range of services and
-									resources designed to support your journey
-								</p>
-								<div className="mt-5">
-									<Link to="alldoctors">
-										<button
-											type="button"
-											className="text-white bg-gradient-to-r from-slate-900 via-gray-500 to-slate-400 hover:bg-gradient-to-br font-medium rounded-lg text-lg px-5 py-2 text-center mr-2 mb-2"
-										>
-											View Doctors
-										</button>
-									</Link>
-									<Link to="shop">
-										<button
-											type="button"
-											className="text-white bg-gradient-to-r from-slate-900 via-gray-500 to-slate-400 hover:bg-gradient-to-br font-medium rounded-lg text-lg px-5 py-2 text-center mr-2 mb-2"
-										>
-											Buy Products
-										</button>
-									</Link>
-								</div>{" "}
-							</div>
-						</div>
-					</div>
-					<div className="absolute flex justify-between transform -translate-y-1/2 right-5 gap-3 bottom-0">
-						<a href="#slide3" className="btn btn-circle">
-							❮
-						</a>
-						<a href="#slide1" className="btn btn-circle">
-							❯
-						</a>
+					<div className="bg-blue-300 text-black px-10 py-8 space-y-5">
+						<h1 className="text-2xl font-serif font-bold">
+							Consult our doctors
+						</h1>
+						<p>
+							Your health is unique, and our experienced doctors are here to
+							guide you.
+						</p>
+						<button className="border px-5 py-2 hover:bg-white hover:text-black rounded font-semibold font-serif">
+							Read more
+						</button>
 					</div>
 				</div>
 			</div>
