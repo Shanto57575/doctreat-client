@@ -29,8 +29,8 @@ const Blogs = () => {
 				<h4 className="font-semibold text-3xl text-blue-500 font-serif">
 					LATEST NEWS
 				</h4>
-				<p className="border-b-2 border-blue-400 w-24 mx-auto my-3"></p>
-				<p className="w-1/2 mx-auto font-serif">
+				<p className="border-b-2 border-blue-400 mx-auto w-24 my-3"></p>
+				<p className="md:w-1/2 mx-auto font-serif">
 					Read our latest news from the company or general medical news. Feel
 					free to ask questions in comments for any news you find interesting.
 				</p>
@@ -53,7 +53,7 @@ const Blogs = () => {
 								<div className="flex items-center justify-between p-5">
 									<div className="flex items-center">
 										<img
-											alt="tania andrew"
+											alt="personImg"
 											src={blog.personImg}
 											className="relative inline-block h-14 w-14 border-2 border-cyan-600 object-cover object-center rounded-tr-2xl rounded-es-2xl"
 										/>

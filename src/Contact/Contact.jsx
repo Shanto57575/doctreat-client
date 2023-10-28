@@ -36,8 +36,8 @@ const Contact = () => {
 	};
 
 	return (
-		<div className="bg-gray-200">
-			<h1 className="text-blue-400 text-5xl font-bold mt-10 text-center font-serif">
+		<div className="bg-stone-100">
+			<h1 className="text-gray-500 text-5xl font-bold text-center font-serif pt-10">
 				Contact us
 			</h1>
 			<p className="mt-2 text-center font-serif">Get in touch with us</p>
@@ -45,7 +45,7 @@ const Contact = () => {
 				<form
 					ref={form}
 					onSubmit={sendEmail}
-					className="w-full md:w-1/2 md:mx-8 lg:mx-12 max-w-5xl"
+					className="w-full md:w-1/2 md:mx-8 lg:mx-12 max-w-5xl border border-gray-300"
 				>
 					<div className="">
 						<div className="card w-full max-w-3xl shadow-2xl rounded-none">

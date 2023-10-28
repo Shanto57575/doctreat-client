@@ -7,14 +7,14 @@ import OurServices from "../ourServices/OurServices";
 
 const Home = () => {
 	return (
-		<>
+		<div>
 			<Banner />
 			<OurServices />
 			<Doctor />
 			<Blogs />
 			<Feedback />
 			<Contact />
-		</>
+		</div>
 	);
 };
 

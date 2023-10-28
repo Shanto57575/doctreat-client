@@ -3,7 +3,7 @@ import { HiOutlineBars3 } from "react-icons/hi2";
 import { FaUserCircle, FaShoppingCart } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import logo from "../../assets/healthcare.png";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import useCart from "../../hooks/useCart";
@@ -15,7 +15,6 @@ const Navbar = () => {
 	const [cart] = useCart();
 	const [isAdmin] = useAdmin();
 	const navigate = useNavigate();
-	const [scrolled, setScrolled] = useState(false);
 
 	const handleLogOut = () => {
 		logOut()
@@ -31,22 +30,8 @@ const Navbar = () => {
 		});
 	};
 
-	useEffect(() => {
-		const handleScroll = () => {
-			const isScrolled = window.scrollY > 10;
-			if (isScrolled !== scrolled) {
-				setScrolled(isScrolled);
-			}
-		};
-
-		window.addEventListener("scroll", handleScroll);
-		return () => {
-			window.removeEventListener("scroll", handleScroll);
-		};
-	}, [scrolled]);
-
 	const navItems = (
-		<div className="px-5 py-1 lg:inline-flex font-semibold font-serif">
+		<div className="lg:inline-flex font-semibold font-serif">
 			<li>
 				<Link
 					className={
@@ -117,7 +102,7 @@ const Navbar = () => {
 
 	return (
 		<>
-			<div className="navbar fixed z-10 bg-black bg-opacity-20 h-20 md:px-12">
+			<div className="navbar fixed z-10 bg-black bg-opacity-20 h-20 pr-5 md:px-12">
 				<div className="navbar-start">
 					<div className="dropdown">
 						<label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -125,7 +110,7 @@ const Navbar = () => {
 						</label>
 						<ul
 							tabIndex={0}
-							className="z-10 menu menu-sm dropdown-content mt-3 p-2 shadow rounded-box w-44 bg-slate-400"
+							className="z-10 menu menu-sm dropdown-content shadow rounded-box w-44 bg-slate-400"
 						>
 							{navItems}
 						</ul>
@@ -134,7 +119,7 @@ const Navbar = () => {
 						to="#"
 						className="flex items-center gap-2 font-serif font-semibold md:text-2xl text-cyan-500"
 					>
-						<img src={logo} className="w-10 h-10" alt="" />
+						<img src={logo} className="w-10 h-10" alt="logo" />
 						<span className="mt-2 md:text-3xl text-white">Epic Care</span>
 					</Link>
 				</div>
@@ -145,7 +130,7 @@ const Navbar = () => {
 					<div className="dropdown dropdown-end">
 						<button
 							type="button"
-							className="flex items-center gap-3 text-white hover:bg-gradient-to-br font-medium rounded-full text-sm px-2 py-2 md:px-5 md:py-2 text-center mr-2 my-2 border-y-2 border-4"
+							className="flex items-center gap-x-2 text-white hover:bg-gradient-to-br font-medium rounded-full text-sm p-2 md:px-5 md:py-2 text-center mr-2 my-2 border-y-2 border-4"
 						>
 							{user && !isAdmin ? (
 								<div className="indicator">

@@ -10,9 +10,9 @@ const Footer = () => {
 				<div className="flex items-center justify-between mb-10">
 					<div className="flex items-center gap-x-2">
 						<img src={logo} className="w-10" alt="" />
-						<h1 className="text-3xl mt-2 font-serif">Epic Care</h1>
+						<h1 className="md:text-3xl mt-2 font-serif">Epic Care</h1>
 					</div>
-					<div className="flex items-center gap-4">
+					<div className="flex items-center gap-x-2 py-4 px-2">
 						<BsFacebook
 							className="cursor-pointer bg-gray-300 text-gray-950 p-2 hover:bg-gray-950 hover:text-white duration-300"
 							size={40}
@@ -31,16 +31,16 @@ const Footer = () => {
 						/>
 					</div>
 				</div>
-				<div className="lg:flex items-center justify-between font-serif sm:py-10 md:py-0">
-					<div className="w-72 space-y-2 m-5 lg:m-0">
+				<div className="lg:flex items-center justify-between font-serif">
+					<div className="md:w-72 space-y-2 m-5 lg:m-0">
 						<h1 className="text-2xl">About Us</h1>
 						<p className="text-justify">
-							At Epi Care, we are your dedicated online healthcare solution. Our
-							team of skilled doctors is committed to providing personalized,
-							high-quality care.
+							At Epic Care, we are your dedicated online healthcare solution.
+							Our team of skilled doctors is committed to providing
+							personalized, high-quality care.
 						</p>
 					</div>
-					<div className="w-72 font-serif space-y-2 m-5 lg:m-0">
+					<div className="md:w-72 font-serif space-y-2 m-5 lg:m-0">
 						<h1 className="text-2xl">Get in touch</h1>
 						<p>Chattogram, Bangladesh</p>
 						<p>CTG 4002, BD</p>
@@ -58,7 +58,7 @@ const Footer = () => {
 						<p className="">Jobs</p>
 						<p className="">Press kit</p>
 					</div>
-					<div className="w-full md:w-72 text-white font-serif space-y-2 m-5 lg:m-0 mt-2">
+					<div className="w-full md:w-72 text-white font-serif space-y-2 px-5">
 						<h1 className="text-2xl">Legal Policy</h1>
 						<p className="">Terms of use</p>
 						<p className="">Privacy policy</p>
