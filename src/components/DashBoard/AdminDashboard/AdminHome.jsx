@@ -5,21 +5,25 @@ const AdminHome = () => {
 	console.log(user);
 
 	return (
-		<div>
-			<div className="card w-96 glass bg-blue-400">
+		<div className="w-full h-full bg-blue-400">
+			<div className="card w-80 shadow-md shadow-gray-400 bg-blue-50 rounded-none">
 				<figure>
 					<img
-						loading="lazy"
-						src={user.photoURL}
-						alt="user"
-						className="w-40 h-40 rounded-full mt-5"
+						className="w-28 h-28 rounded-full my-2"
+						src={user?.photoURL}
+						alt=""
 					/>
 				</figure>
+
 				<div className="card-body">
-					<h2 className="card-title">{user.displayName}</h2>
-					<p>{user.email}</p>
-					<div className="card-actions justify-end">
-						<button className="btn btn-primary">Learn now!</button>
+					<h2 className="text-base font-bold font-serif">
+						{user?.displayName}
+						<div className="badge badge-secondary text-white ml-2">Admin*</div>
+					</h2>
+					<h1>{user?.email}</h1>
+					<div className="card-actions">
+						<div className="badge badge-outline">Fashion</div>
+						<div className="badge badge-outline">Products</div>
 					</div>
 				</div>
 			</div>

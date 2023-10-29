@@ -74,9 +74,9 @@ const Footer = () => {
 									className="input input-bordered border w-60 text-black  rounded-none shadow shadow-slate-100"
 								/>
 								<input
-									className="btn bg-gray-600 border-none text-white hover:bg-gray-700 btn-sm w-16 rounded mt-2"
+									className="btn bg-gray-600 border-none text-white hover:bg-gray-700 btn-sm w-28 rounded mt-2"
 									type="submit"
-									value="send"
+									value="Subscribe"
 								/>
 							</div>
 						</form>

@@ -56,6 +56,13 @@ const Register = () => {
 	const githubAuth = () => {
 		GithubSignIn()
 			.then((result) => {
+				Swal.fire({
+					position: "center",
+					icon: "success",
+					title: "Logged In successfully",
+					showConfirmButton: false,
+					timer: 1500,
+				});
 				const savedUser = {
 					name: result.user?.displayName,
 					email: result.user?.email,
@@ -71,6 +78,13 @@ const Register = () => {
 	const googleAuth = () => {
 		googleSignIn()
 			.then((result) => {
+				Swal.fire({
+					position: "center",
+					icon: "success",
+					title: "Logged In successfully",
+					showConfirmButton: false,
+					timer: 1500,
+				});
 				const savedUser = {
 					name: result.user?.displayName,
 					email: result.user?.email,

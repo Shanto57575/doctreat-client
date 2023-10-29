@@ -25,7 +25,7 @@ const Feedback = () => {
 								<img
 									className="w-28 h-28 rounded-full mx-auto"
 									src={feed.image}
-									alt=""
+									alt="feedback"
 								/>
 								<h1 className="font-bold text-2xl italic text-blue-400">
 									{feed.name}

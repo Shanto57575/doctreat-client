@@ -8,9 +8,7 @@ import Swal from "sweetalert2";
 const UserFeedback = () => {
 	const { user } = useContext(AuthContext);
 	const [axiosSecure] = useAxiosSecure();
-	console.log(user);
 
-	console.log(user);
 	const {
 		register,
 		handleSubmit,
