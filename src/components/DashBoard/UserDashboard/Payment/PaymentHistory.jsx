@@ -13,8 +13,6 @@ const PaymentHistory = () => {
 	const [axiosSecure] = useAxiosSecure();
 	const [paymentHistory, refetch, isLoading] = usePayment();
 
-	console.log(paymentHistory);
-
 	const clearHistory = () => {
 		Swal.fire({
 			title: "Are you sure?",

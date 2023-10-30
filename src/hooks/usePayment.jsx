@@ -19,7 +19,7 @@ const usePayment = () => {
 			return res.data;
 		},
 	});
-	console.log(paymentHistory);
+	console.log("paymentHistory-->", paymentHistory);
 	return [paymentHistory, refetch, isLoading];
 };
 

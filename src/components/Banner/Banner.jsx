@@ -38,7 +38,7 @@ const Banner = () => {
 							<Link to="shop">
 								<button
 									type="button"
-									className="border border-blue-500 ml-3 p-2 md:px-5  hover:bg-blue-500 text-blue-500 hover:text-white rounded md:font-semibold font-serif"
+									className="border border-blue-400 ml-3 p-2 md:px-5  hover:bg-blue-400 text-blue-400 hover:text-white rounded md:font-semibold font-serif"
 								>
 									Buy Products
 								</button>

@@ -18,18 +18,16 @@ const Navbar = () => {
 
 	const handleLogOut = () => {
 		logOut()
-			.then(() => {
-				localStorage.clear();
-				navigate("/");
-				Swal.fire({
-					position: "center",
-					icon: "success",
-					title: "Logged Out successfully!",
-					showConfirmButton: false,
-					timer: 1500,
-				});
-			})
+			.then(() => {})
 			.catch((error) => console.log(error.message));
+		navigate("/");
+		Swal.fire({
+			position: "center",
+			icon: "success",
+			title: "Logged Out successfully!",
+			showConfirmButton: false,
+			timer: 1500,
+		});
 	};
 
 	const navItems = (

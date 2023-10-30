@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 const UserHome = () => {
 	const { user } = useContext(AuthContext);
 	const [paymentHistory] = usePayment();
-	console.log(paymentHistory);
 
 	const allItems = paymentHistory.reduce(
 		(acc, item) => acc.concat(item.itemsName),
@@ -20,10 +19,7 @@ const UserHome = () => {
 		[]
 	);
 
-	console.log("--->", allCategory);
-
 	const uniqueCategories = [...new Set(allCategory)];
-	console.log(uniqueCategories);
 
 	let itemCounts = {};
 
@@ -40,8 +36,6 @@ const UserHome = () => {
 	} else {
 		maxItems = null;
 	}
-
-	console.log(maxItems);
 
 	const totalProduct = paymentHistory.reduce(
 		(totalProduct, payment) => totalProduct + payment.quantity,

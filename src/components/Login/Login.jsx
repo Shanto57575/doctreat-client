@@ -32,6 +32,13 @@ const Login = () => {
 
 		SignIn(email, password)
 			.then((user) => {
+				Swal.fire({
+					position: "center",
+					icon: "success",
+					title: "Logged In successfully",
+					showConfirmButton: false,
+					timer: 1500,
+				});
 				if (user?.email) {
 					Swal.fire({
 						position: "center",

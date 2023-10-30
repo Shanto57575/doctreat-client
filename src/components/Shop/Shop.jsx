@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import "react-tabs/style/react-tabs.css";
 import ProductTab from "../ProductTab/ProductTab";
 import { Helmet } from "react-helmet-async";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import "react-tabs/style/react-tabs.css";
 
 const Shop = () => {
 	const [shops, setShops] = useState();
