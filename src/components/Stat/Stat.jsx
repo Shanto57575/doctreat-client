@@ -26,7 +26,7 @@ const Stat = ({ totalProduct, totalPayment, maxItems, uniqueCategories }) => {
 				<div className="stat">
 					<div className="stat-title text-gray-500">Total Categories </div>
 					<div className="stat-value text-gray-500">
-						<CountUp start={-1} end={uniqueCategories.length} duration={3} />
+						<CountUp start={1} end={uniqueCategories.length} duration={3} />
 					</div>
 				</div>
 				<div className="stat">

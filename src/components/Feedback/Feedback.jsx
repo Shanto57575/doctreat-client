@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import { Zoom } from "react-awesome-reveal";
 
 const Feedback = () => {
 	const [feedbacks, setFeedbacks] = useState([]);
@@ -16,11 +17,11 @@ const Feedback = () => {
 	}, [axiosSecure]);
 
 	return (
-		<>
-			<div className="px-5 lg:px-60 bg-gray-200 py-10 lg:py-20">
-				<Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-					{feedbacks.map((feed) => (
-						<SwiperSlide key={feed._id}>
+		<div className="px-5 lg:px-60 bg-gray-200 py-10 lg:py-20">
+			<Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+				{feedbacks.map((feed) => (
+					<SwiperSlide key={feed._id}>
+						<Zoom>
 							<div className="text-center text-white font-serif space-y-2 p-5 lg:p-10 bg-gray-950">
 								<img
 									className="w-28 h-28 rounded-full mx-auto"
@@ -34,11 +35,11 @@ const Feedback = () => {
 									{feed.feedback}
 								</p>
 							</div>
-						</SwiperSlide>
-					))}
-				</Swiper>
-			</div>
-		</>
+						</Zoom>
+					</SwiperSlide>
+				))}
+			</Swiper>
+		</div>
 	);
 };
 

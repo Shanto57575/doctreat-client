@@ -7,7 +7,7 @@ import Loader from "../../Loader/Loader";
 import useCart from "../../../hooks/useCart";
 import { useEffect } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import { BsCartXFill } from "react-icons/bs";
+// import { BsCartXFill } from "react-icons/bs";
 
 const MyCart = () => {
 	const [cart, refetch] = useCart();
@@ -186,9 +186,9 @@ const MyCart = () => {
 				</div>
 				<div className="lg:w-[29%] border-x-8 border-blue-200 bg-blue-300 text-black bg-gradient-to-r shadow-2xl shadow-gray-800 p-10 mx-auto">
 					<h1 className="text-4xl ">Cart Total</h1>
-					<button className="flex items-center gap-x-1 text-sm bg-blue-400 hover:bg-red-500 duration-300 font-serif text-white rounded px-4 py-2.5 font-semibold">
+					{/* <button className="flex items-center gap-x-1 text-sm bg-blue-400 hover:bg-red-500 duration-300 font-serif text-white rounded px-4 py-2.5 font-semibold">
 						<BsCartXFill size={25} /> <span>Clear Cart</span>
-					</button>
+					</button> */}
 					<p className="border-b border-blue-100 my-2"></p>
 					<h1 className="text-2xl">Total Product : {totalQuantity || 0}</h1>
 					<p className="border-b border-blue-100 my-2"></p>
