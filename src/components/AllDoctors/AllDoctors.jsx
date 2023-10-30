@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 
 const AllDoctors = () => {
 	const [allDoctors, setAllDoctors] = useState([]);
+	const [doctors, setDoctors] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [loading, setLoading] = useState(true);
 	const [search, setSearch] = useState("");
@@ -23,19 +24,17 @@ const AllDoctors = () => {
 	const specialityRef = useRef(null);
 	const feesRef = useRef(null);
 
+	const totalItems = doctors.length;
+
 	useEffect(() => {
 		fetch("https://doctreat-server.vercel.app/alldoctors")
 			.then((res) => res.json())
 			.then((data) => setAllDoctors(data));
 	}, []);
 
-	const totalItems = allDoctors.length;
-	console.log(totalItems);
-
 	//pagination
 	const itemsPerPage = 5;
-	const totalPages = Math.ceil(totalItems / itemsPerPage);
-	console.log(totalPages);
+	const totalPages = Math.ceil(allDoctors.length / itemsPerPage);
 
 	const pageNumbers = [];
 
@@ -47,7 +46,7 @@ const AllDoctors = () => {
 		axiosSecure(
 			`/alldoctors?page=${currentPage}&itemsPerPage=${itemsPerPage}&search=${search}&gender=${gender}&speciality=${speciality}&fees=${fees}`
 		).then((data) => {
-			setAllDoctors(data.data);
+			setDoctors(data.data);
 			setLoading(false);
 		});
 	}, [currentPage, search, gender, speciality, fees, axiosSecure]);
@@ -182,7 +181,7 @@ const AllDoctors = () => {
 								<p>No doctors available!</p>
 							</div>
 						) : (
-							allDoctors.map((doc) => (
+							doctors.map((doc) => (
 								<Zoom key={doc._id}>
 									<div className="flex items-center flex-wrap justify-between hover:shadow-2xl shadow-slate-800 mb-5 border rounded-xl">
 										<div className="w-full lg:w-[37%] space-x-2 space-y-3">
