@@ -23,11 +23,19 @@ const AllDoctors = () => {
 	const specialityRef = useRef(null);
 	const feesRef = useRef(null);
 
+	useEffect(() => {
+		fetch("https://doctreat-server.vercel.app/alldoctors")
+			.then((res) => res.json())
+			.then((data) => setAllDoctors(data));
+	}, []);
+
 	const totalItems = allDoctors.length;
+	console.log(totalItems);
 
 	//pagination
 	const itemsPerPage = 5;
-	const totalPages = 8;
+	const totalPages = Math.ceil(totalItems / itemsPerPage);
+	console.log(totalPages);
 
 	const pageNumbers = [];
 
