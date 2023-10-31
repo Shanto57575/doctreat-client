@@ -6,7 +6,8 @@ import { BsFlag } from "react-icons/bs";
 import { HiMailOpen, HiOutlineCurrencyDollar } from "react-icons/hi";
 import { Helmet } from "react-helmet-async";
 import useAxiosSecure from "../../hooks/useAxiosSecure.jsx";
-import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+import { BsFacebook, BsLinkedin, BsTwitter } from "react-icons/bs";
 
 const AllDoctors = () => {
 	const [allDoctors, setAllDoctors] = useState([]);
@@ -46,21 +47,11 @@ const AllDoctors = () => {
 		axiosSecure(
 			`/alldoctors?page=${currentPage}&itemsPerPage=${itemsPerPage}&search=${search}&gender=${gender}&speciality=${speciality}&fees=${fees}`
 		).then((data) => {
+			console.log(data.data);
 			setDoctors(data.data);
 			setLoading(false);
 		});
 	}, [currentPage, search, gender, speciality, fees, axiosSecure]);
-
-	const handleSubmit = (e) => {
-		e.preventDefault();
-		Swal.fire({
-			position: "top-end",
-			icon: "success",
-			title: "Appointment Booked!",
-			showConfirmButton: false,
-			timer: 1500,
-		});
-	};
 
 	return (
 		<>
@@ -236,141 +227,22 @@ const AllDoctors = () => {
 												{doc.fees}
 											</div>
 											<div className="flex items-center">
-												<button className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
-													<span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-														View Full Profile
-													</span>
-												</button>
-												<button className="hover:text-red-600 duration-300 relative inline-flex items-center justify-center px-1 rounded-md mb-2 mr-2 text-sm font-medium">
-													<svg
-														xmlns="http://www.w3.org/2000/svg"
-														fill="none"
-														viewBox="0 0 24 24"
-														strokeWidth={1.5}
-														stroke="currentColor"
-														className="w-10 h-10"
-													>
-														<path
-															strokeLinecap="round"
-															strokeLinejoin="round"
-															d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
-														/>
-													</svg>
-												</button>
+												<div className="flex gap-x-2 justify-end">
+													<BsFacebook className="border h-8 w-8 rounded-full p-1 text-white bg-blue-500 hover:text-blue-500 hover:bg-white duration-500 cursor-pointer" />
+													<BsTwitter className="border h-8 w-8 rounded-full p-1 text-white bg-blue-500 hover:text-blue-500 hover:bg-white duration-500 cursor-pointer" />
+													<BsLinkedin className="border h-8 w-8 rounded-full p-1 text-white bg-blue-500 hover:text-blue-500 hover:bg-white duration-500 cursor-pointer" />
+												</div>
 											</div>
 										</div>
 										<div className="gap-2 w-full lg:w-[20%] space-x-2 space-y-3 border-cyan-600">
-											<button
-												onClick={() =>
-													document.getElementById("my_modal_5").showModal()
-												}
-												className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
-											>
-												<span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-													Book Your Appointment
-												</span>
+											<button className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+												<Link
+													to={`/alldoctors/${doc._id}`}
+													className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
+												>
+													View Full Profile
+												</Link>
 											</button>
-											<dialog
-												id="my_modal_5"
-												className="modal modal-bottom sm:modal-middle"
-											>
-												<div className="modal-box">
-													<h1 className="text-blue-400 text-xl font-bold font-serif italic underline mb-8">
-														Appointment Form
-													</h1>
-													<div className="flex items-center justify-center px-12 pb-12">
-														<div className="mx-auto w-full max-w-[550px]">
-															<form onSubmit={handleSubmit}>
-																<div className="-mx-3 flex flex-wrap">
-																	<div className="w-full px-3 sm:w-1/2">
-																		<div className="mb-5">
-																			<label
-																				htmlFor="fName"
-																				className="mb-3 block text-base font-medium text-cyan-600"
-																			>
-																				First Name
-																			</label>
-																			<input
-																				required
-																				type="text"
-																				name="fName"
-																				id="fName"
-																				placeholder="First Name"
-																				className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-cyan-500 focus:shadow-md"
-																			/>
-																		</div>
-																	</div>
-																	<div className="w-full px-3 sm:w-1/2">
-																		<div className="mb-5">
-																			<label
-																				htmlFor="lName"
-																				className="mb-3 block text-base font-medium text-cyan-600"
-																			>
-																				Last Name
-																			</label>
-																			<input
-																				required
-																				type="text"
-																				name="lName"
-																				id="lName"
-																				placeholder="Last Name"
-																				className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-cyan-500 focus:shadow-md"
-																			/>
-																		</div>
-																	</div>
-																</div>
-																<div className="-mx-3 flex flex-wrap">
-																	<div className="w-full px-3 sm:w-1/2">
-																		<div className="mb-5">
-																			<label className="label">
-																				<span className="label-text">
-																					Choose Gender
-																				</span>
-																			</label>
-																			<select
-																				defaultValue="Gender"
-																				className="select select-bordered w-full"
-																			>
-																				<option disabled>Gender</option>
-																				<option>Male</option>
-																				<option>Female</option>
-																			</select>
-																		</div>
-																	</div>
-																	<div className="w-full px-3 sm:w-1/2">
-																		<div className="mb-5">
-																			<label
-																				htmlFor="time"
-																				className="mb-3 block text-base font-medium text-cyan-600"
-																			>
-																				Age
-																			</label>
-																			<input
-																				required
-																				type="text"
-																				name="age"
-																				id="age"
-																				placeholder="Age"
-																				className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-cyan-500 focus:shadow-md"
-																			/>
-																		</div>
-																	</div>
-																</div>
-																<input
-																	className="btn relative px-5 py-2.5 transition-all ease-in duration-75 bg-blue-400 hover:bg-blue-500 text-white rounded-md group-hover:bg-opacity-0"
-																	type="submit"
-																	value="Submit"
-																/>
-															</form>
-														</div>
-													</div>
-													<div className="modal-action">
-														<form method="dialog">
-															<button className="btn">close</button>
-														</form>
-													</div>
-												</div>
-											</dialog>
 										</div>
 									</div>
 								</Zoom>

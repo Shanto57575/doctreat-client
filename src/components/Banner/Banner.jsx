@@ -48,7 +48,7 @@ const Banner = () => {
 				</div>
 			</div>
 			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:px-16 md:py-10 bg-blue-400">
-				<div className="bg-white text-black px-10 py-8 space-y-5">
+				<div className="bg-white hover:bg-blue-50 text-black px-10 py-8 space-y-5">
 					<h1 className="text-2xl font-serif font-bold">Professional staff</h1>
 					<p>
 						Our dedicated team of professionals is committed to delivering
@@ -58,7 +58,7 @@ const Banner = () => {
 						Read more
 					</button>
 				</div>
-				<div className="bg-blue-300 text-black px-10 py-8 space-y-5">
+				<div className="bg-blue-300 hover:bg-blue-200 text-black px-10 py-8 space-y-5">
 					<h1 className="text-2xl font-serif font-bold">Affordable prices</h1>
 					<p>
 						We believe that quality healthcare should be accessible to all.
@@ -68,7 +68,7 @@ const Banner = () => {
 						Read more
 					</button>
 				</div>
-				<div className="bg-white text-black px-10 py-8 space-y-5">
+				<div className="bg-white hover:bg-blue-50 text-black px-10 py-8 space-y-5">
 					<h1 className="text-2xl font-serif font-bold">Insurance partners</h1>
 					<p>
 						We understand the importance of financial peace of mind when it
@@ -78,7 +78,7 @@ const Banner = () => {
 						Read more
 					</button>
 				</div>
-				<div className="bg-blue-300 text-black px-10 py-8 space-y-5">
+				<div className="bg-blue-300 hover:bg-blue-200 text-black px-10 py-8 space-y-5">
 					<h1 className="text-2xl font-serif font-bold">Consult our doctors</h1>
 					<p>
 						Your health is unique, and our experienced doctors are here to guide

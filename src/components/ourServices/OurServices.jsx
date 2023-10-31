@@ -2,8 +2,8 @@ import { Zoom } from "react-awesome-reveal";
 
 const OurServices = () => {
 	return (
-		<div className="md:mx-7 lg:mx-20 text-center">
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-5 mt-16">
+		<div className="md:mx-7 lg:mx-20 text-center w-fit mx-auto">
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-16">
 				<Zoom>
 					<div className="card w-full md:w-72 h-[500px] glass rounded-none shadow-lg shadow-slate-400 hover:shadow hover:shadow-black">
 						<figure>

@@ -25,6 +25,7 @@ import "./index.css";
 import { HelmetProvider } from "react-helmet-async";
 // TanStack Query
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import DoctorProfile from "./components/DoctorProfile/DoctorProfile";
 
 const router = createBrowserRouter([
 	{
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
 			{
 				path: "/alldoctors",
 				element: <AllDoctors />,
+			},
+			{
+				path: "/alldoctors/:id",
+				element: <DoctorProfile />,
 			},
 			{
 				path: "/shop",
