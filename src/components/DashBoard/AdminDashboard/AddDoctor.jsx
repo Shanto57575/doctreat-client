@@ -95,7 +95,7 @@ const AddDoctor = () => {
 										className="input input-bordered w-full rounded-none shadow shadow-slate-500"
 									/>
 									{errors.name?.type === "required" && (
-										<p className="text-red-500 font-serif font-semibold mt-2">
+										<p className="text-red-600 font-serif font-semibold mt-2">
 											Name is required
 										</p>
 									)}
@@ -116,7 +116,7 @@ const AddDoctor = () => {
 										<option>Female</option>
 									</select>
 									{errors.gender?.type === "required" && (
-										<p className="text-red-500 font-serif font-semibold mt-2">
+										<p className="text-red-600 font-serif font-semibold mt-2">
 											Gender is required
 										</p>
 									)}
@@ -146,7 +146,7 @@ const AddDoctor = () => {
 										<option>Dentistry</option>
 									</select>
 									{errors.speciality?.type === "required" && (
-										<p className="text-red-500 font-serif font-semibold mt-2">
+										<p className="text-red-600 font-serif font-semibold mt-2">
 											Speciality is required
 										</p>
 									)}
@@ -166,7 +166,7 @@ const AddDoctor = () => {
 										className="input input-bordered w-full rounded-none shadow shadow-slate-500"
 									/>
 									{errors.service?.type === "required" && (
-										<p className="text-red-500 font-serif font-semibold mt-2">
+										<p className="text-red-600 font-serif font-semibold mt-2">
 											service is required
 										</p>
 									)}
@@ -187,7 +187,7 @@ const AddDoctor = () => {
 										className="input input-bordered w-full rounded-none shadow shadow-slate-500"
 									/>
 									{errors.education?.type === "required" && (
-										<p className="text-red-500 font-serif font-semibold mt-2">
+										<p className="text-red-600 font-serif font-semibold mt-2">
 											Education is required
 										</p>
 									)}
@@ -208,7 +208,7 @@ const AddDoctor = () => {
 										className="input input-bordered w-full rounded-none shadow shadow-slate-500"
 									/>
 									{errors.experience?.type === "required" && (
-										<p className="text-red-500 font-serif font-semibold mt-2">
+										<p className="text-red-600 font-serif font-semibold mt-2">
 											Experience is required
 										</p>
 									)}
@@ -231,7 +231,7 @@ const AddDoctor = () => {
 										className="input input-bordered w-full rounded-none shadow shadow-slate-500"
 									/>
 									{errors.fees?.type === "required" && (
-										<p className="text-red-500 font-serif font-semibold mt-2">
+										<p className="text-red-600 font-serif font-semibold mt-2">
 											fees is required
 										</p>
 									)}
@@ -258,7 +258,7 @@ const AddDoctor = () => {
 										<option>Spain</option>
 									</select>
 									{errors.country?.type === "required" && (
-										<p className="text-red-500 font-serif font-semibold mt-2">
+										<p className="text-red-600 font-serif font-semibold mt-2">
 											Country is required
 										</p>
 									)}
@@ -279,7 +279,7 @@ const AddDoctor = () => {
 										className="input input-bordered w-full rounded-none shadow shadow-slate-500"
 									/>
 									{errors.image?.type === "required" && (
-										<p className="text-red-500 font-serif font-semibold mt-2">
+										<p className="text-red-600 font-serif font-semibold mt-2">
 											photo url is required
 										</p>
 									)}
@@ -302,7 +302,7 @@ const AddDoctor = () => {
 										className="input input-bordered w-full rounded-none shadow shadow-slate-500"
 									/>
 									{errors.email?.type === "required" && (
-										<p className="text-red-500 font-serif font-semibold mt-2">
+										<p className="text-red-600 font-serif font-semibold mt-2">
 											Email is required
 										</p>
 									)}
@@ -325,7 +325,7 @@ const AddDoctor = () => {
 										className="input input-bordered w-full rounded-none shadow shadow-slate-500"
 									/>
 									{errors.availability?.type === "required" && (
-										<p className="text-red-500 font-serif font-semibold mt-2">
+										<p className="text-red-600 font-serif font-semibold mt-2">
 											Availability is required
 										</p>
 									)}
@@ -333,13 +333,11 @@ const AddDoctor = () => {
 							</div>
 						</div>
 						<div>
-							<button className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
-								<input
-									className="cursor-pointer relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
-									type="submit"
-									value="Add Doctor"
-								/>
-							</button>
+							<input
+								className="cursor-pointer font-serif shadow-black rounded-none text-blue-500 bg-white hover:bg-gray-900 border border-blue-500 duration-300 font-bold mt-4 text-sm px-7 py-2.5 text-center mr-2 mb-2"
+								type="submit"
+								value="Add Doctor"
+							/>
 						</div>
 					</form>
 				</div>

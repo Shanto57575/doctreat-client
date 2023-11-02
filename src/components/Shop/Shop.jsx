@@ -35,7 +35,6 @@ const Shop = () => {
 			<Helmet>
 				<title>Doctreat | Shop</title>
 			</Helmet>
-
 			<div className="w-full mx-auto">
 				<div
 					className="hero h-[650px]"
