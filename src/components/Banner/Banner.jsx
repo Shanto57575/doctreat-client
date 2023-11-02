@@ -13,7 +13,7 @@ const Banner = () => {
 				<div className="hero-overlay"></div>
 				<div className="text-white md:text-start">
 					<div className="md:w-1/2 md:ml-10 lg:mt-20 px-3">
-						<h1 className="mb-5 text-2xl md:text-5xl font-bold font-serif uppercase">
+						<h1 className="mb-5 text-2xl md:text-5xl lg:text-6xl font-bold font-serif uppercase">
 							<p className="mb-2">
 								Your <span className="md:mx-3">Most</span> trusted
 							</p>

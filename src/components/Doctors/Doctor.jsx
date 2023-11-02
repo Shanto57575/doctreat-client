@@ -74,7 +74,7 @@ const Doctor = () => {
 							{doctors.map((doctor) => (
 								<div
 									key={doctor._id}
-									className="mb-10 w-full md:w-64 border shadow shadow-gray-600 rounded-none bg-white"
+									className="mb-10 w-full md:w-64 lg:w-96 border shadow shadow-gray-600 rounded-none bg-white"
 								>
 									<figure className="relative border-b-4 border-blue-400">
 										<img className="w-full h-48" src={doctor.picture} alt="" />
