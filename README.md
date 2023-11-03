@@ -39,7 +39,7 @@ Epic Care is a comprehensive healthcare platform designed to provide users with 
 
 ## Contact
 
-For any inquiries or support, please contact me at [Email](shanto57575@gmail.com).
+For any inquiries or support, please contact me at [Email](mailto:shanto57575@gmail.com).
 
 Feel free to visit the website: [www.epiccare.com](https://doctreat-8f71f.web.app/)
 
