@@ -24,7 +24,6 @@ const CheckoutForm = () => {
 	const cartItemExists = localStorage.getItem("cartQuantity");
 	let cartQuantity = cartItemExists ? JSON.parse(cartItemExists) : {};
 
-	console.log(cartQuantity);
 	const totalQuantity = Object.values(cartQuantity).reduce(
 		(total, quantity) => total + parseInt(quantity),
 		0
@@ -56,7 +55,6 @@ const CheckoutForm = () => {
 		});
 
 		if (error) {
-			console.log("[error]", error);
 			setError(error.message);
 		}
 

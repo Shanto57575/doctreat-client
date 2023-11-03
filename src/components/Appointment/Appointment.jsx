@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 const Appointment = () => {
 	const [userBookings, setUserBookings] = useState([]);
 	const { user, loader } = useContext(AuthContext);
-	console.log(userBookings.length);
 	const url = `https://doctreat-server.vercel.app/bookings?email=${user?.email}`;
 
 	useEffect(() => {
@@ -21,7 +20,6 @@ const Appointment = () => {
 	}, [url]);
 
 	const handleDelete = (id) => {
-		console.log(id);
 		Swal.fire({
 			title: "Are you sure?",
 			text: "You won't be able to revert this!",
@@ -37,7 +35,6 @@ const Appointment = () => {
 				})
 					.then((res) => res.json())
 					.then((data) => {
-						console.log(data);
 						if (data.deletedCount > 0) {
 							Swal.fire(
 								"Deleted!",
@@ -64,7 +61,6 @@ const Appointment = () => {
 		})
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data);
 				if (data.modifiedCount > 0) {
 					Swal.fire({
 						position: "center",

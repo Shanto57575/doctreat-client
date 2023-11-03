@@ -17,10 +17,8 @@ const AllUsers = () => {
 	});
 
 	const handleAdmin = (user) => {
-		console.log(user);
-		axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
+		axiosSecure.patch(`/users/admin/${user._id}`).then(() => {
 			refetch();
-			console.log(res.data);
 			Swal.fire({
 				position: "center",
 				icon: "success",
@@ -42,9 +40,8 @@ const AllUsers = () => {
 			confirmButtonText: "Yes, remove",
 		}).then((result) => {
 			if (result.isConfirmed) {
-				axiosSecure.delete(`/users/admin/${userId}`).then((res) => {
+				axiosSecure.delete(`/users/admin/${userId}`).then(() => {
 					refetch();
-					console.log(res.data);
 					Swal.fire("Removed!", "User has been removed", "success");
 				});
 			}

@@ -16,9 +16,7 @@ const UserFeedback = () => {
 	} = useForm();
 
 	const onSubmit = (data) => {
-		console.log(data);
 		axiosSecure.post("/feedback", data).then((res) => {
-			console.log(res.data);
 			document.getElementById("my_modal_3").close();
 			if (res.data.insertedId) {
 				Swal.fire({
@@ -41,7 +39,7 @@ const UserFeedback = () => {
 				<FcFeedback size={25} /> Give Feedback
 			</button>
 			<dialog id="my_modal_3" className="modal">
-				<div className="modal-box">
+				<div className="modal-box bg-blue-400 rounded-none">
 					<form method="dialog">
 						<button
 							onClick={() => document.getElementById("my_modal_3").close()}

@@ -11,14 +11,11 @@ const AdminHome = () => {
 	const [payment, setPayment] = useState([]);
 	const [axiosSecure] = useAxiosSecure();
 
-	console.log(payment);
-
 	const totalRevenue = parseFloat(
 		payment.reduce((acc, user) => acc + user.price, 0).toFixed(2)
 	);
-	const totalProducts = payment.reduce((acc, user) => acc + user.quantity, 0);
 
-	console.log(totalProducts);
+	const totalProducts = payment.reduce((acc, user) => acc + user.quantity, 0);
 
 	const { data: users = [] } = useQuery({
 		queryKey: ["users"],
@@ -30,27 +27,18 @@ const AdminHome = () => {
 
 	useEffect(() => {
 		axiosSecure.get("/payments").then((res) => {
-			console.log(res.data);
 			setPayment(res.data);
 		});
 	}, [axiosSecure]);
 
 	return (
-		<div
-			className="w-full h-full bg-blue-400 p-10"
-			style={{
-				backgroundImage:
-					"url(https://t3.ftcdn.net/jpg/06/39/62/90/240_F_639629017_YjfnLtEGhYsnXr9GlyXf6dXwLVmVdaRW.jpg)",
-				backgroundRepeat: "no-repeat",
-				backgroundSize: "cover",
-			}}
-		>
-			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 m-3">
-				<div className="card w-80 mx-auto text-center bg-base-100 shadow-xl image-full">
+		<div className="w-full h-full p-10">
+			<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 m-3">
+				<div className="card md:w-80 mx-auto text-center shadow-xl image-full">
 					<figure>
 						<img
 							src="https://t4.ftcdn.net/jpg/02/37/38/75/240_F_237387592_Aw4sn7LtFpBKaFJrK3D3UeXUn4ku5eV5.jpg"
-							alt="Shoes"
+							alt="users"
 						/>
 					</figure>
 					<div className="card-body">
@@ -58,19 +46,19 @@ const AdminHome = () => {
 						<p className="text-2xl">{users.length}K+</p>
 					</div>
 				</div>
-				<div className="card w-80 mx-auto text-center bg-base-100 shadow-xl image-full">
+				<div className="card md:w-80 mx-auto text-center shadow-xl image-full">
 					<figure>
 						<img
 							src="https://t4.ftcdn.net/jpg/04/88/02/37/240_F_488023768_pCWLP3HGQgZfyIKXKNWIEXtLG8lGgKBo.jpg"
-							alt="Shoes"
+							alt="$"
 						/>
 					</figure>
 					<div className="card-body">
 						<h2 className="text-3xl font-bold">revenue</h2>
-						<p className="text-2xl">$ {totalRevenue}M</p>
+						<p className="text-2xl">$ {totalRevenue}</p>
 					</div>
 				</div>
-				<div className="card w-80 mx-auto text-center bg-base-100 shadow-xl image-full">
+				<div className="card md:w-80 mx-auto text-center shadow-xl image-full">
 					<figure>
 						<img
 							src="https://t4.ftcdn.net/jpg/06/22/39/91/240_F_622399180_DepHTZxCHaAJiNOunneLE41Fne2h6oNq.jpg"
@@ -83,7 +71,6 @@ const AdminHome = () => {
 					</div>
 				</div>
 			</div>
-			{/* .......................... */}
 			<div className="w-full h-72 pt-4 bg-gray-950 text-white border-none md:w-80 mx-auto border shadow shadow-gray-600 rounded-xl">
 				<figure>
 					<img

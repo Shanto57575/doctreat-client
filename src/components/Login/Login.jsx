@@ -26,9 +26,6 @@ const Login = () => {
 		const form = event.target;
 		const email = form.email.value;
 		const password = form.password.value;
-		const user = { email, password };
-
-		console.log(user);
 
 		SignIn(email, password)
 			.then((user) => {
@@ -48,7 +45,6 @@ const Login = () => {
 						timer: 1500,
 					});
 					navigate(from, { replace: true });
-					console.log(user);
 				}
 			})
 			.catch((error) => {
@@ -74,7 +70,6 @@ const Login = () => {
 					showConfirmButton: false,
 					timer: 1500,
 				});
-				console.log("result--->", result);
 				const savedUser = {
 					name: result.user?.displayName,
 					email: result.user?.email,
@@ -92,7 +87,7 @@ const Login = () => {
 						navigate(from, { replace: true });
 					});
 			})
-			.catch((error) => console.log(error.message));
+			.catch();
 	};
 
 	// Google authentication
@@ -124,15 +119,13 @@ const Login = () => {
 						navigate(from, { replace: true });
 					});
 			})
-			.catch((error) => console.log(error.message));
+			.catch();
 	};
 
 	const ResetPassword = () => {
 		resetPassword(emailRef.current.value)
-			.then(() => {
-				console.log("reset Email sent");
-			})
-			.catch((error) => console.log(error.message));
+			.then(() => {})
+			.catch();
 	};
 
 	return (

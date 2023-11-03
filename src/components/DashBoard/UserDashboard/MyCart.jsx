@@ -15,7 +15,6 @@ const MyCart = () => {
 	const { user, loader } = useContext(AuthContext);
 
 	let cartQuantity = JSON.parse(localStorage.getItem("cartQuantity")) || {};
-	console.log(cartQuantity);
 	const totalQuantity = Object.values(cartQuantity).reduce(
 		(total, quantity) => total + parseInt(quantity),
 		0
@@ -48,19 +47,14 @@ const MyCart = () => {
 		localStorage.setItem("cartQuantity", JSON.stringify(newInputQuantity));
 	};
 
-	console.log("inputQuantity-->", inputQuantity);
-
 	let totalPrice = 0;
 
 	for (let key in cart) {
 		let product = cart[key];
-		console.log("-->", product.price, inputQuantity[product._id]);
 		totalPrice +=
 			product.price *
 			(inputQuantity[product._id] ? inputQuantity[product._id] : 1);
 	}
-
-	console.log(totalPrice);
 
 	localStorage.setItem("TotalPrice", JSON.stringify(totalPrice.toFixed(2)));
 
@@ -80,9 +74,7 @@ const MyCart = () => {
 				})
 					.then((res) => res.json())
 					.then((data) => {
-						console.log(data);
 						if (data.deletedCount > 0) {
-							// localStorage.removeItem(`cartQuantity.${id}`);
 							refetch();
 							Swal.fire("removed!", "Product removed from the cart", "success");
 						}

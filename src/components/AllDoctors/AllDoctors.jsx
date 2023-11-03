@@ -47,7 +47,6 @@ const AllDoctors = () => {
 		axiosSecure(
 			`/alldoctors?page=${currentPage}&itemsPerPage=${itemsPerPage}&search=${search}&gender=${gender}&speciality=${speciality}&fees=${fees}`
 		).then((data) => {
-			console.log(data.data);
 			setDoctors(data.data);
 			setLoading(false);
 		});

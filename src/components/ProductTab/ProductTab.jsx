@@ -16,7 +16,6 @@ const ProductTab = ({ item, loading }) => {
 
 	const handleAddToCart = (product) => {
 		product.email = user?.email;
-		console.log(product);
 
 		if (isAdmin) {
 			return;

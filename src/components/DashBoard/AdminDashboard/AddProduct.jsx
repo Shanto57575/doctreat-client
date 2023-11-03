@@ -15,10 +15,8 @@ const AddProduct = () => {
 	} = useForm();
 
 	const onSubmit = (data) => {
-		console.log("-->", data);
 		const formData = new FormData();
 		formData.append("image", data.image);
-		console.log(formData);
 
 		fetch(img_hosting_url, {
 			method: "POST",
@@ -26,7 +24,6 @@ const AddProduct = () => {
 		})
 			.then((res) => res.json())
 			.then((imgResponse) => {
-				console.log(imgResponse);
 				if (imgResponse.success) {
 					const imgURL = imgResponse.data?.display_url;
 					const { name, price, category } = data;
@@ -36,7 +33,6 @@ const AddProduct = () => {
 						category,
 						img: imgURL,
 					};
-					console.log("newProduct--->", newProduct);
 					axiosSecure.post("/shop", newProduct).then((res) => {
 						if (res.data.insertedId) {
 							reset();

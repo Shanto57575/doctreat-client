@@ -15,10 +15,8 @@ const AddDoctor = () => {
 	} = useForm();
 
 	const onSubmit = (data) => {
-		console.log("-->", data);
 		const formData = new FormData();
 		formData.append("image", data.image);
-		console.log("formData--->", formData);
 
 		fetch(img_hosting_url, {
 			method: "POST",
@@ -26,7 +24,6 @@ const AddDoctor = () => {
 		})
 			.then((res) => res.json())
 			.then((imgResponse) => {
-				console.log(imgResponse);
 				if (imgResponse.success) {
 					const imgURL = imgResponse.data?.display_url;
 					const {
@@ -55,7 +52,6 @@ const AddDoctor = () => {
 						contact: email,
 						availability,
 					};
-					console.log("newDoctor--->", newDoctor);
 					axiosSecure.post("/alldoctors", newDoctor).then((res) => {
 						if (res.data.insertedId) {
 							reset();

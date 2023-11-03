@@ -34,21 +34,17 @@ const Register = () => {
 		const password = form.password.value;
 		const user = { name, email, password, photo };
 
-		console.log(user);
-
 		createUser(email, password)
-			.then((result) => {
-				console.log("user=>", result);
+			.then(() => {
 				const savedUser = {
 					name: user?.name,
 					email: user?.email,
 					photo: user?.photo,
 				};
-				console.log(savedUser);
 				axiosSecure.post("/users", savedUser);
 				navigate(from, { replace: true });
 			})
-			.catch((error) => console.log(error.message));
+			.catch();
 		form.reset();
 	};
 
@@ -71,7 +67,7 @@ const Register = () => {
 				axiosSecure.post("/users", savedUser);
 				navigate(from, { replace: true });
 			})
-			.catch((error) => console.log(error.message));
+			.catch();
 	};
 
 	// Google authentication
@@ -93,7 +89,7 @@ const Register = () => {
 				axiosSecure.post("/users", savedUser);
 				navigate(from, { replace: true });
 			})
-			.catch((error) => console.log(error.message));
+			.catch();
 	};
 
 	return (

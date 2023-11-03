@@ -25,7 +25,6 @@ const PaymentHistory = () => {
 		}).then((result) => {
 			if (result.isConfirmed) {
 				axiosSecure.delete(`/payments/${user?.email}`).then((res) => {
-					console.log(res.data);
 					if (res.data.deletedCount > 0) {
 						refetch();
 						Swal.fire("Deleted!", "Your History has been Cleared.", "success");
@@ -70,7 +69,7 @@ const PaymentHistory = () => {
 					<h1 className="font-serif text-sm md:text-xl font-extrabold text-blue-400">
 						{user?.displayName}
 					</h1>
-					<h1 className="font-serif text-sm md:text-xl font-extrabold text-blue-400">
+					<h1 className="hidden md:block font-serif text-sm md:text-xl font-extrabold text-blue-400">
 						{user?.email}
 					</h1>
 					<button

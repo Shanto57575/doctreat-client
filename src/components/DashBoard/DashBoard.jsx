@@ -28,7 +28,7 @@ const DashBoard = () => {
 	const handleLogOut = () => {
 		logOut()
 			.then(() => {})
-			.catch((error) => console.log(error.message));
+			.catch();
 		navigate("/");
 		Swal.fire({
 			position: "center",
@@ -44,15 +44,15 @@ const DashBoard = () => {
 			<Helmet>
 				<title>Doctreat | Dashboard</title>
 			</Helmet>
-			<div className="drawer lg:drawer-open">
+			<div className="drawer lg:drawer-open absolute">
 				<input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
 				<div className="drawer-content flex flex-col items-center justify-center">
 					<Outlet />
 					<label
 						htmlFor="my-drawer-2"
-						className="btn bg-blue-200 hover:bg-sky-300 w-full text-black drawer-button lg:hidden rounded-none"
+						className="btn bg-blue-400 hover:bg-sky-300 w-full text-black drawer-button lg:hidden rounded-none"
 					>
-						Open drawer
+						Open Sidebar
 					</label>
 				</div>
 				<div className="drawer-side">

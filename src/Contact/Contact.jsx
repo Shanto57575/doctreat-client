@@ -17,22 +17,16 @@ const Contact = () => {
 				form.current,
 				"Fm702fKL1sZPnZ8Kj"
 			)
-			.then(
-				(result) => {
-					console.log(result);
-					Swal.fire({
-						position: "center",
-						icon: "success",
-						title: "Email has been sent successfully!",
-						showConfirmButton: false,
-						timer: 1500,
-					});
-					form.current.reset();
-				},
-				(error) => {
-					console.log(error.text);
-				}
-			);
+			.then(() => {
+				Swal.fire({
+					position: "center",
+					icon: "success",
+					title: "Email has been sent successfully!",
+					showConfirmButton: false,
+					timer: 1500,
+				});
+				form.current.reset();
+			});
 	};
 
 	return (

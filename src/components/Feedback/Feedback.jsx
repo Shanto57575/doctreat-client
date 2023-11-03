@@ -11,7 +11,6 @@ const Feedback = () => {
 	const [axiosSecure] = useAxiosSecure();
 	useEffect(() => {
 		axiosSecure.get("/feedback").then((res) => {
-			console.log(res.data);
 			setFeedbacks(res.data);
 		});
 	}, [axiosSecure]);

@@ -10,7 +10,6 @@ const DoctorProfile = () => {
 
 	useEffect(() => {
 		axiosSecure.get(`/alldoctors/${id}`).then((res) => {
-			console.log(res.data);
 			setDoctorData(res.data);
 		});
 	}, [axiosSecure, id]);
