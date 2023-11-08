@@ -1,10 +1,10 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Lottie from "lottie-react";
 import login from "../../assets/login.json";
-import { AiFillGithub } from "react-icons/ai";
+import { AiFillEye, AiFillEyeInvisible, AiFillGithub } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { useRef } from "react";
 import { Helmet } from "react-helmet-async";
@@ -13,22 +13,26 @@ const Login = () => {
 	const { SignIn, googleSignIn, GithubSignIn, resetPassword } =
 		useContext(AuthContext);
 
+	const [showPass, setShowPass] = useState(false);
+
 	const navigate = useNavigate();
 	const location = useLocation();
 
 	const from = location.state?.from?.pathname || "/";
 
 	const emailRef = useRef();
+	console.log(emailRef.current?.value);
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
 		const form = event.target;
-		const email = form.email.value;
-		const password = form.password.value;
+		const email = form.email?.value;
+		const password = form.password?.value;
 
 		SignIn(email, password)
-			.then((user) => {
+			.then((result) => {
+				console.log("user--->", result.user);
 				Swal.fire({
 					position: "center",
 					icon: "success",
@@ -36,16 +40,7 @@ const Login = () => {
 					showConfirmButton: false,
 					timer: 1500,
 				});
-				if (user?.email) {
-					Swal.fire({
-						position: "center",
-						icon: "success",
-						title: "Logged In successfully",
-						showConfirmButton: false,
-						timer: 1500,
-					});
-					navigate(from, { replace: true });
-				}
+				navigate(from, { replace: true });
 			})
 			.catch((error) => {
 				Swal.fire({
@@ -123,8 +118,10 @@ const Login = () => {
 	};
 
 	const ResetPassword = () => {
-		resetPassword(emailRef.current.value)
-			.then(() => {})
+		resetPassword(emailRef.current?.value)
+			.then(() => {
+				Swal.fire("Password reset Email Sent!");
+			})
 			.catch();
 	};
 
@@ -143,11 +140,7 @@ const Login = () => {
 						<h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
 							Sign In
 						</h1>
-						<form
-							onSubmit={handleSubmit}
-							className="space-y-4 md:space-y-6"
-							action="#"
-						>
+						<form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
 							<div>
 								<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
 									Your email
@@ -167,18 +160,34 @@ const Login = () => {
 									Password
 								</label>
 								<input
-									type="password"
+									type={showPass ? "text" : "password"}
 									name="password"
 									id="password"
-									placeholder="••••••••"
+									placeholder="password"
 									className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 									required
 								/>
+								<div
+									className="relative cursor-pointer"
+									onClick={() => setShowPass(!showPass)}
+								>
+									{showPass ? (
+										<AiFillEye
+											className="text-white absolute right-3 bottom-2"
+											size={24}
+										/>
+									) : (
+										<AiFillEyeInvisible
+											className="text-white absolute right-3 bottom-2"
+											size={24}
+										/>
+									)}
+								</div>
 							</div>
 							<div className="flex items-start">
 								<div className="text-sm">
 									<label
-										onClick={ResetPassword}
+										onClick={() => ResetPassword}
 										className="link text-blue-600 font-light"
 									>
 										Forget password?

@@ -65,14 +65,16 @@ const BlogPage = () => {
 
 	return (
 		<>
-			<div className="rounded-xl mt-5">
+			<div className="rounded-xl pt-28">
 				<h2 className="text-3xl text-center text-cyan-600 font-serif font-bold underline">
 					{data?.title}
 				</h2>
 				<div className="flex-col md:flex-row card card-side bg-base-100 mx-0 md:mx-12 rounded-xl shadow-2xl mt-5 lg:mt-20">
 					<img src={data.aboutImg} className="w-full md:w-1/2" />
 					<div className="mt-2 md:mt-0 mx-6">
-						<p className="text-justify text-sm font-serif">{data?.article}</p>
+						<p className="text-justify text-sm font-serif pt-2">
+							{data?.article}
+						</p>
 						<div className="flex items-center justify-between font-semibold">
 							<div className="flex items-center font-semibold">
 								<img

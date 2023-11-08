@@ -1,18 +1,19 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Lottie from "lottie-react";
 import register from "../../assets/register.json";
 import { FcGoogle } from "react-icons/fc";
-import { AiFillGithub } from "react-icons/ai";
 import { Helmet } from "react-helmet-async";
+import { AiFillEye, AiFillEyeInvisible, AiFillGithub } from "react-icons/ai";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Register = () => {
 	const { createUser, googleSignIn, GithubSignIn } = useContext(AuthContext);
 	const navigate = useNavigate();
 	const location = useLocation();
+	const [showPass, setShowPass] = useState(false);
 	const [axiosSecure] = useAxiosSecure();
 
 	const from = location.state?.from?.pathname || "/";
@@ -118,6 +119,7 @@ const Register = () => {
 								<input
 									type="text"
 									name="name"
+									id="name"
 									className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 									placeholder="Name"
 									required
@@ -154,13 +156,29 @@ const Register = () => {
 									Password
 								</label>
 								<input
-									type="password"
+									type={showPass ? "text" : "password"}
 									name="password"
 									id="password"
-									placeholder="••••••••"
+									placeholder="password"
 									className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 									required
 								/>
+								<div
+									className="relative cursor-pointer"
+									onClick={() => setShowPass(!showPass)}
+								>
+									{showPass ? (
+										<AiFillEye
+											className="text-white absolute right-3 bottom-2"
+											size={24}
+										/>
+									) : (
+										<AiFillEyeInvisible
+											className="text-white absolute right-3 bottom-2"
+											size={24}
+										/>
+									)}
+								</div>
 							</div>
 							<input
 								className="cursor-pointer w-full text-white bg-cyan-600 hover:bg-primary-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
