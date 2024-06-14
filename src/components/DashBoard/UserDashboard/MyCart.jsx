@@ -7,7 +7,6 @@ import Loader from "../../Loader/Loader";
 import useCart from "../../../hooks/useCart";
 import { useEffect } from "react";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-// import { BsCartXFill } from "react-icons/bs";
 
 const MyCart = () => {
 	const [cart, refetch] = useCart();
